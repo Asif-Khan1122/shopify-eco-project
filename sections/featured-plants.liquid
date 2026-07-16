@@ -1,0 +1,328 @@
+{% style %}
+  .featured_plant {
+    width: 100%;
+  }
+
+  .featured_plant .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .featured_plant .featured_plant_inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(25px, 3vw, 60px);
+    padding: 70px;
+    opacity: 80%;
+    border-radius: 20px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  .featured_plant h2.featured_plant_heading {
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 700;
+    line-height: 0.75;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .featured_plant h2.featured_plant_heading strong {
+    color: #9c747c;
+    font-weight: 700;
+  }
+
+  .featured_plant .featured_plant_wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+
+  .featured_plant .plant_img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    max-height: 411px;
+    object-fit: cover;
+  }
+
+  .featured_plant .featured_plant_card {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 3vw, 23px);
+    transition: all 0.3s ease;
+  }
+
+  /* Hide extra cards initially */
+  .featured_plant_card.hidden {
+    display: none;
+  }
+
+  .featured_plant .featured_plant_content {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 3vw, 20px);
+    width: 92%;
+  }
+
+  .featured_plant h3.content_heading {
+    font-size: clamp(16px, 3vw, 26px);
+    font-weight: 700;
+    line-height: 0.731;
+    color: #222222;
+  }
+
+  .featured_plant .content_desc p {
+    font-weight: 400;
+    font-size: clamp(12px, 3vw, 18px);
+    line-height: 0.723;
+  }
+
+  .featured_plant h4 {
+    font-size: clamp(14px, 3vw, 20px);
+    line-height: 0.7;
+    font-weight: 600;
+  }
+
+  .featured_plant a.featured_plant_btn {
+    padding: 10px 30px;
+    border-radius: 70px;
+    border: 1.2px solid #222222;
+    text-decoration: none;
+    width: fit-content;
+    color: #222222;
+    font-size: clamp(12px, 3vw, 18px);
+    font-weight: 600;
+    line-height: normal;
+    transition: all 0.3s ease;
+  }
+
+  .featured_plant a.featured_plant_btn:hover {
+    background-color: #7C8C74;
+    border: 1.2px solid #7C8C74;
+    color: #ffffff;
+  }
+
+  .featured_plant .view_all_btn {
+    padding: 12px 40px;
+    border-radius: 70px;
+    border: 1.2px solid #222222;
+    text-decoration: none;
+    color: #222222;
+    font-size: clamp(14px, 3vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.3s ease;
+  }
+
+  .featured_plant .view_all_btn:hover {
+    border: 1.2px solid #7C8C74;
+    background-color: #7C8C74;
+    color: #ffffff;
+  }
+
+  @media screen and (max-width: 960px){
+    .featured_plant .featured_plant_inner{
+      padding: 60px 40px;
+    }
+    .featured_plant .featured_plant_content{
+      width: 100%
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .featured_plant .featured_plant_inner{
+      padding: 50px 20px;
+    }
+    .featured_plant_wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .featured_plant .featured_plant_inner{
+      padding: 40px 10px;
+    }
+    .featured_plant_wrapper {
+      grid-template-columns: 1fr;
+    }
+    .featured_plant .featured_plant_inner {
+      padding: 30px 20px;
+    }
+  }
+{% endstyle %}
+
+<section class="featured_plant">
+  <div class="container">
+    <div class="featured_plant_inner">
+      {% if section.settings.heading != blank %}
+        <h2 class="featured_plant_heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      <div class="featured_plant_wrapper" id="plantWrapper">
+        {% for block in section.blocks %}
+          {% assign block_index = forloop.index0 %}
+          <div
+            class="featured_plant_card {% if block_index >= 3 %}hidden{% endif %}"
+            data-index="{{ block_index }}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="featured_plant_image">
+              {% if block.settings.plant_img != blank %}
+                {{
+                  block.settings.plant_img
+                  | image_url: width: block.settings.plant_img.width
+                  | image_tag: loading: 'lazy', class: 'plant_img'
+                }}
+              {% endif %}
+            </div>
+            <div class="featured_plant_content">
+              {% if block.settings.content_heading != blank %}
+                <h3 class="content_heading">{{ block.settings.content_heading }}</h3>
+              {% endif %}
+              {% if block.settings.content_desc != blank %}
+                <p>{{ block.settings.content_desc }}</p>
+              {% endif %}
+              {% if block.settings.featured_plant_price != blank %}
+                <h4>{{ block.settings.featured_plant_price }}</h4>
+              {% endif %}
+              {% if block.settings.cart_btn != blank %}
+                <a href="{{ block.settings.cart_url }}" class="featured_plant_btn">{{ block.settings.cart_btn }}</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if section.blocks.size > 3 %}
+        <button class="view_all_btn" id="viewAllBtn">
+          {{ section.settings.view_all_btn | default: 'View All Plants' }}
+        </button>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const viewAllBtn = document.getElementById('viewAllBtn');
+    const hiddenCards = document.querySelectorAll('.featured_plant_card.hidden');
+
+    if (viewAllBtn && hiddenCards.length > 0) {
+      let isExpanded = false;
+
+      viewAllBtn.addEventListener('click', function () {
+        isExpanded = !isExpanded;
+
+        hiddenCards.forEach((card) => {
+          if (isExpanded) {
+            card.classList.remove('hidden');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+
+            // Add animation
+            setTimeout(() => {
+              card.style.transition = 'all 0.5s ease';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            card.style.transition = 'all 0.3s ease';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+              card.classList.add('hidden');
+              card.style.opacity = '';
+              card.style.transform = '';
+            }, 300);
+          }
+        });
+
+        this.textContent = isExpanded
+          ? 'Show Less Plants'
+          : '{{ section.settings.view_all_btn | default: "View All Plants" }}';
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Featured Plants",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "BG Color",
+      "default": "#EEEEEE"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured Plants"
+    },
+    {
+      "type": "text",
+      "id": "view_all_btn",
+      "label": "View All Button Text",
+      "default": "View All Plants"
+    },
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "View All Button Link (Optional)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "plant",
+      "name": "plant",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "plant_img",
+          "label": "Plant Image"
+        },
+        {
+          "type": "text",
+          "id": "content_heading",
+          "label": "Heading",
+          "default": "Green Island Ficus"
+        },
+        {
+          "type": "textarea",
+          "id": "content_desc",
+          "label": "Description",
+          "default": "Glossy, compact foliage for hedges or border"
+        },
+        {
+          "type": "text",
+          "id": "featured_plant_price",
+          "label": "Price",
+          "default": "3-Gallon Pot: $5.46"
+        },
+        {
+          "type": "text",
+          "id": "cart_btn",
+          "label": "Button Text",
+          "default": "Add To Cart"
+        },
+        {
+          "type": "url",
+          "id": "cart_url",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Plants"
+    }
+  ]
+}
+{% endschema %}

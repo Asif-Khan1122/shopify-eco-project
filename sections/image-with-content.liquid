@@ -1,0 +1,236 @@
+{% style %}
+  .image_with_text {
+    width: 100%;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .image_with_text .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .image_with_text .inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(30px, 5vw, 60px);
+  }
+
+  .image_with_text .media_image {
+    width: 100%;
+    max-width: 619px;
+    max-height: 611px;
+    display: flex;
+  }
+
+  .image_with_text .media_image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  .image_with_text .media_content {
+    width: 100%;
+    max-width: 591px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(22px, 4vw, 35px);
+  }
+
+  .image_with_text .main_heading {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(18px, 4vw, 30px);
+  }
+
+  .image_with_text h2 {
+    font-size: clamp(42px, 5vw, 58px);
+    font-weight: 700;
+    line-height: 1.02;
+    font-family: 'Plus Jakarta Sans';
+  }
+  .image_with_text .main_heading h2 strong {
+    color: #9c747c;
+    font-weight: 700;
+  }
+
+  .image_with_text h3 {
+    font-size: clamp(18px, 4vw, 22px);
+    font-weight: 700;
+    line-height: 1.1;
+    font-family: 'Open Sans';
+  }
+
+  .image_with_text p {
+    font-size: clamp(12px, 3vw, 18px);
+    font-weight: 400;
+    font-family: 'Open Sans';
+    line-height: 1.32;
+  }
+
+  .image_with_text a {
+    padding: 16px 30px;
+    border-radius: 40px;
+    background: #7C8C74;
+    width: fit-content;
+    color: #fff;
+    text-decoration: none;
+    font-size: clamp(12px, 3vw, 18px);
+    font-weight: 600;
+    line-height: 1.2;
+    font-family: 'Open Sans';
+  }
+
+  @media screen and (max-width: 1024px){
+
+  .image_with_text {
+    padding-top: {{ section.settings.padding_top_mbl }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mbl }}px;
+  }
+  .image_with_text .inner{
+    flex-direction: column;
+  }
+
+  .image_with_text .media_image {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .image_with_text .media_content{
+    max-width: 100%;
+  }
+  }
+{% endstyle %}
+
+<section class="image_with_text">
+  <div class="container">
+    <div class="inner">
+      <div class="media_image">
+        {% if section.settings.media_img != blank %}
+          {{
+            section.settings.media_img
+            | image_url: width: section.settings.media_img.width
+            | image_tag: loading: 'lazy'
+          }}
+        {% endif %}
+      </div>
+      <div class="media_content">
+        <div class="main_heading">
+          {% if section.settings.content_heading != blank %}
+            <h2>{{ section.settings.content_heading }}</h2>
+          {% endif %}
+          {% if section.settings.sub_heading != blank %}
+            <h3>{{ section.settings.sub_heading }}</h3>
+          {% endif %}
+        </div>
+        <div class="content_decs">
+          {% if section.settings.description_1 != blank %}
+            <p>{{ section.settings.description_1 }}</p>
+          {% endif %}
+          {% if section.settings.description_2 != blank %}
+            <p>{{ section.settings.description_2 }}</p>
+          {% endif %}
+        </div>
+        {% if section.settings.btn_title != blank and section.settings.btn_url != blank %}
+          <a href="{{ section.settings.btn_url }}">{{ section.settings.btn_title }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image With Text",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 148
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mbl",
+      "label": "Padding Top Mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mbl",
+      "label": "Padding Bottom Mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "image_picker",
+      "id": "media_img",
+      "label": "Media Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "content_heading",
+      "label": "Content Heading",
+      "default": "About Ecoraíces Native Plants"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Rooted in Nature, Grown with Purpose"
+    },
+    {
+      "type": "textarea",
+      "id": "description_1",
+      "label": "Description 1",
+      "default": "At Ecoraíces, we specialize in high-quality, Florida-friendly plants that bring vibrancy and biodiversity to both homes and commercial spaces. Whether you’re a local gardener, landscape designer, or business owner, we provide carefully nurtured greenery — from ornamental shrubs to unique native groundcovers."
+    },
+    {
+      "type": "textarea",
+      "id": "description_2",
+      "label": "Description 2",
+      "default": "We are passionate about sustainability, soil health, and supporting pollinators like Monarch butterflies. Every plant is grown with care, priced accessibly, and ready to thrive in your space."
+    },
+    {
+      "type": "text",
+      "id": "btn_title",
+      "label": "Button Label",
+      "default": "Learn More About Us"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image With Text"
+    }
+  ]
+}
+{% endschema %}

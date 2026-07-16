@@ -1,0 +1,116 @@
+<style>
+  .custom_marquee {
+    overflow: hidden;
+    position: relative;
+    padding: clamp(14px, 2vw, 16px) 0;
+    margin-top: clamp(-8px, -2vw, -20px);
+    z-index: 2;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .custom_marquee .container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .custom_marquee .custom_marquee_inner {
+    display: inline-flex;
+    width: max-content;
+    animation: scroll 20s linear infinite;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-items: center;
+    will-change: transform;
+  }
+
+  .custom_marquee:hover .custom_marquee_inner {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .custom_marquee  img {
+    height: clamp(36px, 3vw, 60px);
+    width: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .custom_marquee .marquee_image {
+    margin: 0 50px;
+  }
+</style>
+
+<section class="custom_marquee">
+  <div class="container">
+    <div class="custom_marquee_inner">
+      {% for block in section.blocks %}
+        <div class="marquee_image" {{ block.shopify_attributes }}>
+          {% if block.settings.marquee_image != blank %}
+            <img
+              src="{{ block.settings.marquee_image | image_url }}"
+              width="{{ block.settings.marquee_image.width }}"
+              height="{{ block.settings.marquee_image.height }}"
+              alt="{{ block.settings.marquee_image.alt | escape }}"
+              loading="lazy"
+            >
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      {% for block in section.blocks %}
+        <div class="marquee_image">
+          {% if block.settings.marquee_image != blank %}
+            <img
+              src="{{ block.settings.marquee_image | image_url }}"
+              width="{{ block.settings.marquee_image.width }}"
+              height="{{ block.settings.marquee_image.height }}"
+              alt="{{ block.settings.marquee_image.alt | escape }}"
+              loading="lazy"
+            >
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Marquee",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#9C747C"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Marquee Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "marquee_image",
+          "label": "Marquee Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Marquee",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

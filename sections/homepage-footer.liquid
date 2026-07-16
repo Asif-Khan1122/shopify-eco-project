@@ -1,0 +1,405 @@
+{% style %}
+    .homepage_footer {
+      width: 100%;
+      background-color: {{ section.settings.bg_color }};
+    }
+
+    .homepage_footer .container {
+      max-width: 1251px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .homepage_footer .homepage_footer_inner {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      gap: 40px;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    .homepage_footer img.footer_logo {
+      max-width: 109px;
+      width: 100%;
+      max-height: 116px;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .homepage_footer .footer_description {
+      color: #222222;
+      font-size: 16px;
+      line-height: 1.47;
+    }
+    .homepage_footer .footer_brand {
+      max-width: 266px;
+      display: flex;
+      flex-direction: column;
+      gap: calc(24px + 1px);
+    }
+    .homepage_footer .footer_bottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 0 25px 0;
+      border-top: 1.5px solid #000;
+    }
+    .homepage_footer .footer_bottom p {
+      font-size: 18px;
+      color: #444444;
+      line-height: 1.5;
+    }
+    .homepage_footer .footer_nav {
+      display: flex;
+      flex-direction: column;
+      max-width: 181px;
+      gap: 45px;
+    }
+    .homepage_footer .footer_contact {
+      display: flex;
+      flex-direction: column;
+      gap: 45px;
+      max-width: 199px;
+    }
+    .homepage_footer .footer_social {
+      display: flex;
+      flex-direction: column;
+      gap: 45px;
+      max-width: 175px;
+    }
+    .homepage_footer .footer_social_links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .homepage_footer ul.footer_menu {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      list-style: none;
+    }
+    .homepage_footer h3.footer_title {
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #222222;
+    }
+    .homepage_footer .footer_link {
+      text-decoration: none;
+      font-size: 18px;
+      color: #000;
+      line-height: 1.2;
+      font-weight: 400;
+      transition: font-weight 0.3s ease;
+    }
+
+    .homepage_footer .footer_menu_item:first-child .footer_link,
+    .homepage_footer .footer_contact_item:first-child .footer_link{
+      font-weight: 700;
+    }
+
+    .homepage_footer .footer_menu_item:not(:first-child) .footer_link:hover,
+    .homepage_footer .footer_contact_item:not(:first-child) .footer_link:hover {
+      font-weight: 700;
+    }
+    .homepage_footer a.footer_social_link {
+      text-decoration: none;
+      display: flex;
+    }
+
+  @media (max-width: 1024px){
+    .homepage_footer .homepage_footer_inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  }
+  @media (max-width: 768px){
+    .homepage_footer .homepage_footer_inner {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  }
+{% endstyle %}
+
+<footer class="homepage_footer">
+  <div class="container">
+    <div class="homepage_footer_inner">
+      <div class="footer_brand">
+        {% if section.settings.brand_logo_img != blank %}
+          {{
+            section.settings.brand_logo_img
+            | image_url: width: section.settings.brand_logo_img.width
+            | image_tag: loading: 'lazy', class: 'footer_logo'
+          }}
+        {% endif %}
+        <div class="footer_description">
+          {% if section.settings.description != blank or section.settings.contact_info != blank %}
+            <p>
+              {{ section.settings.description }}
+
+              {% if section.settings.contact_info != blank %}
+                <br>
+                <strong>{{ section.settings.contact_info }}</strong>
+              {% endif %}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+      <div class="footer_nav">
+        {% if section.settings.title != blank %}
+          <h3 class="footer_title">{{ section.settings.title }}</h3>
+        {% endif %}
+
+        <ul class="footer_menu">
+          {% for block in section.blocks %}
+            {% if block.type == 'menu_link' %}
+              <li class="footer_menu_item">
+                <a href="{{ block.settings.link }}" class="footer_link">
+                  {{ block.settings.label }}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      {% comment %}
+        <div class="footer_contact">
+          {% if section.settings.contact_title != blank %}
+            <h3 class="footer_title">{{ section.settings.contact_title }}</h3>
+          {% endif %}
+
+          <ul class="footer_menu">
+            {% for block in section.blocks %}
+              {% if block.type == 'contact_item' %}
+                <li class="footer_contact_item">
+                  <a href="{{ block.settings.link }}" class="footer_link">
+                    {{ block.settings.label_2 }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      {% endcomment %}
+      <div class="footer_contact">
+        {% if section.settings.contact_title != blank %}
+          <h3 class="footer_title">{{ section.settings.contact_title }}</h3>
+        {% endif %}
+
+        <div class="footer_contact_list">
+          {% for block in section.blocks %}
+            {% if block.type == 'contact_item' %}
+              <div class="footer_contact_item">
+                <h5 class="contact_heading">
+                  {{ block.settings.label }}
+                </h5>
+
+                {% if block.settings.link != blank %}
+                  <a href="{{ block.settings.link }}" class="footer_link">
+                    {{ block.settings.value }}
+                  </a>
+                {% else %}
+                  <p class="contact_text">
+                    {{ block.settings.value }}
+                  </p>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="footer_social">
+        {% if section.settings.social_title != blank %}
+          <h3 class="footer_title">{{ section.settings.social_title }}</h3>
+        {% endif %}
+
+        <div class="footer_social_links">
+          <a href="{{ section.settings.instagram_link }}" class="footer_social_link">
+            <svg width="53" height="52" viewBox="0 0 53 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="26.5" cy="26" rx="26.5" ry="26" fill="white"/>
+              <path d="M21.8333 16C18.6168 16 16 18.4922 16 21.5556V30.4444C16 33.5078 18.6168 36 21.8333 36H31.1667C34.3832 36 37 33.5078 37 30.4444V21.5556C37 18.4922 34.3832 16 31.1667 16H21.8333ZM21.8333 18.2222H31.1667C33.0963 18.2222 34.6667 19.7178 34.6667 21.5556V30.4444C34.6667 32.2822 33.0963 33.7778 31.1667 33.7778H21.8333C19.9037 33.7778 18.3333 32.2822 18.3333 30.4444V21.5556C18.3333 19.7178 19.9037 18.2222 21.8333 18.2222ZM32.3333 19.3333C32.0239 19.3333 31.7272 19.4504 31.5084 19.6588C31.2896 19.8671 31.1667 20.1498 31.1667 20.4444C31.1667 20.7391 31.2896 21.0217 31.5084 21.2301C31.7272 21.4385 32.0239 21.5556 32.3333 21.5556C32.6428 21.5556 32.9395 21.4385 33.1583 21.2301C33.3771 21.0217 33.5 20.7391 33.5 20.4444C33.5 20.1498 33.3771 19.8671 33.1583 19.6588C32.9395 19.4504 32.6428 19.3333 32.3333 19.3333ZM26.5 20.4444C23.2835 20.4444 20.6667 22.9367 20.6667 26C20.6667 29.0633 23.2835 31.5556 26.5 31.5556C29.7165 31.5556 32.3333 29.0633 32.3333 26C32.3333 22.9367 29.7165 20.4444 26.5 20.4444ZM26.5 22.6667C28.4297 22.6667 30 24.1622 30 26C30 27.8378 28.4297 29.3333 26.5 29.3333C24.5703 29.3333 23 27.8378 23 26C23 24.1622 24.5703 22.6667 26.5 22.6667Z" fill="black"/>
+            </svg>
+          </a>
+
+          <a href="{{ section.settings.facebook_link }}" class="footer_social_link">
+            <svg
+              width="51"
+              height="52"
+              viewBox="0 0 51 52"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <ellipse cx="25.5" cy="26" rx="25.5" ry="26" fill="white"/>
+              <mask id="mask0_11_706" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="15" y="15" width="22" height="22">
+              <rect x="15" y="15" width="22" height="22" fill="url(#pattern0_11_706)"/>
+              </mask>
+              <g mask="url(#mask0_11_706)">
+              <rect x="11" y="11" width="30" height="30" fill="black"/>
+              </g>
+              <defs>
+              <pattern id="pattern0_11_706" patternContentUnits="objectBoundingBox" width="1" height="1">
+              <use xlink:href="#image0_11_706" transform="scale(0.00390625)"/>
+              </pattern>
+              <image id="image0_11_706" width="256" height="256" preserveAspectRatio="none" xlink:href="data:image/png;base64,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"/>
+              </defs>
+            </svg>
+          </a>
+
+          <a href="{{ section.settings.twitter_link }}" class="footer_social_link">
+            <svg width="51" height="52" viewBox="0 0 51 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="25.5" cy="26" rx="25.5" ry="26" fill="white"/>
+              <path d="M14.0584 15L23.3245 27.41L14 37.5H16.0987L24.2625 28.6659L30.8584 37.5H38L28.2123 24.392L36.8916 15H34.7929L27.2747 23.1358L21.2 15H14.0584ZM17.1447 16.5483H20.4255L34.9133 35.9517H31.6325L17.1447 16.5483Z" fill="black"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer_bottom">
+    <p>{{ section.settings.last_title }}</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Homepage Footer",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 68
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "BG Color",
+      "default": "#d8ddd5"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_img",
+      "label": "Logo Image"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Questions about a plant or order? Reach out we’re passionate about what we grow."
+    },
+    {
+      "type": "text",
+      "id": "contact_info",
+      "label": "Description Contact",
+      "default": "📧 ecoraicesnative@gmail.com 📍 Based in Florida | 🌴 Local Pickup & Delivery Options"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Quick Links Title",
+      "default": "Quick Links"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Title",
+      "default": "Visit Us"
+    },
+    {
+      "type": "text",
+      "id": "social_title",
+      "label": "Social Title",
+      "default": "Socials"
+    },
+    {
+      "type": "text",
+      "id": "last_title",
+      "label": "Copyright Text",
+      "default": "© 2025 All Rights Reserved"
+    },
+
+    {
+      "type": "url",
+      "id": "instagram_link",
+      "label": "Instagram Link"
+    },
+    {
+      "type": "url",
+      "id": "facebook_link",
+      "label": "Facebook Link"
+    },
+    {
+      "type": "url",
+      "id": "twitter_link",
+      "label": "Twitter/X Link"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "menu_link",
+      "name": "Menu Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Menu Label",
+          "default": "Home"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Menu Link"
+        }
+      ]
+    },
+    {
+      "type": "contact_item",
+      "name": "Contact Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Heading",
+          "default": "Email"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Text",
+          "default": "ecoraicesnative@gmail.com"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+
+  "max_blocks": 20,
+
+  "presets": [
+    {
+      "name": "Homepage Footer"
+    }
+  ]
+}
+{% endschema %}

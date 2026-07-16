@@ -1,0 +1,371 @@
+{% style %}
+  .bulk_services{
+    width: 100%;
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  .bulk_services .container{
+    max-width: 1247px;
+    margin: 0 auto;
+    padding: 0 20px
+  }
+
+  .bulk_services .bulk_services_inner{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    justify-content: space-between;
+    }
+
+  .bulk_services .bulk_services_content{
+    width: 100%;
+    max-width: 591px;
+    display: flex;
+    flex-direction: column;
+    gap: calc(20px + 1vw);
+  }
+  .bulk_services .content_text {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(18px, 3vw, 35px);
+  }
+
+  .bulk_services h2.bulk_heading {
+    font-size: clamp(20px, 4vw, 56px);
+    font-weight: 700;
+    font-family: 'Plus Jakarta Sans';
+    line-height: 1.018;
+    color: #222222;
+  }
+
+  .bulk_services h2.bulk_heading strong {
+    color: #9C747C;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .bulk_services p {
+    color: #666666;
+    font-size: clamp(14px, 3vw, 18px);
+    line-height: 1.426;
+  }
+
+  .bulk_services ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(18px, 3vw, 35px);
+    position: relative;
+  }
+  .bulk_services li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #222;
+    line-height: .75;
+    font-size: clamp(14px, 3vw, 18px);
+    font-weight: 700;
+  }
+
+  .bulk_services .button_group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .bulk_services .primary_btn {
+    padding: 10px 30px;
+    border-radius: 40px;
+    text-decoration: none;
+    color: {{ section.settings.primary_btn_text_color }};
+    font-size: clamp(14px, 3vw, 18px);
+    font-weight: 600;
+  }
+  .bulk_services .secondary_btn {
+    padding: 10px 30px;
+    border-radius: 40px;
+    text-decoration: none;
+    color: {{ section.settings.secondary_btn_text_color }};
+    font-size: clamp(14px, 3vw, 18px);
+    font-weight: 600;
+  }
+  .bulk_services .primary_btn,
+  .bulk_services .secondary_btn{
+    background: {{ section.settings.secondary_btn_color }};
+    background: {{ section.settings.primary_btn_color }};
+    border: 1.5px solid #222;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .bulk_services .primary_btn:hover {
+    background-color: {{ section.settings.primary_btn_hover_color }};
+    color: {{ section.settings.primary_btn_hover_text_color }};
+    border: 1.5px solid #7C8C74;
+  }
+
+  .bulk_services .secondary_btn:hover {
+    background-color: {{ section.settings.secondary_btn_hover_color }};
+    color: {{ section.settings.secondary_btn_hover_text_color }};
+    border: 1.5px solid #7C8C74;
+  }
+
+  .bulk_services_image {
+    max-width: 49%;
+  }
+  .bulk_services img.road_img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  @media (max-width: 1024px){
+  .bulk_services .bulk_services_inner {
+    flex-direction: column;
+  }
+  .bulk_services .bulk_services_content {
+    max-width: 100%;
+  }
+  .bulk_services_image {
+    max-width: 100%;
+  }
+  }
+  @media (max-width: 768px){
+  .bulk_services {
+    padding-top: {{ section.settings.padding_top | times: 0.5 | round }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.5 | round }}px;
+  }
+
+  .bulk_services .button_group {
+    flex-direction: column;
+  }
+  .bulk_services .primary_btn, .bulk_services .secondary_btn {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  }
+{% endstyle %}
+
+<section class="bulk_services">
+  <div class="container">
+    <div class="bulk_services_inner">
+      <div class="bulk_services_content">
+        <div class="content_text">
+          {% if section.settings.heading != blank %}
+            <h2 class="bulk_heading">{{ section.settings.heading }}</h2>
+          {% endif %}
+          {% if section.settings.description != blank %}
+            <p>{{ section.settings.description }}</p>
+          {% endif %}
+          <ul>
+            {% if section.settings.li_desc_1 != blank %}
+              <li>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 24C13.5759 24 15.1363 23.6896 16.5922 23.0866C18.0481 22.4835 19.371 21.5996 20.4853 20.4853C21.5996 19.371 22.4835 18.0481 23.0866 16.5922C23.6896 15.1363 24 13.5759 24 12C24 10.4241 23.6896 8.86371 23.0866 7.4078C22.4835 5.95189 21.5996 4.62902 20.4853 3.51472C19.371 2.40042 18.0481 1.5165 16.5922 0.913445C15.1363 0.310389 13.5759 -2.34822e-08 12 0C8.8174 4.74244e-08 5.76516 1.26428 3.51472 3.51472C1.26428 5.76515 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C5.76516 22.7357 8.8174 24 12 24ZM11.6907 16.8533L18.3573 8.85333L16.3093 7.14667L10.576 14.0253L7.60933 11.0573L5.724 12.9427L9.724 16.9427L10.756 17.9747L11.6907 16.8533Z" fill="#9C747C"/>
+                </svg>
+                <span>{{ section.settings.li_desc_1 }}</span>
+              </li>
+            {% endif %}
+            {% if section.settings.li_desc_2 != blank %}
+              <li>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 24C13.5759 24 15.1363 23.6896 16.5922 23.0866C18.0481 22.4835 19.371 21.5996 20.4853 20.4853C21.5996 19.371 22.4835 18.0481 23.0866 16.5922C23.6896 15.1363 24 13.5759 24 12C24 10.4241 23.6896 8.86371 23.0866 7.4078C22.4835 5.95189 21.5996 4.62902 20.4853 3.51472C19.371 2.40042 18.0481 1.5165 16.5922 0.913445C15.1363 0.310389 13.5759 -2.34822e-08 12 0C8.8174 4.74244e-08 5.76516 1.26428 3.51472 3.51472C1.26428 5.76515 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C5.76516 22.7357 8.8174 24 12 24ZM11.6907 16.8533L18.3573 8.85333L16.3093 7.14667L10.576 14.0253L7.60933 11.0573L5.724 12.9427L9.724 16.9427L10.756 17.9747L11.6907 16.8533Z" fill="#9C747C"/>
+                </svg>
+                <span> {{ section.settings.li_desc_2 }}</span>
+              </li>
+            {% endif %}
+            {% if section.settings.li_desc_3 != blank %}
+              <li>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 24C13.5759 24 15.1363 23.6896 16.5922 23.0866C18.0481 22.4835 19.371 21.5996 20.4853 20.4853C21.5996 19.371 22.4835 18.0481 23.0866 16.5922C23.6896 15.1363 24 13.5759 24 12C24 10.4241 23.6896 8.86371 23.0866 7.4078C22.4835 5.95189 21.5996 4.62902 20.4853 3.51472C19.371 2.40042 18.0481 1.5165 16.5922 0.913445C15.1363 0.310389 13.5759 -2.34822e-08 12 0C8.8174 4.74244e-08 5.76516 1.26428 3.51472 3.51472C1.26428 5.76515 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C5.76516 22.7357 8.8174 24 12 24ZM11.6907 16.8533L18.3573 8.85333L16.3093 7.14667L10.576 14.0253L7.60933 11.0573L5.724 12.9427L9.724 16.9427L10.756 17.9747L11.6907 16.8533Z" fill="#9C747C"/>
+                </svg>
+                <span>
+                  {{ section.settings.li_desc_3 }}
+                </span>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="button_group">
+          {% if section.settings.primary_btn_title != blank and section.settings.primary_btn_url != blank %}
+            <a href="{{ section.settings.primary_btn_url }}" class="primary_btn">
+              {{- section.settings.primary_btn_title -}}
+            </a>
+          {% endif %}
+          {% if section.settings.secondary_btn_title != blank and section.settings.secondary_btn_url != blank %}
+            <a href="{{ section.settings.secondary_btn_url }}" class="secondary_btn">
+              {{- section.settings.secondary_btn_title -}}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="bulk_services_image">
+        {% if section.settings.road_img != blank %}
+          {{
+            section.settings.road_img
+            | image_url: width: section.settings.road_img.width
+            | image_tag: loading: 'lazy', class: 'road_img'
+          }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bulk Services",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "BG Color",
+      "default": "#fefefe"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 148
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Bulk Orders & <strong>Business Services</strong>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Are you a landscape architect, business, or municipality? We work directly with professionals to provide bulk pricing, liners, and guidance on native planting."
+    },
+    {
+      "type": "text",
+      "id": "li_desc_1",
+      "label": "Feature 1",
+      "default": "Available in Liners & Larger Pots"
+    },
+    {
+      "type": "text",
+      "id": "li_desc_2",
+      "label": "Feature 2",
+      "default": "Customized Recommendations for Projects"
+    },
+    {
+      "type": "text",
+      "id": "li_desc_3",
+      "label": "Feature 3",
+      "default": "Direct-to-Site Delivery (Florida only)"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "road_img",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Primary Button"
+    },
+    {
+      "type": "text",
+      "id": "primary_btn_title",
+      "label": "Button Text",
+      "default": "Request Bulk Pricing"
+    },
+    {
+      "type": "url",
+      "id": "primary_btn_url",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_color",
+      "label": "Button Color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_text_color",
+      "label": "Text Color",
+      "default": "#222"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_hover_color",
+      "label": "Hover Button Color",
+      "default": "#7C8C74"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_hover_text_color",
+      "label": "Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Secondary Button"
+    },
+    {
+      "type": "text",
+      "id": "secondary_btn_title",
+      "label": "Button Text",
+      "default": "Schedule a Call"
+    },
+    {
+      "type": "url",
+      "id": "secondary_btn_url",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "secondary_btn_color",
+      "label": "Button Color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "secondary_btn_text_color",
+      "label": "Text Color",
+      "default": "#222"
+    },
+    {
+      "type": "color",
+      "id": "secondary_btn_hover_color",
+      "label": "Hover Button Color",
+      "default": "#7C8C74"
+    },
+    {
+      "type": "color",
+      "id": "secondary_btn_hover_text_color",
+      "label": "Hover Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bulk Services"
+    }
+  ]
+}
+{% endschema %}
