@@ -1,12 +1,8 @@
 {% style %}
   .featured_plant {
     width: 100%;
-  }
-
-  .featured_plant .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin-top: clamp(30px, 5vw, {{ section.settings.margin_top }}px);
+    margin-bottom: clamp(30px, 5vw, {{ section.settings.margin_bottom }}px);
   }
 
   .featured_plant .featured_plant_inner {
@@ -136,7 +132,7 @@
     .featured_plant .featured_plant_inner{
       padding: 50px 20px;
     }
-    .featured_plant_wrapper {
+    .featured_plant .featured_plant_wrapper {
       grid-template-columns: repeat(2, 1fr);
     }
   }
@@ -145,7 +141,7 @@
     .featured_plant .featured_plant_inner{
       padding: 40px 10px;
     }
-    .featured_plant_wrapper {
+    .featured_plant .featured_plant_wrapper {
       grid-template-columns: 1fr;
     }
     .featured_plant .featured_plant_inner {
@@ -155,7 +151,7 @@
 {% endstyle %}
 
 <section class="featured_plant">
-  <div class="container">
+  <div class="page-width">
     <div class="featured_plant_inner">
       {% if section.settings.heading != blank %}
         <h2 class="featured_plant_heading">{{ section.settings.heading }}</h2>
@@ -254,12 +250,6 @@
   "name": "Featured Plants",
   "settings": [
     {
-      "type": "color",
-      "id": "bg_color",
-      "label": "BG Color",
-      "default": "#EEEEEE"
-    },
-    {
       "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
@@ -275,6 +265,40 @@
       "type": "url",
       "id": "view_all_url",
       "label": "View All Button Link (Optional)"
+    },
+    {
+      "type": "header",
+      "content": "BG Color"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "BG Color",
+      "default": "#EEEEEE"
+    },
+    {
+      "type": "header",
+      "content": "Spacing & Layout"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "max": 100,
+      "min": 20,
+      "unit": "px",
+      "step": 4,
+      "default": 68
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "max": 100,
+      "min": 20,
+      "unit": "px",
+      "step": 4,
+      "default": 68
     }
   ],
   "blocks": [

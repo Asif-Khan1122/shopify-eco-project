@@ -1,6 +1,8 @@
 {% style %}
   .gallery_section {
     width: 100%;
+    margin-top: {{ section.settings.margin_top }}px; 
+    margin-bottom: {{ section.settings.margin_bottom }}px;
   }
   .gallery_section .container {
     max-width: 1251px;
@@ -8,7 +10,7 @@
     padding: 0 20px;
   }
 
-  .gallery_section .gallery_section {
+  .gallery_section .gallery_section_inner {
     display: flex;
     flex-direction: column;
   }
@@ -59,7 +61,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto auto;
-    gap: 16px;
+    gap: 20px;
   }
 
   .gallery_item--1,
@@ -94,6 +96,11 @@
   }
 
   @media screen and (max-width: 989px) {
+    .gallery_section {
+      padding-top: calc({{ section.settings.padding_top }}px * 0.5); 
+      padding-bottom: calc({{ section.settings.padding_bottom }}px * 0.5);
+    }
+
     .gallery_grid {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -114,16 +121,21 @@
   }
 
   @media screen and (max-width: 599px) {
+    .gallery_header {
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+    .gallery_button {
+      width: 100%;
+    }
     .gallery_grid {
       grid-template-columns: repeat(1, 1fr);
       gap: 10px;
     }
   }
 {% endstyle %}
-<div
-  class="gallery_section color-{{ section.settings.color_scheme }}"
-  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
->
+<div class="gallery_section color-{{ section.settings.color_scheme }}">
   <div class="container">
     <div class="gallery_section_inner">
       <div class="gallery_header">
@@ -206,24 +218,28 @@
       "label": "Button link"
     },
     {
+      "type": "header",
+      "content": "Spacing & Layout"
+    },
+    {
       "type": "range",
-      "id": "padding_top",
+      "id": "margin_top",
       "min": 0,
       "max": 200,
       "step": 4,
       "unit": "px",
       "label": "Padding top",
-      "default": 148
+      "default": 68
     },
     {
       "type": "range",
-      "id": "padding_bottom",
+      "id": "margin_bottom",
       "min": 0,
       "max": 200,
       "step": 4,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 148
+      "default": 68
     }
   ],
   "blocks": [

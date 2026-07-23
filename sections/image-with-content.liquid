@@ -30,7 +30,9 @@
     height: auto;
     object-fit: cover;
     display: block;
+    border-radius: {{ section.settings.image_border_radius }}px;
   }
+
 
   .image_with_text .media_content {
     width: 100%;
@@ -47,80 +49,145 @@
   }
 
   .image_with_text h2 {
-    font-size: clamp(42px, 5vw, 58px);
+    font-size: clamp(32px, 5vw, 58px);
     font-weight: 700;
     line-height: 1.02;
-    font-family: 'Plus Jakarta Sans';
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: {{ section.settings.heading_color }};
+    margin: 0;
   }
+
   .image_with_text .main_heading h2 strong {
-    color: #9c747c;
+    color: {{ section.settings.accent_color }};
     font-weight: 700;
   }
 
   .image_with_text h3 {
-    font-size: clamp(18px, 4vw, 22px);
+    font-size: clamp(18px, 3vw, 22px);
     font-weight: 700;
     line-height: 1.1;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: {{ section.settings.subheading_color }};
+    margin: 0;
   }
 
   .image_with_text p {
-    font-size: clamp(12px, 3vw, 18px);
+    font-size: clamp(14px, 2vw, 18px);
     font-weight: 400;
-    font-family: 'Open Sans';
-    line-height: 1.32;
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: {{ section.settings.text_color }};
+    margin: 0;
   }
 
-  .image_with_text a {
+  .image_with_text .content_decs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .image_with_text .about_btn {
     padding: 16px 30px;
     border-radius: 40px;
-    background: #7C8C74;
+    background: {{ section.settings.button_background }};
     width: fit-content;
-    color: #fff;
+    color: {{ section.settings.button_text_color }};
     text-decoration: none;
-    font-size: clamp(12px, 3vw, 18px);
+    font-size: clamp(14px, 2vw, 18px);
     font-weight: 600;
     line-height: 1.2;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    border: 1.2px solid {{ section.settings.button_background }};
+    transition: all 0.3s ease;
+    display: inline-block;
+    cursor: pointer;
   }
 
-  @media screen and (max-width: 1024px){
-
-  .image_with_text {
-    padding-top: {{ section.settings.padding_top_mbl }}px;
-    padding-bottom: {{ section.settings.padding_bottom_mbl }}px;
-  }
-  .image_with_text .inner{
-    flex-direction: column;
+  .image_with_text .about_btn:hover {
+    background: {{ section.settings.button_hover_background }};
+    color: {{ section.settings.button_hover_text_color }};
+    border-color: {{ section.settings.button_hover_border }};
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   }
 
-  .image_with_text .media_image {
-    max-width: 100%;
-    max-height: 100%;
+  .image_with_text .about_btn:focus-visible {
+    outline: 2px solid {{ section.settings.accent_color }};
+    outline-offset: 2px;
   }
 
-  .image_with_text .media_content{
-    max-width: 100%;
+  /* Mobile Styles */
+  @media screen and (max-width: 1024px) {
+    .image_with_text {
+      padding-top: {{ section.settings.padding_top_mbl }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mbl }}px;
+    }
+
+    .image_with_text .inner {
+      flex-direction: column;
+    }
+
+    .image_with_text .media_image {
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+    }
+
+    .image_with_text .media_content {
+      max-width: 100%;
+    }
   }
+
+  @media (max-width: 768px) {
+    .image_with_text {
+      padding-top: calc({{ section.settings.padding_top_mbl }}px * 0.5);
+      padding-bottom: calc({{ section.settings.padding_bottom_mbl }}px * 0.5);
+    }
+
+    .image_with_text .about_btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  /* Accessibility: Reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    .image_with_text .media_image img {
+      transition: none;
+    }
+    .image_with_text .about_btn {
+      transition: none;
+    }
+    .image_with_text .about_btn:hover {
+      transform: none;
+    }
   }
 {% endstyle %}
 
-<section class="image_with_text">
+<section class="image_with_text" aria-labelledby="about-heading">
   <div class="container">
     <div class="inner">
       <div class="media_image">
         {% if section.settings.media_img != blank %}
-          {{
-            section.settings.media_img
-            | image_url: width: section.settings.media_img.width
-            | image_tag: loading: 'lazy'
-          }}
+       {{
+          section.settings.media_img
+          | image_url: width: section.settings.media_img.width
+          | image_tag:
+            loading: 'lazy',
+            width: section.settings.media_img.width,
+            height: section.settings.media_img.height,
+            alt: section.settings.media_img.alt | default: section.settings.content_heading | escape
+        }}
+        {% else %}
+          <div style="background: #f0f0f0; width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; color: #999; border-radius: {{ section.settings.image_border_radius }}px;">
+            <span>Add an image</span>
+          </div>
         {% endif %}
       </div>
       <div class="media_content">
         <div class="main_heading">
           {% if section.settings.content_heading != blank %}
-            <h2>{{ section.settings.content_heading }}</h2>
+            <h2 id="about-heading">{{ section.settings.content_heading }}</h2>
           {% endif %}
           {% if section.settings.sub_heading != blank %}
             <h3>{{ section.settings.sub_heading }}</h3>
@@ -135,7 +202,9 @@
           {% endif %}
         </div>
         {% if section.settings.btn_title != blank and section.settings.btn_url != blank %}
-          <a href="{{ section.settings.btn_url }}">{{ section.settings.btn_title }}</a>
+          <a href="{{ section.settings.btn_url }}" class="about_btn" aria-label="{{ section.settings.btn_title | escape }}">
+            {{ section.settings.btn_title }}
+          </a>
         {% endif %}
       </div>
     </div>
@@ -147,54 +216,18 @@
   "name": "Image With Text",
   "settings": [
     {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Padding Top",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "unit": "px",
-      "default": 148
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Padding Bottom",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "unit": "px",
-      "default": 140
-    },
-    {
-      "type": "range",
-      "id": "padding_top_mbl",
-      "label": "Padding Top Mobile",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_mbl",
-      "label": "Padding Bottom Mobile",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "unit": "px",
-      "default": 60
-    },
-    {
       "type": "image_picker",
       "id": "media_img",
       "label": "Media Image"
     },
     {
-      "type": "inline_richtext",
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
       "id": "content_heading",
-      "label": "Content Heading",
+      "label": "Heading",
       "default": "About Ecoraíces Native Plants"
     },
     {
@@ -207,7 +240,7 @@
       "type": "textarea",
       "id": "description_1",
       "label": "Description 1",
-      "default": "At Ecoraíces, we specialize in high-quality, Florida-friendly plants that bring vibrancy and biodiversity to both homes and commercial spaces. Whether you’re a local gardener, landscape designer, or business owner, we provide carefully nurtured greenery — from ornamental shrubs to unique native groundcovers."
+      "default": "At Ecoraíces, we specialize in high-quality, Florida-friendly plants that bring vibrancy and biodiversity to both homes and commercial spaces. Whether you're a local gardener, landscape designer, or business owner, we provide carefully nurtured greenery — from ornamental shrubs to unique native groundcovers."
     },
     {
       "type": "textarea",
@@ -225,6 +258,118 @@
       "type": "url",
       "id": "btn_url",
       "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (for bold text)",
+      "default": "#9C747C"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button Background",
+      "default": "#7C8C74"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button Hover Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border",
+      "label": "Button Hover Border",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 148
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 68
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mbl",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mbl",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 48
     }
   ],
   "presets": [

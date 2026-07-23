@@ -9,76 +9,322 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "banner_custom_D6ccqH": {
+      "type": "banner-custom",
+      "name": "Banner custom",
+      "settings": {
+        "subheading": "Rooted in Nature. Grown for Florida.",
+        "heading": "Bring Life to Every Corner with Fresh Native Greenery",
+        "description": "Fresh, sustainable, and native plants — carefully grown for your garden, patio, or business landscape.",
+        "btn_label_1": "Browse All Plants",
+        "btn_link_1": "#",
+        "btn_label_2": "Get a Quote for Bulk Orders",
+        "btn_link_2": "#",
+        "before_image": "shopify://shop_images/afab7b52f10a3b9dadfd79aaaf1651ea355ff84b_1.jpg",
+        "image": "shopify://shop_images/Tropical_Milkweed_1_1.png",
+        "image_text": "We are passionate about sustainability supporting and pollinators like Monarch butterflies.",
+        "image_link_label": "About Us",
+        "banner_image_link": "#",
+        "background_color": "#f2f2f2"
+      }
+    },
+    "custom_marquee_cgjNcb": {
+      "type": "custom-marquee",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "image_mbbUxP": {
+          "type": "image",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "marquee_image": "shopify://shop_images/Logo_bdb84344-1b7e-48d2-8aee-9a138e95b53b.png"
           }
         },
-        "button": {
-          "type": "buttons",
+        "image_bKKHmN": {
+          "type": "image",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "marquee_image": "shopify://shop_images/Group_1000003567_2708d04e-6acc-4b28-a266-3a74cde2ad29.png"
+          }
+        },
+        "image_P86MJx": {
+          "type": "image",
+          "settings": {
+            "marquee_image": "shopify://shop_images/Group_1000003568.png"
+          }
+        },
+        "image_xJwiDY": {
+          "type": "image",
+          "settings": {
+            "marquee_image": "shopify://shop_images/Group_1597883834.png"
+          }
+        },
+        "image_UiL7JB": {
+          "type": "image",
+          "settings": {
+            "marquee_image": "shopify://shop_images/Group_1000003565_1.png"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "image_mbbUxP",
+        "image_bKKHmN",
+        "image_P86MJx",
+        "image_xJwiDY",
+        "image_UiL7JB"
       ],
+      "name": "Custom Marquee",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "scroll_speed": 20,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "background_color": "#9c747c"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "image_with_content_fwbhPM": {
+      "type": "image-with-content",
+      "name": "Image With Text",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "media_img": "shopify://shop_images/Group_1597883209.png",
+        "content_heading": "About Ecoraíces Native Plants",
+        "sub_heading": "Rooted in Nature, Grown with Purpose",
+        "description_1": "At Ecoraíces, we specialize in high-quality, Florida-friendly plants that bring vibrancy and biodiversity to both homes and commercial spaces. Whether you’re a local gardener, landscape designer, or business owner, we provide carefully nurtured greenery — from ornamental shrubs to unique native groundcovers.",
+        "description_2": "We are passionate about sustainability, soil health, and supporting pollinators like Monarch butterflies. Every plant is grown with care, priced accessibly, and ready to thrive in your space.",
+        "btn_title": "Learn More About Us",
+        "btn_url": "#",
+        "heading_color": "#000000",
+        "subheading_color": "#333333",
+        "text_color": "#555555",
+        "accent_color": "#9c747c",
+        "button_background": "#7c8c74",
+        "button_text_color": "#ffffff",
+        "button_hover_background": "#ffffff",
+        "button_hover_text_color": "#000000",
+        "button_hover_border": "#000000",
+        "image_border_radius": 12,
+        "padding_top": 148,
+        "padding_bottom": 68,
+        "padding_top_mbl": 60,
+        "padding_bottom_mbl": 60
+      }
+    },
+    "featured_plants_k4AFzD": {
+      "type": "featured-plants",
+      "blocks": {
+        "plant_wbb4WM": {
+          "type": "plant",
+          "settings": {
+            "plant_img": "shopify://shop_images/Green_island_Ficus2.png",
+            "content_heading": "Green Island Ficus",
+            "content_desc": "Glossy, compact foliage for hedges or border",
+            "featured_plant_price": "3-Gallon Pot: $5.46",
+            "cart_btn": "Add To Cart",
+            "cart_url": "#"
+          }
+        },
+        "plant_rDFCmt": {
+          "type": "plant",
+          "settings": {
+            "plant_img": "shopify://shop_images/Desert_Rose_Bonsai.png",
+            "content_heading": "Green Island Ficus",
+            "content_desc": "Glossy, compact foliage for hedges or border",
+            "featured_plant_price": "3-Gallon Pot: $5.46",
+            "cart_btn": "Add To Cart",
+            "cart_url": "#"
+          }
+        },
+        "plant_b4AfJ9": {
+          "type": "plant",
+          "settings": {
+            "plant_img": "shopify://shop_images/Green_island_Ficus2.png",
+            "content_heading": "Green Island Ficus",
+            "content_desc": "Glossy, compact foliage for hedges or border",
+            "featured_plant_price": "3-Gallon Pot: $5.46",
+            "cart_btn": "Add To Cart",
+            "cart_url": "#"
+          }
+        },
+        "plant_ni4R4M": {
+          "type": "plant",
+          "settings": {
+            "plant_img": "shopify://shop_images/Desert_Rose_Bonsai.png",
+            "content_heading": "Green Island Ficus",
+            "content_desc": "Glossy, compact foliage for hedges or border",
+            "featured_plant_price": "3-Gallon Pot: $5.46",
+            "cart_btn": "Add To Cart",
+            "cart_url": "#"
+          }
+        },
+        "plant_8m3VAJ": {
+          "type": "plant",
+          "settings": {
+            "plant_img": "shopify://shop_images/Green_island_Ficus2.png",
+            "content_heading": "Green Island Ficus",
+            "content_desc": "Glossy, compact foliage for hedges or border",
+            "featured_plant_price": "3-Gallon Pot: $5.46",
+            "cart_btn": "Add To Cart",
+            "cart_url": "#"
+          }
+        },
+        "plant_Qa9tYi": {
+          "type": "plant",
+          "settings": {
+            "plant_img": "shopify://shop_images/Green_island_Ficus2.png",
+            "content_heading": "Green Island Ficus",
+            "content_desc": "Glossy, compact foliage for hedges or border",
+            "featured_plant_price": "3-Gallon Pot: $5.46",
+            "cart_btn": "Add To Cart",
+            "cart_url": "#"
+          }
+        }
+      },
+      "block_order": [
+        "plant_wbb4WM",
+        "plant_rDFCmt",
+        "plant_b4AfJ9",
+        "plant_ni4R4M",
+        "plant_8m3VAJ",
+        "plant_Qa9tYi"
+      ],
+      "name": "Featured Plants",
+      "settings": {
+        "heading": "Featured <strong>Plants</strong>",
+        "view_all_btn": "View All Plants",
+        "view_all_url": "#",
+        "bg_color": "#eeeeee"
+      }
+    },
+    "bulk_services_f8BMHr": {
+      "type": "bulk-services",
+      "name": "Bulk Services",
+      "settings": {
+        "heading": "Bulk Orders & <strong>Business Services</strong>",
+        "description": "Are you a landscape architect, business, or municipality? We work directly with professionals to provide bulk pricing, liners, and guidance on native planting.",
+        "li_desc_1": "Available in Liners & Larger Pots",
+        "li_desc_2": "Customized Recommendations for Projects",
+        "li_desc_3": "Direct-to-Site Delivery (Florida only)",
+        "road_img": "shopify://shop_images/2_1.png",
+        "primary_btn_title": "Request Bulk Pricing",
+        "primary_btn_url": "#",
+        "primary_btn_color": "#fff",
+        "primary_btn_text_color": "#222",
+        "primary_btn_hover_color": "#7c8c74",
+        "primary_btn_hover_text_color": "#ffffff",
+        "secondary_btn_title": "Schedule a Call",
+        "secondary_btn_url": "#",
+        "secondary_btn_color": "#fff",
+        "secondary_btn_text_color": "#222",
+        "secondary_btn_hover_color": "#7c8c74",
+        "secondary_btn_hover_text_color": "#ffffff",
+        "padding_top": 148,
+        "padding_bottom": 140,
+        "bg_color": "#fefefe"
+      }
+    },
+    "why_choose_us_iJ9FQ4": {
+      "type": "why-choose-us",
+      "blocks": {
+        "card_K7nKXa": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2_2.png",
+            "title": "Rooted In Local Knowledge",
+            "text": "We specialize in Florida-native and climate-resilient plants, ensuring your garden or landscape thrives with minimal maintenance."
+          }
+        },
+        "card_Mehr4n": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2_1.png",
+            "title": "Rooted In Local Knowledge",
+            "text": "We specialize in Florida-native and climate-resilient plants, ensuring your garden or landscape thrives with minimal maintenance."
+          }
+        },
+        "card_4RHppg": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2.png",
+            "title": "Rooted In Local Knowledge",
+            "text": "We specialize in Florida-native and climate-resilient plants, ensuring your garden or landscape thrives with minimal maintenance."
+          }
+        }
+      },
+      "block_order": [
+        "card_K7nKXa",
+        "card_Mehr4n",
+        "card_4RHppg"
+      ],
+      "name": "Why Choose Us",
+      "settings": {
+        "bg_color": "#fafafa",
+        "heading": "Why <strong>Choose Us</strong>",
+        "padding_block": 80,
+        "padding_inline": 68
+      }
+    },
+    "gallery_ecRt4e": {
+      "type": "gallery",
+      "blocks": {
+        "image_U4wKix": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Verawood_Tree1_2x_2d5620da-4999-4701-8fbf-54f1f5d6784c.png"
+          }
+        },
+        "image_hCMVCb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Chinese_Fan_Palm1_1.png"
+          }
+        },
+        "image_JYNFN7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Verawood_Tree2_1.png"
+          }
+        },
+        "image_BbEYhQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Green_island_Ficus3_1.png"
+          }
+        },
+        "image_yzqaVD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Beauty_Leaf_Tree1_1.png"
+          }
+        },
+        "image_AEKfHt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Beach_creeper2_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_U4wKix",
+        "image_hCMVCb",
+        "image_JYNFN7",
+        "image_BbEYhQ",
+        "image_yzqaVD",
+        "image_AEKfHt"
+      ],
+      "name": "Gallery grid",
+      "settings": {
+        "color_scheme": "",
+        "heading": "Our",
+        "heading_accent": "Gallery",
+        "button_label": "View All Gallery",
+        "button_link": "#",
+        "padding_top": 148,
+        "padding_bottom": 148
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "banner_custom_D6ccqH",
+    "custom_marquee_cgjNcb",
+    "image_with_content_fwbhPM",
+    "featured_plants_k4AFzD",
+    "bulk_services_f8BMHr",
+    "why_choose_us_iJ9FQ4",
+    "gallery_ecRt4e"
   ]
 }

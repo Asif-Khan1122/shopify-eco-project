@@ -11,32 +11,9 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
-      "blocks": {
-        "announcement-bar-0": {
-          "type": "announcement",
-          "settings": {
-            "text": "Welcome to our store",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement-bar-0"
-      ],
-      "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "scheme-1",
-        "show_line_separator": true,
-        "show_social": false,
-        "enable_country_selector": false,
-        "enable_language_selector": false
-      }
-    },
     "header": {
       "type": "header",
+      "disabled": true,
       "settings": {
         "logo_position": "middle-left",
         "mobile_logo_position": "center",
@@ -53,10 +30,38 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "custom_header_jqE3xT": {
+      "type": "custom-header",
+      "name": "Custom Header",
+      "settings": {
+        "logo": "shopify://shop_images/LOGO_2.png",
+        "logo_width": 85,
+        "logo_mobile_width": 60,
+        "menu": "header-menu",
+        "enable_sticky_header": true,
+        "sticky_style": "slide_down",
+        "shop_now_text": "Shop Now",
+        "shop_now_link": "#",
+        "btn_style": "primary",
+        "background_color": "#d1d7de",
+        "scrolled_background_color": "#ffffff",
+        "link_color": "#000000",
+        "link_hover_color": "#000000",
+        "btn_background_color": "#fbf8e8",
+        "btn_text_color": "#000000",
+        "btn_hover_background": "#e8e5d5",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "container_width": 1260,
+        "menu_gap": 20,
+        "mobile_collapsible": true,
+        "mobile_menu_background": "#ffffff"
+      }
     }
   },
   "order": [
-    "announcement-bar",
-    "header"
+    "header",
+    "custom_header_jqE3xT"
   ]
 }

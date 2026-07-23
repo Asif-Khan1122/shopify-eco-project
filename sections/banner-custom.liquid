@@ -1,186 +1,190 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
-    .hero_banner img {
-      width: 100%;
-      height: clamp(326px, 57vw, 824px);
-      display: block;
-    }
+  .hero_banner img {
+    width: 100%;
+    height: clamp(326px, 57vw, 824px);
+    display: block;
+  }
 
-    .hero_banner {
-      padding: 10px 0 0 0;
-      background-color: {{section.settings.background_color}};
-      position: relative;
-      z-index: 1;
-    }
+  .hero_banner {
+    padding: 10px 0 0 0;
+    background-color: {{section.settings.background_color}};
+    position: relative;
+    z-index: 1;
+  }
 
+  .hero_banner::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('{{ section.settings.before_image | image_url }}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .hero_banner .container {
+    padding: 0 10px 0 100px;
+  }
+
+  .hero_banner .banner_inner {
+    display: flex;
+    gap: 60px;
+  }
+  .hero_banner .banner_content {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 5vw, 44px);
+    width: 100%;
+    max-width: 55%;
+    padding: clamp(16px, 4vw, 20px) 0;
+    justify-content: center;
+    margin: 120px 0 0;
+  }
+
+  .hero_banner .heading_col {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 4vw, 30px);
+  }
+  .hero_banner .banner_content .banner_subheading {
+    margin: 0;
+    font-size: clamp(15px, 2.5vw, 20px);
+    padding: 6px 15px;
+    border-radius: 60px;
+    display: inline-block;
+    width: fit-content;
+    background: #9C747C;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+  }
+  .hero_banner .banner_heading {
+    font-size: clamp(31px, 5vw, 65px);
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #222222;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .hero_banner .content_col {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 4vw, 31px);
+  }
+  .hero_banner p.banner_custom_desc{
+    margin: 0;
+    color: #666666;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: clamp(16px, 2.5vw, 20px);
+    line-height: clamp(24px, 3vw, 28px);
+    letter-spacing: 0%;
+    vertical-align: middle;
+  }
+
+  .hero_banner .button_col {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hero_banner .banner_custom_btn_1 {
+    display: inline-block;
+    padding: clamp(6px, 1vw, 10px) clamp(12px, 2vw, 30px);
+    background: #7C8C74;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 40px;
+    font-size: clamp(16px, 2.5vw, 18px);
+    line-height: 34px;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    border: 1px solid #7C8C74;
+    transition: all 0.3s ease-in-out;
+    white-space: nowrap;
+  }
+  .hero_banner .banner_custom_btn_2 {
+    display: inline-block;
+    padding: clamp(6px, 1vw, 10px) clamp(12px, 2vw, 30px);
+    background: #fff;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 40px;
+    font-size: clamp(16px, 2.5vw, 18px);
+    line-height: 34px;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    border: 1px solid #000000;
+    transition: all 0.3s ease-in-out;
+    white-space: nowrap;
+  }
+
+  .hero_banner .banner_custom_btn_1:hover {
+    background: #fff;
+    color: #000000;
+    border: 1px solid #000000;
+  }
+
+  .hero_banner .banner_custom_btn_2:hover {
+    background: #7C8C74;
+    color: #fff;
+    border: 1px solid #7C8C74;
+  }
+
+  .hero_banner .banner_image {
+    width: 100%;
+    max-width: 45%;
+    position: relative;
+    height: 100%;
+  }
+
+  .hero_banner .banner_image_content {
+    position: absolute;
+    bottom: 50px;
+    right: 30px;
+    max-width: 320px;
+    padding: clamp(10px, 2vw, 18px);
+    background: rgba(28, 35, 23, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    color: #fff;
+  }
+
+  .hero_banner .banner_image_text {
+    margin: 0 0 16px;
+    font-size: clamp(15px, 2.5vw, 20px);
+    line-height: 1.6;
+  }
+
+  .hero_banner .banner_image_link {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .hero_banner .banner_no_image {
+    width: 100%;
+    max-width: 660px;
+    background: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+  }
+
+  @media (max-width: 768px) {
     .hero_banner::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-image: url('{{ section.settings.before_image | image_url }}');
-      background-size: cover;
-      background-repeat: no-repeat;
-      bottom: 0;
-      left: 0;
-      z-index: -1;
-    }
-
-    .hero_banner .container {
-      padding: 0 10px 0 100px;
-    }
-
-    .hero_banner .banner_inner {
-      display: flex;
-      gap: 60px;
-    }
-    .hero_banner .banner_content {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(20px, 10vw, 45px);
-      width: 100%;
-      max-width: 55%;
-      padding: clamp(16px, 4vw, 20px) 0;
-      justify-content: center;
-      margin: 120px 0 0;
+      display: none;
     }
 
     .hero_banner .heading_col {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(20px, 4vw, 30px);
-    }
-    .hero_banner .banner_content .banner_subheading {
-      margin: 0;
-      font-size: clamp(15px, 2.5vw, 20px);
-      padding: 6px 15px;
-      border-radius: 60px;
-      display: inline-block;
-      width: fit-content;
-      background: #9C747C;
-      color: #fff;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 600;
-    }
-    .hero_banner .banner_heading {
-      font-size: clamp(44px, 5vw, 65px);
-      margin: 0;
-      line-height: clamp(50px, 7vw, 73px);
-      font-weight: 700;
-      color: #222222;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-   .hero_banner .content_col {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(20px, 4vw, 31px);
-    }
-    .hero_banner p.banner_custom_desc{
-      margin: 0;
-      color: #666666;
-      font-family: "Open Sans";
-      font-weight: 400;
-      font-size: clamp(16px, 2.5vw, 20px);
-      line-height: clamp(24px, 3vw, 28px);
-      letter-spacing: 0%;
-      vertical-align: middle;
-    }
-
-    .hero_banner .button_col {
-      display: flex;
       align-items: center;
-      gap: 16px;
     }
-    .hero_banner .banner_custom_btn_1 {
-      display: inline-block;
-      padding: clamp(6px, 1vw, 10px) clamp(12px, 2vw, 30px);
-      background: #7C8C74;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 40px;
-      font-size: clamp(16px, 2.5vw, 18px);
-      line-height: 34px;
-      font-family: 'Open Sans';
-      font-weight: 600;
-      border: 1px solid #7C8C74;
-      transition: all 0.3s ease-in-out;
-      white-space: nowrap;
-    }
-    .hero_banner .banner_custom_btn_2 {
-      display: inline-block;
-      padding: clamp(6px, 1vw, 10px) clamp(12px, 2vw, 30px);
-      background: #fff;
-      color: #000000;
-      text-decoration: none;
-      border-radius: 40px;
-      font-size: clamp(16px, 2.5vw, 18px);
-      line-height: 34px;
-      font-family: 'Open Sans';
-      font-weight: 600;
-      border: 1px solid #000000;
-      transition: all 0.3s ease-in-out;
-      white-space: nowrap;
-    }
-
-    .hero_banner .banner_custom_btn_1:hover {
-      background: #fff;
-      color: #000000;
-      border: 1px solid #000000;
-    }
-
-    .hero_banner .banner_custom_btn_2:hover {
-      background: #7C8C74;
-      color: #fff;
-      border: 1px solid #7C8C74;
-    }
-
-    .hero_banner .banner_image {
-      width: 100%;
-      max-width: 45%;
-      position: relative;
-      height: 100%;
-    }
-
-    .hero_banner .banner_image_content {
-      position: absolute;
-      bottom: 50px;
-      right: 30px;
-      max-width: 320px;
-      padding: clamp(10px, 2vw, 18px);
-      background: rgba(28, 35, 23, 0.85);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      color: #fff;
-    }
-
-    .hero_banner .banner_image_text {
-      margin: 0 0 16px;
-      font-size: clamp(15px, 2.5vw, 20px);
-      line-height: 1.6;
-    }
-
-    .hero_banner .banner_image_link {
-      color: #fff;
-      text-decoration: underline;
-      font-weight: 600;
-    }
-
-    .hero_banner .banner_no_image {
-      width: 100%;
-      max-width: 660px;
-      background: #f2f2f2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
-    }
-
-  @media (max-width: 768px) {
-  .hero_banner::before {
-    display: none;
-  }
 
     .hero_banner .banner_content .banner_subheading {
       font-size: clamp(13px, 2.5vw, 20px);
@@ -190,7 +194,7 @@
     }
   }
 
-   @media (max-width: 1024px) {
+  @media (max-width: 1024px) {
     .hero_banner .banner_inner {
       flex-direction: column;
       gap: 50px;
@@ -225,6 +229,7 @@
     .hero_banner .banner_content,
     .hero_banner .banner_image {
       max-width: 100%;
+      text-align: center;
     }
      .hero_banner .banner_content{
       margin-top: 70px;
@@ -281,7 +286,6 @@
         <div class="banner_image">
           <img
             src="{{ section.settings.image | image_url }}"
-            alt="{{ section.settings.image_alt }}"
             width="{{ section.settings.image.width }}"
             height="{{ section.settings.image.height }}"
           >
@@ -332,8 +336,7 @@
     {
       "type": "url",
       "id": "btn_link_1",
-      "label": "Button 1 link",
-      "default": "/"
+      "label": "Button 1 link"
     },
     {
       "type": "text",
@@ -345,29 +348,16 @@
       "type": "url",
       "id": "btn_link_2",
       "label": "Button 2 link",
-      "default": "/"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "BG color",
-      "default": "#f2f2f2"
     },
     {
       "type": "image_picker",
       "id": "before_image",
-      "label": "Before image"
+      "label": "BG Leaf Image"
     },
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Right image"
-    },
-    {
-      "type": "text",
-      "id": "image_alt",
-      "label": "Image alt text",
-      "default": "Banner image"
+      "label": "Right Image"
     },
     {
       "type": "textarea",
@@ -385,7 +375,17 @@
       "type": "url",
       "id": "banner_image_link",
       "label": "Banner image link"
-    }
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section BG Color",
+      "default": "#f2f2f2"
+    },
   ],
   "presets": [
     {

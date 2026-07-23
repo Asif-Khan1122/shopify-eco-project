@@ -2,7 +2,8 @@
   .custom_marquee {
     overflow: hidden;
     position: relative;
-    padding: clamp(14px, 2vw, 16px) 0;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
     margin-top: clamp(-8px, -2vw, -20px);
     z-index: 2;
     background-color: {{ section.settings.background_color }};
@@ -11,16 +12,17 @@
   .custom_marquee .container {
     max-width: 100%;
     margin: 0 auto;
+    display: flex;
   }
 
   .custom_marquee .custom_marquee_inner {
     display: inline-flex;
     width: max-content;
-    animation: scroll 20s linear infinite;
     white-space: nowrap;
     flex-shrink: 0;
     align-items: center;
     will-change: transform;
+    animation: scroll {{ section.settings.scroll_speed }}s linear infinite;
   }
 
   .custom_marquee:hover .custom_marquee_inner {
@@ -87,11 +89,47 @@
   "name": "Custom Marquee",
   "settings": [
     {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll Speed (seconds per loop)",
+      "min": 10,
+      "max": 60,
+      "default": 20,
+      "step": 5,
+      "unit": "s"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 4,
+      "max": 32,
+      "step": 4,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 4,
+      "max": 32,
+      "step": 4,
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "BG Color"
+    },
+    {
       "type": "color",
       "id": "background_color",
-      "label": "Background Color",
+      "label": "Section BG",
       "default": "#9C747C"
-    }
+    },
   ],
   "blocks": [
     {
