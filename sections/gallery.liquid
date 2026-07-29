@@ -1,11 +1,12 @@
 {% style %}
   .gallery_section {
     width: 100%;
-    margin-top: {{ section.settings.margin_top }}px; 
+    margin-top: {{ section.settings.margin_top }}px;
     margin-bottom: {{ section.settings.margin_bottom }}px;
   }
+
   .gallery_section .container {
-    max-width: 1251px;
+    max-width: 1291px;
     margin: 0 auto;
     padding: 0 20px;
   }
@@ -43,6 +44,7 @@
     justify-content: center;
     white-space: nowrap;
     background-color: #7d8f6b;
+    cursor: pointer;
     color: #ffffff;
     font-size: 14px;
     font-weight: 500;
@@ -97,8 +99,8 @@
 
   @media screen and (max-width: 989px) {
     .gallery_section {
-      padding-top: calc({{ section.settings.padding_top }}px * 0.5); 
-      padding-bottom: calc({{ section.settings.padding_bottom }}px * 0.5);
+      margin-top: calc({{ section.settings.margin_top }}px * 0.5);
+      margin-bottom: calc({{ section.settings.margin_bottom }}px * 0.5);
     }
 
     .gallery_grid {
@@ -228,7 +230,7 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding top",
+      "label": "Margin top",
       "default": 68
     },
     {
@@ -238,7 +240,7 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding bottom",
+      "label": "Margin bottom",
       "default": 68
     }
   ],

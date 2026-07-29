@@ -1,0 +1,481 @@
+{% style %}
+  #connect-{{ section.id }} {
+    --connect-button-bg: {{ section.settings.button_bg }};
+    --connect-button-text: {{ section.settings.button_text_color }};
+    --connect-highlight: {{ section.settings.highlight_color }};
+  }
+
+  #connect-{{ section.id }} .connect-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(20px, 4vw, 40px);
+    max-width: 1245px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 3vw, 30px);
+    align-items: center;
+  }
+
+  #connect-{{ section.id }} .connect_left {
+    flex: 1 1 min(100%, 500px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2vw, 24px);
+  }
+
+  #connect-{{ section.id }} .connect_right {
+    flex: 1 1 min(100%, 500px);
+    min-height: 300px;
+    height: auto;
+    max-height: 655px;
+  }
+
+  #connect-{{ section.id }} .connect-heading {
+    font-size: clamp(28px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    color: #1a1a1a;
+    word-break: break-word;
+  }
+
+  #connect-{{ section.id }} .connect-heading-highlight {
+    color: var(--connect-highlight);
+  }
+
+  #connect-{{ section.id }} .connect-subtext {
+    color: #6b6b6b;
+    font-size: clamp(14px, 1.8vw, 18px);
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  #connect-{{ section.id }} .connect-form {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 1.5vw, 20px);
+    max-width: 100%;
+    width: 100%;
+  }
+
+  #connect-{{ section.id }} .connect-field input,
+  #connect-{{ section.id }} .connect-field textarea {
+    width: 100%;
+    background: #f4f4f2;
+    border: 1px solid #eaeaea;
+    border-radius: 6px;
+    padding: clamp(12px, 1.2vw, 16px) clamp(12px, 1.2vw, 16px);
+    font-size: clamp(14px, 1vw, 16px);
+    font-family: inherit;
+    color: #333;
+    box-sizing: border-box;
+    resize: vertical;
+    min-height: 44px;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: border-color 0.2s ease;
+  }
+
+  #connect-{{ section.id }} .connect-field input::placeholder,
+  #connect-{{ section.id }} .connect-field textarea::placeholder {
+    color: #9a9a9a;
+  }
+
+  #connect-{{ section.id }} .connect-field input:focus,
+  #connect-{{ section.id }} .connect-field textarea:focus {
+    outline: none;
+    border-color: var(--connect-highlight);
+    box-shadow: 0 0 0 3px rgba(var(--connect-highlight-rgb, 143, 163, 131), 0.15);
+  }
+
+  #connect-{{ section.id }} .connect-submit-btn {
+    align-self: flex-start;
+    width: auto;
+    background: var(--connect-button-bg);
+    color: var(--connect-button-text);
+    border: none;
+    padding: clamp(14px, 1.2vw, 16px) clamp(24px, 2.5vw, 40px);
+    border-radius: 999px;
+    font-size: clamp(14px, 1vw, 16px);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    min-height: 48px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #connect-{{ section.id }} .connect-submit-btn:hover {
+    opacity: 0.85;
+  }
+
+  #connect-{{ section.id }} .connect-submit-btn:active {
+    transform: scale(0.97);
+  }
+
+  #connect-{{ section.id }} .connect-form-message {
+    font-size: clamp(13px, 1vw, 15px);
+    margin: 0 0 4px;
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+
+  #connect-{{ section.id }} .connect-form-message--success {
+    color: #2e7d32;
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+  }
+
+  #connect-{{ section.id }} .connect-form-message--error {
+    color: #c62828;
+    background: #ffebee;
+    border: 1px solid #ef9a9a;
+  }
+
+  #connect-{{ section.id }} .connect-image,
+  #connect-{{ section.id }} .connect-image--placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+    max-height: 655px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+  }
+
+  #connect-{{ section.id }} .connect-image--placeholder {
+    background: #f0f0ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #connect-{{ section.id }} .connect-image--placeholder .placeholder-svg {
+    width: 60%;
+    height: 60%;
+    max-width: 300px;
+    max-height: 300px;
+    opacity: 0.4;
+  }
+
+  /* Tablet breakpoint */
+  @media screen and (max-width: 1024px) {
+    #connect-{{ section.id }} .connect-wrapper {
+      gap: 30px;
+    }
+
+    #connect-{{ section.id }} .connect_right {
+      min-height: 280px;
+    }
+  }
+
+  /* Mobile breakpoint */
+  @media screen and (max-width: 768px) {
+    #connect-{{ section.id }} .connect-wrapper {
+      flex-direction: column;
+      gap: 24px;
+      padding: 0 16px;
+    }
+
+    #connect-{{ section.id }} .connect_left {
+      flex: 1 1 100%;
+      order: 1;
+    }
+
+    #connect-{{ section.id }} .connect_right {
+      flex: 1 1 100%;
+      order: 0;
+      max-height: 400px;
+      width: 100%;
+    }
+
+    #connect-{{ section.id }} .connect-heading {
+      font-size: clamp(24px, 6vw, 32px);
+      text-align: center;
+    }
+
+    #connect-template--22174110580982__contact_us_QLaCG8 .connect-subtext{
+      text-align: center;
+    }
+
+    #connect-{{ section.id }} .connect-submit-btn {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      align-self: stretch;
+    }
+
+    #connect-{{ section.id }} .connect-image,
+    #connect-{{ section.id }} .connect-image--placeholder {
+      min-height: 180px;
+      max-height: 300px;
+    }
+
+    #connect-{{ section.id }} .connect-field input,
+    #connect-{{ section.id }} .connect-field textarea {
+      min-height: 48px;
+      font-size: 16px; /* Prevents iOS zoom on focus */
+    }
+  }
+
+  /* Small mobile breakpoint */
+  @media screen and (max-width: 480px) {
+    #connect-{{ section.id }} .connect-wrapper {
+      padding: 0 12px;
+      gap: 20px;
+    }
+
+    #connect-{{ section.id }} .connect_right {
+      max-height: 250px;
+    }
+
+    #connect-{{ section.id }} .connect-heading {
+      font-size: clamp(20px, 5.5vw, 26px);
+    }
+
+    #connect-{{ section.id }} .connect-subtext {
+      font-size: 14px;
+    }
+
+    #connect-{{ section.id }} .connect-submit-btn {
+      padding: 14px 20px;
+      font-size: 15px;
+    }
+  }
+{% endstyle %}
+
+<section class="contact_section" id="connect-{{ section.id }}" aria-label="Contact Us">
+  <div class="connect-wrapper">
+    <div class="connect_left">
+      <h2 class="connect-heading">
+        {{ section.settings.heading_start }}
+        <span class="connect-heading-highlight">{{ section.settings.heading_highlight }}</span>
+      </h2>
+
+      {%- if section.settings.subtext != blank -%}
+        <p class="connect-subtext">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+
+      {%- form 'contact', id: 'ContactForm', class: 'connect-form' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="connect-form-message connect-form-message--success" role="alert">
+            {{ section.settings.success_message }}
+          </p>
+        {%- endif -%}
+
+        {%- if form.errors -%}
+          <p class="connect-form-message connect-form-message--error" role="alert">
+            {{ form.errors.translated_fields.email | capitalize }}
+            {{ form.errors.messages.email }}
+          </p>
+        {%- endif -%}
+
+        <div class="connect-field">
+          <input
+            type="text"
+            name="contact[{{ section.settings.name_label }}]"
+            id="ContactFormName-{{ section.id }}"
+            placeholder="{{ section.settings.name_label }}"
+            value="{{ form.name }}"
+            autocomplete="name"
+          >
+          <label for="ContactFormName-{{ section.id }}" class="visually-hidden">
+            {{- section.settings.name_label -}}
+          </label>
+        </div>
+
+        <div class="connect-field">
+          <input
+            type="email"
+            name="contact[email]"
+            id="ContactFormEmail-{{ section.id }}"
+            placeholder="{{ section.settings.email_label }}"
+            value="{{ form.email }}"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            required
+          >
+          <label for="ContactFormEmail-{{ section.id }}" class="visually-hidden">
+            {{- section.settings.email_label -}}
+          </label>
+        </div>
+
+        <div class="connect-field">
+          <input
+            type="tel"
+            name="contact[{{ section.settings.number_label }}]"
+            id="ContactFormNumber-{{ section.id }}"
+            placeholder="{{ section.settings.number_label }}"
+            autocomplete="tel"
+          >
+          <label for="ContactFormNumber-{{ section.id }}" class="visually-hidden">
+            {{- section.settings.number_label -}}
+          </label>
+        </div>
+
+        <div class="connect-field">
+          <textarea
+            name="contact[{{ section.settings.message_label }}]"
+            id="ContactFormMessage-{{ section.id }}"
+            placeholder="{{ section.settings.message_label }}"
+            rows="{{ section.settings.textarea_rows }}"
+          >{{ form.body }}</textarea>
+          <label for="ContactFormMessage-{{ section.id }}" class="visually-hidden">
+            {{- section.settings.message_label -}}
+          </label>
+        </div>
+
+        <button type="submit" class="connect-submit-btn">
+          {{ section.settings.button_label }}
+        </button>
+      {%- endform -%}
+    </div>
+
+    <div class="connect_right">
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 800 }}"
+          srcset="
+            {{ section.settings.image | image_url: width: 400 }} 400w,
+            {{ section.settings.image | image_url: width: 600 }} 600w,
+            {{ section.settings.image | image_url: width: 800 }} 800w,
+            {{ section.settings.image | image_url: width: 1200 }} 1200w
+          "
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          class="connect-image"
+          decoding="async"
+        >
+      {%- else -%}
+        <div class="connect-image connect-image--placeholder">
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Us",
+  "tag": "section",
+  "class": "section-lets-connect",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_start",
+      "label": "Heading (first part)",
+      "default": "Lets"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Heading (highlighted part)",
+      "default": "connect"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "We'd love to hear from you! Whether you have a question about our plants, need help with an order, or want to discuss a wholesale request, we're here to help."
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right side image"
+    },
+    {
+      "type": "header",
+      "content": "Form field placeholders"
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Name field placeholder",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email field placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "number_label",
+      "label": "Number field placeholder",
+      "default": "Number"
+    },
+    {
+      "type": "text",
+      "id": "message_label",
+      "label": "Message field placeholder",
+      "default": "Message"
+    },
+    {
+      "type": "range",
+      "id": "textarea_rows",
+      "label": "Message box height (rows)",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Button & messages"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Submit button text",
+      "default": "Submit Now"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks! Your message has been sent."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#A0798C"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlighted heading word color",
+      "default": "#8FA383"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Us"
+    }
+  ]
+}
+{% endschema %}

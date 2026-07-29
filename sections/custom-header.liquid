@@ -1,12 +1,138 @@
+{% assign page_key = 'default' %}
+
+{% if request.path contains 'about' %}
+  {% assign page_key = 'about' %}
+{% elsif template.name == 'page' and page.handle == 'about' %}
+  {% assign page_key = 'about' %}
+{% elsif template.name == 'page' and page.handle == 'about-us' %}
+  {% assign page_key = 'about' %}
+
+{% elsif template.name == 'product' %}
+  {% assign page_key = 'product_detail' %}
+
+{% elsif template.name == 'collection' %}
+  {% assign page_key = 'product_listing' %}
+{% elsif template.name == 'page' and page.handle == 'product' %}
+  {% assign page_key = 'product_listing' %}
+{% elsif template.name == 'page' and page.handle == 'products' %}
+  {% assign page_key = 'product_listing' %}
+
+{% elsif template.name == 'page' and page.handle == 'contact' %}
+  {% assign page_key = 'contact' %}
+{% elsif template.name == 'page' and page.handle == 'contact-us' %}
+  {% assign page_key = 'contact' %}
+{% elsif template.name == 'contact' %}
+  {% assign page_key = 'contact' %}
+{% endif %}
+
+{% comment %} COLOR / SETTINGS MAP PER PAGE {% endcomment %}
+{% case page_key %}
+  {% when 'about' %}
+    {% assign btn_bg = section.settings.about_btn_background_color | default: '#4A90D9' %}
+    {% assign btn_text = section.settings.about_btn_text_color | default: '#FFFFFF' %}
+    {% assign btn_hover = section.settings.about_btn_hover_background | default: '#357ABD' %}
+    {% assign link_color = section.settings.about_link_color | default: '#FFFFFF' %}
+    {% assign link_hover = section.settings.about_link_hover_color | default: '#CCCCCC' %}
+    {% assign right_bg = section.settings.about_right_bg | default: 'transparent' %}
+    {% assign logo_desktop = section.settings.about_logo | default: section.settings.logo %}
+    {% assign logo_mobile = section.settings.about_mobile_logo | default: section.settings.mobile_logo %}
+    {% assign icon_color = section.settings.about_icon_color | default: '#FFFFFF' %}
+    {% assign icon_color_scrolled = section.settings.about_icon_color_scrolled | default: '#000000' %}
+    {% assign scrolled_bg = section.settings.about_scrolled_background | default: '#FFFFFF' %}
+    {% assign scrolled_link_color = section.settings.about_scrolled_link_color | default: '#000000' %}
+    {% assign scrolled_link_hover = section.settings.about_scrolled_link_hover | default: '#333333' %}
+    {% assign scrolled_btn_bg = section.settings.about_scrolled_btn_bg | default: '#4A90D9' %}
+    {% assign scrolled_btn_text = section.settings.about_scrolled_btn_text | default: '#FFFFFF' %}
+    {% assign scrolled_btn_hover = section.settings.about_scrolled_btn_hover | default: '#357ABD' %}
+    {% assign page_class = 'about-page' %}
+
+  {% when 'product_listing' %}
+    {% assign btn_bg = section.settings.product_btn_background_color | default: '#3D4A2F' %}
+    {% assign btn_text = section.settings.product_btn_text_color | default: '#FFFFFF' %}
+    {% assign btn_hover = section.settings.product_btn_hover_background | default: '#2C3620' %}
+    {% assign link_color = section.settings.product_link_color | default: '#FFFFFF' %}
+    {% assign link_hover = section.settings.product_link_hover_color | default: '#CCCCCC' %}
+    {% assign right_bg = section.settings.product_right_bg | default: 'transparent' %}
+    {% assign logo_desktop = section.settings.product_logo | default: section.settings.logo %}
+    {% assign logo_mobile = section.settings.product_mobile_logo | default: section.settings.mobile_logo %}
+    {% assign icon_color = section.settings.product_icon_color | default: '#FFFFFF' %}
+    {% assign icon_color_scrolled = section.settings.product_icon_color_scrolled | default: '#000000' %}
+    {% assign scrolled_bg = section.settings.product_scrolled_background | default: '#FFFFFF' %}
+    {% assign scrolled_link_color = section.settings.product_scrolled_link_color | default: '#000000' %}
+    {% assign scrolled_link_hover = section.settings.product_scrolled_link_hover | default: '#333333' %}
+    {% assign scrolled_btn_bg = section.settings.product_scrolled_btn_bg | default: '#3D4A2F' %}
+    {% assign scrolled_btn_text = section.settings.product_scrolled_btn_text | default: '#FFFFFF' %}
+    {% assign scrolled_btn_hover = section.settings.product_scrolled_btn_hover | default: '#2C3620' %}
+    {% assign page_class = 'product-page' %}
+
+  {% when 'product_detail' %}
+    {% assign btn_bg = section.settings.pd_btn_background_color | default: '#1F2B1A' %}
+    {% assign btn_text = section.settings.pd_btn_text_color | default: '#FFFFFF' %}
+    {% assign btn_hover = section.settings.pd_btn_hover_background | default: '#141C11' %}
+    {% assign link_color = section.settings.pd_link_color | default: '#FFFFFF' %}
+    {% assign link_hover = section.settings.pd_link_hover_color | default: '#CCCCCC' %}
+    {% assign right_bg = section.settings.pd_right_bg | default: 'transparent' %}
+    {% assign logo_desktop = section.settings.pd_logo | default: section.settings.logo %}
+    {% assign logo_mobile = section.settings.pd_mobile_logo | default: section.settings.mobile_logo %}
+    {% assign icon_color = section.settings.pd_icon_color | default: '#FFFFFF' %}
+    {% assign icon_color_scrolled = section.settings.pd_icon_color_scrolled | default: '#000000' %}
+    {% assign scrolled_bg = section.settings.pd_scrolled_background | default: '#FFFFFF' %}
+    {% assign scrolled_link_color = section.settings.pd_scrolled_link_color | default: '#000000' %}
+    {% assign scrolled_link_hover = section.settings.pd_scrolled_link_hover | default: '#333333' %}
+    {% assign scrolled_btn_bg = section.settings.pd_scrolled_btn_bg | default: '#1F2B1A' %}
+    {% assign scrolled_btn_text = section.settings.pd_scrolled_btn_text | default: '#FFFFFF' %}
+    {% assign scrolled_btn_hover = section.settings.pd_scrolled_btn_hover | default: '#141C11' %}
+    {% assign page_class = 'product-detail-page' %}
+
+  {% when 'contact' %}
+    {% assign btn_bg = section.settings.contact_btn_background_color | default: '#2C2C2C' %}
+    {% assign btn_text = section.settings.contact_btn_text_color | default: '#F4EFE3' %}
+    {% assign btn_hover = section.settings.contact_btn_hover_background | default: '#1A1A1A' %}
+    {% assign link_color = section.settings.contact_link_color | default: '#2C2C2C' %}
+    {% assign link_hover = section.settings.contact_link_hover_color | default: '#555555' %}
+    {% assign right_bg = section.settings.contact_right_bg | default: '#F4EFE3' %}
+    {% assign logo_desktop = section.settings.contact_logo | default: section.settings.logo %}
+    {% assign logo_mobile = section.settings.contact_mobile_logo | default: section.settings.mobile_logo %}
+    {% assign icon_color = section.settings.contact_icon_color | default: '#2C2C2C' %}
+    {% assign icon_color_scrolled = section.settings.contact_icon_color_scrolled | default: '#000000' %}
+    {% assign scrolled_bg = section.settings.contact_scrolled_background | default: '#FFFFFF' %}
+    {% assign scrolled_link_color = section.settings.contact_scrolled_link_color | default: '#000000' %}
+    {% assign scrolled_link_hover = section.settings.contact_scrolled_link_hover | default: '#333333' %}
+    {% assign scrolled_btn_bg = section.settings.contact_scrolled_btn_bg | default: '#2C2C2C' %}
+    {% assign scrolled_btn_text = section.settings.contact_scrolled_btn_text | default: '#F4EFE3' %}
+    {% assign scrolled_btn_hover = section.settings.contact_scrolled_btn_hover | default: '#1A1A1A' %}
+    {% assign page_class = 'contact-page' %}
+
+  {% else %}
+    {% comment %} Home / default {% endcomment %}
+    {% assign btn_bg = section.settings.btn_background_color | default: '#FBF8E8' %}
+    {% assign btn_text = section.settings.btn_text_color | default: '#000000' %}
+    {% assign btn_hover = section.settings.btn_hover_background | default: '#e8e5d5' %}
+    {% assign link_color = section.settings.link_color | default: '#000000' %}
+    {% assign link_hover = section.settings.link_hover_color | default: '#000000' %}
+    {% assign right_bg = section.settings.background_color | default: '#d1d7de' %}
+    {% assign logo_desktop = section.settings.logo %}
+    {% assign logo_mobile = section.settings.mobile_logo %}
+    {% assign icon_color = '#000000' %}
+    {% assign icon_color_scrolled = '#000000' %}
+    {% assign scrolled_bg = section.settings.scrolled_background_color | default: '#ffffff' %}
+    {% assign scrolled_link_color = '#000000' %}
+    {% assign scrolled_link_hover = '#000000' %}
+    {% assign scrolled_btn_bg = btn_bg %}
+    {% assign scrolled_btn_text = btn_text %}
+    {% assign scrolled_btn_hover = btn_hover %}
+    {% assign page_class = '' %}
+{% endcase %}
+
 {% style %}
-  .custom_header img{
+  .custom_header img {
     width: 100%;
     height: auto;
     object-fit: contain;
     display: block;
     max-height: 91px;
   }
-  
+
   .custom_header {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -21,10 +147,10 @@
 
   {% if section.settings.enable_sticky_header %}
     .custom_header.is_scrolled {
-      background-color: {{ section.settings.scrolled_background_color }};
+      background-color: {{ scrolled_bg }};
       border-bottom: 1px solid #EDEAE0;
     }
-    
+
     {% if section.settings.sticky_style == "slide_down" %}
       .custom_header.is_scrolled {
         animation: slideDown 0.3s ease forwards;
@@ -73,9 +199,10 @@
     gap: 20px;
     align-items: center;
     justify-content: flex-end;
-    background-color: {{ section.settings.background_color }};
+    background-color: {{ right_bg }};
     padding: 8px 8px 8px 30px;
     border-radius: 40px;
+    transition: background-color 0.3s ease;
   }
 
   .custom_header .custom_header_nav {
@@ -98,13 +225,37 @@
     line-height: 1.4;
     transition: color 0.3s ease;
     white-space: nowrap;
-    color: {{ section.settings.link_color }};
+    color: {{ link_color }};
+    position: relative;
   }
 
   .custom_header a.custom_header_link.active,
   .custom_header a.custom_header_link:hover {
-    color: {{ section.settings.link_hover_color }};
+    color: {{ link_hover }};
     text-shadow: 0.3px 0 currentColor, -0.3px 0 currentColor;
+  }
+
+  .custom_header a.custom_header_link.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: {{ link_hover }};
+    transition: width 0.3s ease;
+  }
+
+  .custom_header.is_scrolled a.custom_header_link {
+    color: {{ scrolled_link_color }};
+  }
+
+  .custom_header.is_scrolled a.custom_header_link.active,
+  .custom_header.is_scrolled a.custom_header_link:hover {
+    color: {{ scrolled_link_hover }};
+    text-shadow: 0.3px 0 currentColor, -0.3px 0 currentColor;
+  }
+
+  .custom_header.is_scrolled a.custom_header_link.active::after {
+    background-color: {{ scrolled_link_hover }};
   }
 
   .custom_header a.custom_header_shop_now {
@@ -113,15 +264,32 @@
     font-weight: 600;
     line-height: 1.2;
     vertical-align: middle;
-    background-color: {{ section.settings.btn_background_color }};
-    color: {{ section.settings.btn_text_color }};
+    background-color: {{ btn_bg }};
+    color: {{ btn_text }};
     padding: 10px 30px;
     border-radius: 40px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
   }
 
   .custom_header a.custom_header_shop_now:hover {
-    background-color: {{ section.settings.btn_hover_background }};
+    background-color: {{ btn_hover }};
+    transform: scale(1.02);
+  }
+
+  .custom_header a.custom_header_shop_now:active {
+    transform: scale(0.98);
+  }
+
+  .custom_header.is_scrolled a.custom_header_shop_now {
+    background-color: {{ scrolled_btn_bg }};
+    color: {{ scrolled_btn_text }};
+  }
+
+  .custom_header.is_scrolled a.custom_header_shop_now:hover {
+    background-color: {{ scrolled_btn_hover }};
   }
 
   .custom_header .custom_header_icons {
@@ -135,20 +303,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000;
-    transition: opacity 0.3s ease;
+    color: {{ icon_color }};
+    transition: color 0.3s ease, opacity 0.3s ease;
   }
 
   .custom_header .header_icon:hover {
     opacity: 0.7;
   }
 
+  .custom_header.is_scrolled .header_icon {
+    color: {{ icon_color_scrolled }};
+  }
+
   .custom_header .cart_count {
     position: absolute;
     top: -8px;
     right: -8px;
-    background-color: #000;
-    color: #fff;
+    background-color: {{ btn_bg }};
+    color: {{ btn_text }};
     font-size: 10px;
     font-weight: 600;
     width: 16px;
@@ -160,12 +332,17 @@
     line-height: 1;
   }
 
+  .custom_header.is_scrolled .cart_count {
+    background-color: {{ scrolled_btn_bg }};
+    color: {{ scrolled_btn_text }};
+  }
+
   .custom_header .hamburger_btn {
     display: none;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 30px;
+    width: 25px;
     height: 24px;
     background: none;
     border: none;
@@ -178,9 +355,34 @@
     display: block;
     width: 100%;
     height: 2px;
-    background-color: #000;
+    background-color: {{ icon_color }};
     border-radius: 2px;
     transition: all 0.3s ease;
+  }
+
+  .custom_header .hamburger_btn.active span {
+    background-color: #000000 !important;
+  }
+
+  .custom_header.is_scrolled .hamburger_btn span {
+    background-color: {{ icon_color_scrolled }};
+  }
+
+  @media (max-width: 989px) {
+    .custom_header a.custom_header_link {
+      color: #000;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .custom_header img {
+      max-height: 50px;
+      width: fit-content;
+    }
+    .custom_header {
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
   }
 
   .custom_header .hamburger_btn.active span:nth-child(1) {
@@ -225,7 +427,7 @@
       max-width: {{ section.settings.logo_mobile_width }}px;
       width: 100%;
     }
-    
+
     .custom_header .hamburger_btn {
       display: flex;
     }
@@ -269,6 +471,10 @@
       padding: 8px 16px;
       font-size: 14px;
     }
+
+    .custom_header a.custom_header_link.active::after {
+      bottom: -2px;
+    }
   }
 
   @media screen and (max-width: 749px) {
@@ -284,7 +490,7 @@
     }
   }
 
-  @media screen and (max-width: 510px){
+  @media screen and (max-width: 510px) {
     .custom_header .custom_header_icons {
       display: none;
     }
@@ -294,45 +500,47 @@
   }
 {% endstyle %}
 
-<header class="custom_header">
+<header class="custom_header {{ page_class }}">
   <div class="container">
     <div class="custom_header_inner">
       <div class="header_main">
         <div class="custom_header_logo">
-          {% if section.settings.logo %}
+          {% if logo_desktop %}
             <a href="{{ routes.root_url }}">
-              {% if section.settings.mobile_logo %}
-                <!-- Desktop Logo -->
+              {% if logo_mobile %}
                 <img
-                  src="{{ section.settings.logo | image_url }}"
+                  src="{{ logo_desktop | image_url }}"
                   width="{{ section.settings.logo_width }}"
                   height="{{ section.settings.logo_height }}"
-                  alt="{{ section.settings.logo.alt | default: shop.name }}"
+                  alt="{{ logo_desktop.alt | default: shop.name }}"
                   class="desktop-logo"
                   loading="lazy"
                 >
-                <!-- Mobile Logo -->
                 <img
-                  src="{{ section.settings.mobile_logo | image_url }}"
+                  src="{{ logo_mobile | image_url }}"
                   width="{{ section.settings.logo_mobile_width }}"
                   height="{{ section.settings.logo_height }}"
-                  alt="{{ section.settings.mobile_logo.alt | default: shop.name }}"
+                  alt="{{ logo_mobile.alt | default: shop.name }}"
                   class="mobile-logo"
                   loading="lazy"
                   style="display: none;"
                 >
                 <style>
                   @media screen and (max-width: 749px) {
-                    .custom_header .desktop-logo { display: none; }
-                    .custom_header .mobile-logo { display: block; }
+                    .custom_header .desktop-logo {
+                      display: none;
+                    }
+                    .custom_header .mobile-logo {
+                      display: block;
+                    }
                   }
                 </style>
               {% else %}
                 <img
-                  src="{{ section.settings.logo | image_url }}"
+                  src="{{ logo_desktop | image_url }}"
                   width="{{ section.settings.logo_width }}"
                   height="{{ section.settings.logo_height }}"
-                  alt="{{ section.settings.logo.alt | default: shop.name }}"
+                  alt="{{ logo_desktop.alt | default: shop.name }}"
                   loading="lazy"
                 >
               {% endif %}
@@ -341,21 +549,38 @@
         </div>
 
         <button class="hamburger_btn" id="hamburgerBtn" aria-label="Toggle Menu">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
 
         <div class="custom_header_nav" id="customHeaderNav">
           <ul class="custom_header_menu">
             {% if section.settings.menu != blank %}
               {% for link in linklists[section.settings.menu].links %}
+                {% assign link_url = link.url %}
+                {% assign is_active = false %}
+
+                {% if link.handle == 'home' or link_url == '/' %}
+                  {% if request.path == '/' %}
+                    {% assign is_active = true %}
+                  {% endif %}
+                {% elsif request.path contains link_url %}
+                  {% assign is_active = true %}
+                {% elsif template.name == 'page' and link.handle == page.handle %}
+                  {% assign is_active = true %}
+                {% elsif template.name == 'collection' and link.handle == collection.handle %}
+                  {% assign is_active = true %}
+                {% elsif template.name == 'product' and link.handle == product.handle %}
+                  {% assign is_active = true %}
+                {% endif %}
+
                 <li>
                   <a
                     href="{{ link.url }}"
-                    class="custom_header_link {% if forloop.first %}active{% endif %}"
+                    class="custom_header_link {% if is_active %}active{% endif %}"
                     style="font-weight: normal;"
-                    {% if link.target == '_blank' %}target="_blank" rel="noopener noreferrer"{% endif %}
+                    {% if link.target == '_blank' %}
+                      target="_blank" rel="noopener noreferrer"
+                    {% endif %}
                   >
                     {{ link.title }}
                   </a>
@@ -421,63 +646,72 @@
 </header>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  var hamburgerBtn = document.getElementById('hamburgerBtn');
-  var mobileNav = document.getElementById('customHeaderNav');
-  var overlay = document.getElementById('mobileMenuOverlay');
-  var header = document.querySelector('.custom_header');
+  document.addEventListener('DOMContentLoaded', function() {
+    var navLinks = document.querySelectorAll('.custom_header_link');
+    var currentUrl = window.location.pathname;
 
-  function openMenu() {
-    hamburgerBtn.classList.add('active');
-    mobileNav.classList.add('active');
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+    navLinks.forEach(function(link) {
+      var linkUrl = link.getAttribute('href');
+      link.classList.remove('active');
 
-  function closeMenu() {
-    hamburgerBtn.classList.remove('active');
-    mobileNav.classList.remove('active');
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  if (hamburgerBtn) {
-    hamburgerBtn.addEventListener('click', function () {
-      if (mobileNav.classList.contains('active')) {
-        closeMenu();
-      } else {
-        openMenu();
+      if (linkUrl === currentUrl ||
+          (linkUrl === '/' && currentUrl === '/') ||
+          (currentUrl.includes(linkUrl) && linkUrl !== '/')) {
+        link.classList.add('active');
       }
     });
-  }
 
-  if (overlay) {
-    overlay.addEventListener('click', closeMenu);
-  }
+    var hamburgerBtn = document.getElementById('hamburgerBtn');
+    var mobileNav = document.getElementById('customHeaderNav');
+    var overlay = document.getElementById('mobileMenuOverlay');
+    var header = document.querySelector('.custom_header');
 
-  function handleScroll() {
-    {% if section.settings.enable_sticky_header %}
-      if (window.scrollY > 20) {
-        header.classList.add('is_scrolled');
-      } else {
-        header.classList.remove('is_scrolled');
-      }
-    {% endif %}
-  }
+    function openMenu() {
+      hamburgerBtn.classList.add('active');
+      mobileNav.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
 
-  window.addEventListener('scroll', handleScroll);
-  handleScroll();
+    function closeMenu() {
+      hamburgerBtn.classList.remove('active');
+      mobileNav.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
-  // Close menu on link click (mobile)
-  var navLinks = mobileNav.querySelectorAll('a');
-  navLinks.forEach(function(link) {
-    link.addEventListener('click', function() {
-      if (window.innerWidth <= 989) {
-        closeMenu();
-      }
+    if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', function() {
+        if (mobileNav.classList.contains('active')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+    }
+
+    if (overlay) overlay.addEventListener('click', closeMenu);
+
+    function handleScroll() {
+      {% if section.settings.enable_sticky_header %}
+        if (window.scrollY > 20) {
+          header.classList.add('is_scrolled');
+        } else {
+          header.classList.remove('is_scrolled');
+        }
+      {% endif %}
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    var navLinksMobile = mobileNav.querySelectorAll('a');
+    navLinksMobile.forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 989) closeMenu();
+      });
     });
   });
-});
 </script>
 
 {% schema %}
@@ -485,21 +719,9 @@ document.addEventListener('DOMContentLoaded', function () {
   "name": "Custom Header",
   "class": "custom-header-section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Logo Settings"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo"
-    },
-    {
-      "type": "image_picker",
-      "id": "mobile_logo",
-      "label": "Mobile Logo",
-      "info": "Optional: Different logo for mobile devices"
-    },
+    { "type": "header", "content": "Logo Settings" },
+    { "type": "image_picker", "id": "logo", "label": "Default Logo" },
+    { "type": "image_picker", "id": "mobile_logo", "label": "Default Mobile Logo" },
     {
       "type": "range",
       "id": "logo_width",
@@ -514,32 +736,18 @@ document.addEventListener('DOMContentLoaded', function () {
       "type": "range",
       "id": "logo_mobile_width",
       "label": "Logo Width (Mobile)",
-      "min": 60,
+      "min": 40,
       "max": 180,
       "step": 5,
       "unit": "px",
-      "default": 60
+      "default": 50
     },
-    {
-      "type": "header",
-      "content": "Navigation Settings"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Navigation Menu",
-      "info": "Select a menu to display in the header"
-    },
-    {
-      "type": "header",
-      "content": "Sticky Header Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_sticky_header",
-      "label": "Enable Sticky Header",
-      "default": true
-    },
+
+    { "type": "header", "content": "Navigation Settings" },
+    { "type": "link_list", "id": "menu", "label": "Navigation Menu" },
+
+    { "type": "header", "content": "Sticky Header Settings" },
+    { "type": "checkbox", "id": "enable_sticky_header", "label": "Enable Sticky Header", "default": true },
     {
       "type": "select",
       "id": "sticky_style",
@@ -551,85 +759,101 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
       "default": "slide_down"
     },
-    {
-      "type": "header",
-      "content": "Button Settings"
-    },
-    {
-      "type": "text",
-      "id": "shop_now_text",
-      "label": "Shop Now Button Text",
-      "default": "Shop Now",
-      "info": "Leave empty to hide the button"
-    },
-    {
-      "type": "url",
-      "id": "shop_now_link",
-      "label": "Shop Now Button Link",
-      "info": "Required if button text is set"
-    },
-    {
-      "type": "select",
-      "id": "btn_style",
-      "label": "Button Style",
-      "options": [
-        { "value": "primary", "label": "Primary" },
-        { "value": "secondary", "label": "Secondary" },
-        { "value": "outline", "label": "Outline" }
-      ],
-      "default": "primary"
-    },
-    {
-      "type": "header",
-      "content": "Color Settings"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#d1d7de"
-    },
-    {
-      "type": "color",
-      "id": "scrolled_background_color",
-      "label": "Sticky Background Color",
-      "default": "#ffffff",
-      "info": "Background when header is sticky/scrolled"
-    },
-    {
-      "type": "color",
-      "id": "link_color",
-      "label": "Link Text Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "link_hover_color",
-      "label": "Link Hover Color",
-      "default": "#000"
-    },
-    {
-      "type": "color",
-      "id": "btn_background_color",
-      "label": "Button Background Color",
-      "default": "#FBF8E8"
-    },
-    {
-      "type": "color",
-      "id": "btn_text_color",
-      "label": "Button Text Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "btn_hover_background",
-      "label": "Button Hover Background",
-      "default": "#e8e5d5"
-    },
-    {
-      "type": "header",
-      "content": "Spacing & Layout"
-    },
+
+    { "type": "header", "content": "Button Settings" },
+    { "type": "text", "id": "shop_now_text", "label": "Shop Now Button Text", "default": "Shop Now" },
+    { "type": "url", "id": "shop_now_link", "label": "Shop Now Button Link" },
+
+    { "type": "header", "content": "Colors - Home (Default)" },
+    { "type": "color", "id": "background_color", "label": "Background Color", "default": "#d1d7de" },
+    { "type": "color", "id": "scrolled_background_color", "label": "Sticky Background Color", "default": "#ffffff" },
+    { "type": "color", "id": "link_color", "label": "Link Text Color", "default": "#000000" },
+    { "type": "color", "id": "link_hover_color", "label": "Link Hover Color", "default": "#000000" },
+    { "type": "color", "id": "btn_background_color", "label": "Button Background Color", "default": "#FBF8E8" },
+    { "type": "color", "id": "btn_text_color", "label": "Button Text Color", "default": "#000000" },
+    { "type": "color", "id": "btn_hover_background", "label": "Button Hover Background", "default": "#e8e5d5" },
+
+    { "type": "header", "content": "About Page - Logo" },
+    { "type": "image_picker", "id": "about_logo", "label": "About Page Logo" },
+    { "type": "image_picker", "id": "about_mobile_logo", "label": "About Page Mobile Logo" },
+    { "type": "header", "content": "About Page - Default State" },
+    { "type": "color", "id": "about_btn_background_color", "label": "Button Background", "default": "#4A90D9" },
+    { "type": "color", "id": "about_btn_text_color", "label": "Button Text", "default": "#FFFFFF" },
+    { "type": "color", "id": "about_btn_hover_background", "label": "Button Hover", "default": "#357ABD" },
+    { "type": "color", "id": "about_link_color", "label": "Link Color", "default": "#FFFFFF" },
+    { "type": "color", "id": "about_link_hover_color", "label": "Link Hover Color", "default": "#CCCCCC" },
+    { "type": "color", "id": "about_right_bg", "label": "Right Panel Background", "default": "transparent" },
+    { "type": "color", "id": "about_icon_color", "label": "Icon Color", "default": "#FFFFFF" },
+    { "type": "header", "content": "About Page - Scrolled State" },
+    { "type": "color", "id": "about_scrolled_background", "label": "Scrolled Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "about_scrolled_btn_bg", "label": "Scrolled Button Background", "default": "#4A90D9" },
+    { "type": "color", "id": "about_scrolled_btn_text", "label": "Scrolled Button Text", "default": "#FFFFFF" },
+    { "type": "color", "id": "about_scrolled_btn_hover", "label": "Scrolled Button Hover", "default": "#357ABD" },
+    { "type": "color", "id": "about_scrolled_link_color", "label": "Scrolled Link Color", "default": "#000000" },
+    { "type": "color", "id": "about_scrolled_link_hover", "label": "Scrolled Link Hover", "default": "#333333" },
+    { "type": "color", "id": "about_icon_color_scrolled", "label": "Scrolled Icon Color", "default": "#000000" },
+
+    { "type": "header", "content": "Product Listing Page - Logo" },
+    { "type": "image_picker", "id": "product_logo", "label": "Product Page Logo" },
+    { "type": "image_picker", "id": "product_mobile_logo", "label": "Product Page Mobile Logo" },
+    { "type": "header", "content": "Product Listing Page - Default State" },
+    { "type": "color", "id": "product_btn_background_color", "label": "Button Background", "default": "#3D4A2F" },
+    { "type": "color", "id": "product_btn_text_color", "label": "Button Text", "default": "#FFFFFF" },
+    { "type": "color", "id": "product_btn_hover_background", "label": "Button Hover", "default": "#2C3620" },
+    { "type": "color", "id": "product_link_color", "label": "Link Color", "default": "#FFFFFF" },
+    { "type": "color", "id": "product_link_hover_color", "label": "Link Hover Color", "default": "#CCCCCC" },
+    { "type": "color", "id": "product_right_bg", "label": "Right Panel Background", "default": "transparent" },
+    { "type": "color", "id": "product_icon_color", "label": "Icon Color", "default": "#FFFFFF" },
+    { "type": "header", "content": "Product Listing Page - Scrolled State" },
+    { "type": "color", "id": "product_scrolled_background", "label": "Scrolled Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "product_scrolled_btn_bg", "label": "Scrolled Button Background", "default": "#3D4A2F" },
+    { "type": "color", "id": "product_scrolled_btn_text", "label": "Scrolled Button Text", "default": "#FFFFFF" },
+    { "type": "color", "id": "product_scrolled_btn_hover", "label": "Scrolled Button Hover", "default": "#2C3620" },
+    { "type": "color", "id": "product_scrolled_link_color", "label": "Scrolled Link Color", "default": "#000000" },
+    { "type": "color", "id": "product_scrolled_link_hover", "label": "Scrolled Link Hover", "default": "#333333" },
+    { "type": "color", "id": "product_icon_color_scrolled", "label": "Scrolled Icon Color", "default": "#000000" },
+
+    { "type": "header", "content": "Product Detail Page - Logo" },
+    { "type": "image_picker", "id": "pd_logo", "label": "Product Detail Logo" },
+    { "type": "image_picker", "id": "pd_mobile_logo", "label": "Product Detail Mobile Logo" },
+    { "type": "header", "content": "Product Detail Page - Default State" },
+    { "type": "color", "id": "pd_btn_background_color", "label": "Button Background", "default": "#1F2B1A" },
+    { "type": "color", "id": "pd_btn_text_color", "label": "Button Text", "default": "#FFFFFF" },
+    { "type": "color", "id": "pd_btn_hover_background", "label": "Button Hover", "default": "#141C11" },
+    { "type": "color", "id": "pd_link_color", "label": "Link Color", "default": "#FFFFFF" },
+    { "type": "color", "id": "pd_link_hover_color", "label": "Link Hover Color", "default": "#CCCCCC" },
+    { "type": "color", "id": "pd_right_bg", "label": "Right Panel Background", "default": "transparent" },
+    { "type": "color", "id": "pd_icon_color", "label": "Icon Color", "default": "#FFFFFF" },
+    { "type": "header", "content": "Product Detail Page - Scrolled State" },
+    { "type": "color", "id": "pd_scrolled_background", "label": "Scrolled Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "pd_scrolled_btn_bg", "label": "Scrolled Button Background", "default": "#1F2B1A" },
+    { "type": "color", "id": "pd_scrolled_btn_text", "label": "Scrolled Button Text", "default": "#FFFFFF" },
+    { "type": "color", "id": "pd_scrolled_btn_hover", "label": "Scrolled Button Hover", "default": "#141C11" },
+    { "type": "color", "id": "pd_scrolled_link_color", "label": "Scrolled Link Color", "default": "#000000" },
+    { "type": "color", "id": "pd_scrolled_link_hover", "label": "Scrolled Link Hover", "default": "#333333" },
+    { "type": "color", "id": "pd_icon_color_scrolled", "label": "Scrolled Icon Color", "default": "#000000" },
+
+    { "type": "header", "content": "Contact Page - Logo" },
+    { "type": "image_picker", "id": "contact_logo", "label": "Contact Page Logo" },
+    { "type": "image_picker", "id": "contact_mobile_logo", "label": "Contact Page Mobile Logo" },
+    { "type": "header", "content": "Contact Page - Default State" },
+    { "type": "color", "id": "contact_btn_background_color", "label": "Button Background", "default": "#2C2C2C" },
+    { "type": "color", "id": "contact_btn_text_color", "label": "Button Text", "default": "#F4EFE3" },
+    { "type": "color", "id": "contact_btn_hover_background", "label": "Button Hover", "default": "#1A1A1A" },
+    { "type": "color", "id": "contact_link_color", "label": "Link Color", "default": "#2C2C2C" },
+    { "type": "color", "id": "contact_link_hover_color", "label": "Link Hover Color", "default": "#555555" },
+    { "type": "color", "id": "contact_right_bg", "label": "Right Panel Background", "default": "#F4EFE3" },
+    { "type": "color", "id": "contact_icon_color", "label": "Icon Color", "default": "#2C2C2C" },
+    { "type": "header", "content": "Contact Page - Scrolled State" },
+    { "type": "color", "id": "contact_scrolled_background", "label": "Scrolled Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "contact_scrolled_btn_bg", "label": "Scrolled Button Background", "default": "#2C2C2C" },
+    { "type": "color", "id": "contact_scrolled_btn_text", "label": "Scrolled Button Text", "default": "#F4EFE3" },
+    { "type": "color", "id": "contact_scrolled_btn_hover", "label": "Scrolled Button Hover", "default": "#1A1A1A" },
+    { "type": "color", "id": "contact_scrolled_link_color", "label": "Scrolled Link Color", "default": "#000000" },
+    { "type": "color", "id": "contact_scrolled_link_hover", "label": "Scrolled Link Hover", "default": "#333333" },
+    { "type": "color", "id": "contact_icon_color_scrolled", "label": "Scrolled Icon Color", "default": "#000000" },
+
+    { "type": "header", "content": "Spacing & Layout" },
     {
       "type": "range",
       "id": "padding_top",
@@ -658,7 +882,7 @@ document.addEventListener('DOMContentLoaded', function () {
       "max": 2000,
       "step": 20,
       "unit": "px",
-      "default": 1400
+      "default": 1280
     },
     {
       "type": "range",
@@ -670,28 +894,11 @@ document.addEventListener('DOMContentLoaded', function () {
       "unit": "px",
       "default": 20
     },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "mobile_collapsible",
-      "label": "Collapsible Mobile Menu",
-      "default": true
-    },
-    {
-      "type": "color",
-      "id": "mobile_menu_background",
-      "label": "Mobile Menu Background",
-      "default": "#ffffff"
-    }
+
+    { "type": "header", "content": "Mobile Settings" },
+    { "type": "checkbox", "id": "mobile_collapsible", "label": "Collapsible Mobile Menu", "default": true },
+    { "type": "color", "id": "mobile_menu_background", "label": "Mobile Menu Background", "default": "#ffffff" }
   ],
-  "presets": [
-    {
-      "name": "Custom Header",
-      "category": "Custom Sections"
-    }
-  ]
+  "presets": [{ "name": "Custom Header", "category": "Custom Sections" }]
 }
 {% endschema %}

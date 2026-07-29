@@ -1,0 +1,218 @@
+{% comment %}
+  {% style %}
+    .about_hero {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: {{ section.settings.hero_height }}px;
+      display: flex;
+      align-items: center;
+    }
+
+    .about_hero .container {
+      max-width: 1440px;
+      width: 100%;
+      padding: 0 20px;
+      margin: 0 auto;
+    }
+
+    .about_hero h2.about_heading {
+      font-size: 5.21vw;
+      position: absolute;
+      bottom: 47%;
+      white-space: nowrap;
+      left: 50%;
+      text-align: center;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+      max-width: 90%;
+      transform: translateX(-50%);
+      display: flex;
+      width: fit-content;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px){
+      .about_hero {
+        height: 500px;
+      }
+      .about_hero h2.about_heading {
+        bottom: 50%;
+      }
+    }
+    @media (max-width: 425px){
+      .about_hero {
+        height: 400px;
+      }
+      .about_hero h2.about_heading {
+        bottom: 33%;
+      }
+
+    }
+  {% endstyle %}
+
+  <section
+    class="about_hero"
+    {% if section.settings.bg_image %}
+      style="background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');"
+    {% endif %}
+  >
+    <div class="container">
+      {% if section.settings.heading != blank %}
+        <h2 class="about_heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+    </div>
+  </section>
+
+  {% schema %}
+  {
+    "name": "About Hero",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "About Ecoraíces Native Plants"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Background image"
+      },
+      {
+        "type": "range",
+        "id": "hero_height",
+        "min": 300,
+        "max": 900,
+        "step": 10,
+        "unit": "px",
+        "label": "Hero height",
+        "default": 600
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#ffffff"
+      }
+    ],
+    "blocks": [],
+    "presets": [
+      {
+        "name": "About hero banner",
+        "category": "Hero"
+      }
+    ]
+  }
+  {% endschema %}
+{% endcomment %}
+
+{% style %}
+  .about_hero {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: {{ section.settings.hero_height }}px;
+    display: flex;
+    align-items: center;
+  }
+
+  .about_hero .container {
+    max-width: 1440px;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+
+  .about_hero h2.about_heading {
+    font-size: 5.21vw;
+    position: absolute;
+    bottom: 47%;
+    white-space: nowrap;
+    left: 50%;
+    text-align: center;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    max-width: 90%;
+    transform: translateX(-50%);
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px){
+    .about_hero {
+      height: 500px;
+    }
+    .about_hero h2.about_heading {
+      bottom: 50%;
+    }
+  }
+  @media (max-width: 425px){
+    .about_hero {
+      height: 400px;
+    }
+    .about_hero h2.about_heading {
+      bottom: 33%;
+    }
+  }
+{% endstyle %}
+
+<section
+  class="about_hero"
+  {% if section.settings.bg_image %}
+    style="background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');"
+  {% endif %}
+>
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <h2 class="about_heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "About Ecoraíces Native Plants"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "range",
+      "id": "hero_height",
+      "min": 300,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "label": "Hero height",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "About hero banner",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}

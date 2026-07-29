@@ -1,0 +1,311 @@
+<style>
+  /* ============================
+     STATIC CSS - structure/layout
+     (kabhi change nahi hoga, sab sections me same)
+  ============================ */
+  .section__container {
+    position: relative;
+    width: 100%;
+  }
+  .section__container img.desktop_img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .section__container img.mobile_img {
+    display: none;
+    width: 100%;
+    height: auto;
+  }
+  @media screen and (max-width: 767px) {
+    .section__container img.desktop_img {
+      display: none;
+    }
+    .section__container img.mobile_img {
+      display: block;
+    }
+  }
+  .section__bg_wrapper {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+</style>
+
+{% style %}
+  /* ============================
+     DYNAMIC CSS - section.settings se
+  ============================ */
+  #section-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+  #section-{{ section.id }} .section__inner {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #section-{{ section.id }} h2,
+  #section-{{ section.id }} p,
+  #section-{{ section.id }} h3 {
+    color: {{ section.settings.font_color }};
+  }
+  {% if section.settings.bg_image != blank %}
+    #section-{{ section.id }} .section__bg_wrapper {
+      background-image: url('{{ section.settings.bg_image | image_url: width: 1920 }}');
+    }
+  {% endif %}
+  #section-{{ section.id }} .primary_btn {
+    background: {{ section.settings.primary_btn_bg_color }};
+    color: {{ section.settings.primary_btn_text_color }};
+    border: 2px solid {{ section.settings.primary_btn_border_color }};
+  }
+  #section-{{ section.id }} .primary_btn:hover {
+    background: {{ section.settings.primary_btn_hover_bg_color }};
+    color: {{ section.settings.primary_btn_hover_text_color }};
+    border: 2px solid {{ section.settings.primary_btn_hover_border_color }};
+  }
+
+  @media screen and (max-width: 991px) {
+    #section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<section class="custom_section {{ section.settings.class }}" id="section-{{ section.id }}">
+  <div class="section__bg_wrapper">
+    <div class="section__inner section__container">
+      {% if section.settings.desktop_img != blank %}
+        {{
+          section.settings.desktop_img
+          | image_url: width: section.settings.desktop_img.width
+          | image_tag: loading: 'lazy', class: 'desktop_img'
+        }}
+      {% endif %}
+
+      {% if section.settings.mobile_img != blank %}
+        {{
+          section.settings.mobile_img
+          | image_url: width: section.settings.mobile_img.width
+          | image_tag: loading: 'lazy', class: 'mobile_img'
+        }}
+      {% endif %}
+
+      {% if section.settings.headline != blank %}
+        <h2 class="section__headline">{{ section.settings.headline }}</h2>
+      {% endif %}
+
+      {% if section.settings.subhead != blank %}
+        <p class="section__subhead">{{ section.settings.subhead }}</p>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link | default: '#' }}" class="primary_btn">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="section__blocks">
+          {% for block in section.blocks %}
+            <div class="section__block" {{ block.shopify_attributes }}>
+              {%- comment -%} block content yaha add karo {%- endcomment -%}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Section",
+  "class": "shopify-section--custom",
+  "settings": [
+    {
+      "type": "text",
+      "id": "class",
+      "label": "Extra CSS class"
+    },
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "This is headline"
+    },
+    {
+      "type": "textarea",
+      "id": "subhead",
+      "label": "Subheading",
+      "default": "This is subheading"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_img",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_img",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "BG Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "font_color",
+      "label": "Font Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_bg_color",
+      "label": "Button BG Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_text_color",
+      "label": "Button Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_border_color",
+      "label": "Button Border Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_hover_bg_color",
+      "label": "Button Hover BG Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_hover_border_color",
+      "label": "Button Hover Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 900,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Container Max Width",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top Desktop",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom Desktop",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top Mobile",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom Mobile",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "block_heading",
+          "label": "Heading"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Section",
+      "blocks": [{ "type": "text_block" }, { "type": "text_block" }]
+    }
+  ]
+}
+{% endschema %}

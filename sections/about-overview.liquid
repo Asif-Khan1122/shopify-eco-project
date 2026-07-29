@@ -47,7 +47,11 @@
     flex-direction: column;
     gap: clamp(18px, 4vw, 30px);
   }
-
+  .content_header {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
   .image_with_text h2 {
     font-size: clamp(32px, 5vw, 58px);
     font-weight: 700;
@@ -149,6 +153,10 @@
       padding-bottom: calc({{ section.settings.padding_bottom_mbl }}px * 0.5);
     }
 
+    .content_header{
+      text-align: center;
+    }
+
     .image_with_text .about_btn {
       width: 100%;
       text-align: center;
@@ -196,15 +204,13 @@
           {% if section.settings.content_heading != blank %}
             <h2 id="about-heading">{{ section.settings.content_heading }}</h2>
           {% endif %}
-          {% if section.settings.sub_heading != blank %}
-            <h3>{{ section.settings.sub_heading }}</h3>
-          {% endif %}
-        </div>
-        <div class="content_decs">
           {% if section.settings.description_1 != blank %}
             <p>
               {{ section.settings.description_1 | replace: 'Ecoraíces', '<span class="accent-text">Ecoraíces</span>' }}
             </p>
+          {% endif %}
+          {% if section.settings.sub_heading != blank %}
+            <h3>{{ section.settings.sub_heading }}</h3>
           {% endif %}
           {% if section.settings.description_2 != blank %}
             <p>
@@ -228,7 +234,7 @@
 
 {% schema %}
 {
-  "name": "Image With Text",
+  "name": "About Overview",
   "settings": [
     {
       "type": "image_picker",
@@ -243,25 +249,26 @@
       "type": "inline_richtext",
       "id": "content_heading",
       "label": "Heading",
-      "default": "About <strong>Ecoraíces</strong> Native Plants"
+      "default": "Nurtured by Nature, <strong>Rooted in Florida<strong>"
+    },
+
+    {
+      "type": "textarea",
+      "id": "description_1",
+      "label": "Description 1",
+      "default": "At Ecoraíces Native Nursery, we believe the best gardens grow from a deep connection to the land. That’s why we specialize in Florida-native and climate-adapted plants—thoughtfully selected and locally grown to thrive in our environment and support our ecosystems. Whether you’re a backyard gardener seeking a pollinator paradise, or a commercial landscaper sourcing bulk liners and trees, we’re here to help bring your green vision to life."
     },
     {
       "type": "text",
       "id": "sub_heading",
       "label": "Sub Heading",
-      "default": "Rooted in Nature, Grown with Purpose"
-    },
-    {
-      "type": "textarea",
-      "id": "description_1",
-      "label": "Description 1",
-      "default": "At Ecoraíces, we specialize in high-quality, Florida-friendly plants that bring vibrancy and biodiversity to both homes and commercial spaces. Whether you're a local gardener, landscape designer, or business owner, we provide carefully nurtured greenery — from ornamental shrubs to unique native groundcovers."
+      "default": "Our Mission"
     },
     {
       "type": "textarea",
       "id": "description_2",
       "label": "Description 2",
-      "default": "We are passionate about sustainability, soil health, and supporting pollinators like Monarch butterflies. Every plant is grown with care, priced accessibly, and ready to thrive in your space."
+      "default": "To reconnect people, communities, and landscapes with nature through beautiful, low-maintenance, and environmentally beneficial plants — grown responsibly and sold with care."
     },
     {
       "type": "text",
@@ -294,19 +301,19 @@
       "type": "color",
       "id": "text_color",
       "label": "Text Color",
-      "default": "#555555"
+      "default": "#666666"
     },
     {
       "type": "color",
       "id": "accent_color",
       "label": "Accent Color (for bold text)",
-      "default": "#9C747C"
+      "default": "#7C8C74"
     },
     {
       "type": "color",
       "id": "button_background",
       "label": "Button Background",
-      "default": "#7C8C74"
+      "default": "#9C747C"
     },
     {
       "type": "color",
@@ -389,7 +396,7 @@
   ],
   "presets": [
     {
-      "name": "Image With Text"
+      "name": "About Overview"
     }
   ]
 }
