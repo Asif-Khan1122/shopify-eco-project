@@ -572,8 +572,21 @@ hr {
 
 .full-unstyled-link {
   text-decoration: none;
-  color: currentColor;
+  color: #222222;
   display: block;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.231;
+}
+.product-description {
+  margin: 10px 0;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #444444;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .placeholder {
@@ -809,9 +822,21 @@ summary::-webkit-details-marker {
 .title .link {
   font-size: inherit;
 }
-
+h2.title.inline-richtext {
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.3;
+  font-weight: 700;
+  color: #222;
+}
 .title-wrapper {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.title-wrapper strong {
+  color: #7c8c74;
+  font-weight: 700;
 }
 
 .title-wrapper-with-link {
@@ -825,6 +850,7 @@ summary::-webkit-details-marker {
 
 .title--primary {
   margin: 4rem 0;
+  text-align: center;
 }
 
 .title-wrapper--self-padded-tablet-down,
@@ -1275,7 +1301,6 @@ button.shopify-payment-button__button--unbranded {
     var(--shadow-blur-radius) rgba(var(--color-shadow), var(--shadow-opacity));
 }
 
-.button:after,
 .shopify-challenge__button:after,
 .customer button:after,
 .shopify-payment-button__button--unbranded:after {
@@ -1307,9 +1332,9 @@ button.shopify-payment-button__button--unbranded {
       rgba(var(--color-button), var(--alpha-button-background));
 }
 
-.button--secondary:after {
+/* .button--secondary:after {
   --border-opacity: var(--buttons-border-opacity);
-}
+} */
 
 .button:focus-visible,
 .button:focus,

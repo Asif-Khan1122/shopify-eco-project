@@ -212,8 +212,6 @@
         "secondary_btn_text_color": "#222",
         "secondary_btn_hover_color": "#7c8c74",
         "secondary_btn_hover_text_color": "#ffffff",
-        "padding_top": 148,
-        "padding_bottom": 140,
         "bg_color": "#fefefe"
       }
     },
@@ -252,8 +250,8 @@
       ],
       "name": "Why Choose Us",
       "settings": {
-        "bg_color": "#fafafa",
         "heading": "Why <strong>Choose Us</strong>",
+        "bg_color": "#fafafa",
         "padding_block": 80,
         "padding_inline": 68
       }
@@ -312,9 +310,7 @@
         "heading": "Our",
         "heading_accent": "Gallery",
         "button_label": "View All Gallery",
-        "button_link": "#",
-        "padding_top": 148,
-        "padding_bottom": 148
+        "button_link": "#"
       }
     }
   },

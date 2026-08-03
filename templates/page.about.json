@@ -16,9 +16,177 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "about_hero_dqFEgy": {
+      "type": "about-hero",
+      "name": "About hero banner",
+      "settings": {
+        "heading": "About Ecoraíces Native Plants",
+        "bg_image": "shopify://shop_images/2_1_a57b2ed3-0ed9-4b3f-b64c-103e6229885d.png",
+        "hero_height": 600,
+        "text_color": "#ffffff"
+      }
+    },
+    "about_overview_CXyVHH": {
+      "type": "about-overview",
+      "name": "About Overview",
+      "settings": {
+        "media_img": "shopify://shop_images/Group_1597883209.png",
+        "content_heading": "Nurtured by Nature, <strong>Rooted in Florida</strong>",
+        "description_1": "At Ecoraíces Native Nursery, we believe the best gardens grow from a deep connection to the land. That’s why we specialize in Florida-native and climate-adapted plants—thoughtfully selected and locally grown to thrive in our environment and support our ecosystems. Whether you’re a backyard gardener seeking a pollinator paradise, or a commercial landscaper sourcing bulk liners and trees, we’re here to help bring your green vision to life.",
+        "sub_heading": "Our Mission",
+        "description_2": "To reconnect people, communities, and landscapes with nature through beautiful, low-maintenance, and environmentally beneficial plants — grown responsibly and sold with care.",
+        "btn_title": "Learn More About Us",
+        "btn_url": "#",
+        "heading_color": "#000000",
+        "subheading_color": "#333333",
+        "text_color": "#666666",
+        "accent_color": "#7C8C74",
+        "button_background": "#9C747C",
+        "button_text_color": "#FFFFFF",
+        "button_hover_background": "#FFFFFF",
+        "button_hover_text_color": "#000000",
+        "button_hover_border": "#000000",
+        "image_border_radius": 12,
+        "padding_top": 148,
+        "padding_bottom": 68,
+        "padding_top_mbl": 48,
+        "padding_bottom_mbl": 48
+      }
+    },
+    "feature_cards_gcnxE7": {
+      "type": "feature-cards",
+      "blocks": {
+        "card_HDiADG": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Group_2_fc109624-fc37-42af-afd6-eb3cb5f1a7d2.png",
+            "title": "Locally Grown",
+            "text": "Every plant we offer is carefully cultivated in Florida, ensuring it’s fully adapted to our unique climate and conditions. Our plants are born and raised in the same soil they’ll thrive in."
+          }
+        },
+        "card_wEiypP": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Group_3.png",
+            "title": "Locally Grown",
+            "text": "Every plant we offer is carefully cultivated in Florida, ensuring it’s fully adapted to our unique climate and conditions. Our plants are born and raised in the same soil they’ll thrive in."
+          }
+        },
+        "card_4XXHQy": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Group_3_1.png",
+            "title": "Locally Grown",
+            "text": "Every plant we offer is carefully cultivated in Florida, ensuring it’s fully adapted to our unique climate and conditions. Our plants are born and raised in the same soil they’ll thrive in."
+          }
+        }
+      },
+      "block_order": [
+        "card_HDiADG",
+        "card_wEiypP",
+        "card_4XXHQy"
+      ],
+      "name": "Feature Cards",
+      "settings": {
+        "heading": "What Makes <strong> Us Different</strong>",
+        "bg_color": "#fafafa",
+        "bold_color": "#7C8C74",
+        "card_bg_color": "#fff",
+        "margin_top": 68,
+        "margin_bottom": 68,
+        "padding_block": 76,
+        "padding_inline": 64,
+        "card_padding_top": 32,
+        "card_padding_bottom": 32
+      }
+    },
+    "contact_us_GHwdfq": {
+      "type": "contact-us",
+      "name": "Contact Us",
+      "settings": {
+        "heading_start": "Lets",
+        "heading_highlight": "connect",
+        "subtext": "We'd love to hear from you! Whether you have a question about our plants, need help with an order, or want to discuss a wholesale request, we're here to help.",
+        "image": "shopify://shop_images/Beauty_Leaf_Tree2.png",
+        "name_label": "Name",
+        "email_label": "Email",
+        "number_label": "Number",
+        "message_label": "Message",
+        "textarea_rows": 5,
+        "button_label": "Submit Now",
+        "success_message": "Thanks! Your message has been sent.",
+        "button_bg": "#A0798C",
+        "button_text_color": "#FFFFFF",
+        "highlight_color": "#8FA383"
+      }
+    },
+    "gallery_gMVeat": {
+      "type": "gallery",
+      "blocks": {
+        "image_HhAYEr": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Verawood_Tree1_2x_2d5620da-4999-4701-8fbf-54f1f5d6784c.png"
+          }
+        },
+        "image_jMWrXJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Chinese_Fan_Palm1_1.png"
+          }
+        },
+        "image_njkeqk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Beauty_Leaf_Tree1_1.png"
+          }
+        },
+        "image_XatAWU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Green_island_Ficus3_1.png"
+          }
+        },
+        "image_UAJk76": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Beach_creeper2_1.png"
+          }
+        },
+        "image_yiDxyn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Verawood_Tree2_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_HhAYEr",
+        "image_jMWrXJ",
+        "image_njkeqk",
+        "image_XatAWU",
+        "image_UAJk76",
+        "image_yiDxyn"
+      ],
+      "name": "Gallery grid",
+      "settings": {
+        "color_scheme": "",
+        "heading": "Our",
+        "heading_accent": "Gallery",
+        "button_label": "View All Gallery",
+        "button_link": "",
+        "margin_top": 68,
+        "margin_bottom": 68
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "about_hero_dqFEgy",
+    "about_overview_CXyVHH",
+    "feature_cards_gcnxE7",
+    "contact_us_GHwdfq",
+    "gallery_gMVeat"
   ]
 }

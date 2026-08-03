@@ -102,6 +102,13 @@
       {%- endif -%}
 
       <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
+        {%- if section.settings.heading != blank -%}
+          <div class="title-wrapper title-wrapper--no-top-margin page-width">
+            <{{ section.settings.heading_size }} class="title inline-richtext">
+              {{ section.settings.heading }}
+            </{{ section.settings.heading_size }}>
+          </div>
+        {%- endif -%}
         {{ 'component-facets.css' | asset_url | stylesheet_tag }}
         <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
@@ -206,6 +213,23 @@
   "name": "t:sections.main-collection-product-grid.name",
   "class": "section",
   "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Featured <strong>Plants<strong>",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h1", "label": "Large" },
+        { "value": "h2", "label": "Medium" },
+        { "value": "h3", "label": "Small" }
+      ],
+      "default": "h2",
+      "label": "Heading size"
+    },
     {
       "type": "range",
       "id": "products_per_page",
