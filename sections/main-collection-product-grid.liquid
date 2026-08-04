@@ -28,7 +28,20 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  @media screen and (min-width: 750px) {
+ .section-{{ section.id }} .pagination-wrapper {
+   display: flex;
+   justify-content: center;
+   margin-top: 2rem;
+ }
+
+ .section-{{ section.id }} .button--show-all-products {
+   min-width: 12rem;
+   justify-content: center;
+   border-radius: 999px;
+   padding: 0.95rem 1.5rem;
+ }
+
+ @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -41,7 +54,17 @@
   data-collection-id="{{ collection.id }}"
 >
   <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
-    {%- paginate collection.products by section.settings.products_per_page -%}
+    {%- assign show_all_products = false -%}
+    {%- if request.params.view == 'all' -%}
+      {%- assign show_all_products = true -%}
+    {%- endif -%}
+
+    {%- assign products_per_page = section.settings.products_per_page -%}
+    {%- if show_all_products -%}
+      {%- assign products_per_page = collection.products_count -%}
+    {%- endif -%}
+
+    {%- paginate collection.products by products_per_page -%}
       {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
       {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
         <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
@@ -194,8 +217,43 @@
                 {%- endfor -%}
               </ul>
 
-              {%- if paginate.pages > 1 -%}
-                {% render 'pagination', paginate: paginate, anchor: '' %}
+              {%- if paginate.pages > 1 or show_all_products -%}
+                {%- assign show_all_query_string = '' -%}
+                {%- if request.query_string != blank -%}
+                  {%- assign show_all_query_params = request.query_string | split: '&' -%}
+                  {%- for query_param in show_all_query_params -%}
+                    {%- unless query_param == 'view=all' or query_param contains 'page=' or query_param contains 'view=' -%}
+                      {%- if show_all_query_string != blank -%}
+                        {%- assign show_all_query_string = show_all_query_string | append: '&' -%}
+                      {%- endif -%}
+                      {%- assign show_all_query_string = show_all_query_string | append: query_param -%}
+                    {%- endunless -%}
+                  {%- endfor -%}
+                {%- endif -%}
+
+                {%- assign show_all_url = collection.url -%}
+                {%- if show_all_query_string != blank -%}
+                  {%- assign show_all_url = show_all_url | append: '?' | append: show_all_query_string | append: '&view=all' -%}
+                {%- else -%}
+                  {%- assign show_all_url = show_all_url | append: '?view=all' -%}
+                {%- endif -%}
+
+                {%- assign paginated_view_url = collection.url -%}
+                {%- if show_all_query_string != blank -%}
+                  {%- assign paginated_view_url = paginated_view_url | append: '?' | append: show_all_query_string -%}
+                {%- endif -%}
+
+                <div class="pagination-wrapper{% if show_all_products %} pagination-wrapper--active{% endif %}">
+                  {%- if show_all_products -%}
+                    <a href="{{ paginated_view_url }}" class="button button--secondary button--show-all-products">
+                      {{ 'general.pagination.show_paged' | t }}
+                    </a>
+                  {%- else -%}
+                    <a href="{{ show_all_url }}" class="button button--secondary button--show-all-products">
+                      {{ 'general.pagination.show_all' | t }}
+                    </a>
+                  {%- endif -%}
+                </div>
               {%- endif -%}
             </div>
           {%- endif -%}

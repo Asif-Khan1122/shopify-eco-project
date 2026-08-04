@@ -42,7 +42,9 @@
       "label": "Pagination",
       "page": "Page {{ number }}",
       "next": "Next page",
-      "previous": "Previous page"
+      "previous": "Previous page",
+      "show_all": "Show all",
+      "show_paged": "Show paged view"
     },
     "search": {
       "search": "Search",
