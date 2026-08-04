@@ -43,7 +43,7 @@
       "page": "Page {{ number }}",
       "next": "Next page",
       "previous": "Previous page",
-      "show_all": "Show all",
+      "show_all": "View All Plants",
       "show_paged": "Show paged view"
     },
     "search": {

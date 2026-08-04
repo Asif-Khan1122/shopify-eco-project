@@ -11,20 +11,33 @@
   "sections": {
     "banner": {
       "type": "main-collection-banner",
+      "disabled": true,
       "settings": {
         "show_collection_description": false,
         "show_collection_image": false,
         "color_scheme": "scheme-1"
       }
     },
+    "collection_banner_Lk3FUp": {
+      "type": "collection-banner",
+      "name": "Collection hero banner",
+      "settings": {
+        "heading": "Green Island Ficus",
+        "bg_image": "shopify://shop_images/5.png",
+        "hero_height": 600,
+        "text_color": "#ffffff"
+      }
+    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
+        "heading": "Featured <strong>Plants</strong>",
+        "heading_size": "h2",
         "products_per_page": 16,
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
-        "image_ratio": "portrait",
+        "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
@@ -40,6 +53,7 @@
   },
   "order": [
     "banner",
+    "collection_banner_Lk3FUp",
     "product-grid"
   ]
 }
