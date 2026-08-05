@@ -161,7 +161,7 @@
         {% for block in section.blocks %}
           {% assign block_index = forloop.index0 %}
           <div
-            class="featured_plant_card {% if block_index >= 3 %}hidden{% endif %}"
+            class="featured_plant_card {% if block_index >= 9 %}hidden{% endif %}"
             data-index="{{ block_index }}"
             {{ block.shopify_attributes }}
           >
@@ -192,7 +192,7 @@
         {% endfor %}
       </div>
 
-      {% if section.blocks.size > 3 %}
+      {% if section.blocks.size > 9 %}
         <button class="view_all_btn" id="viewAllBtn">
           {{ section.settings.view_all_btn | default: 'View All Plants' }}
         </button>
@@ -218,7 +218,6 @@
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
 
-            // Add animation
             setTimeout(() => {
               card.style.transition = 'all 0.5s ease';
               card.style.opacity = '1';
