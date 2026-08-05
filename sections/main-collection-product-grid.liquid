@@ -23,30 +23,34 @@
 {%- endif -%}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+   .section-{{ section.id }}-padding {
+     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+   }
+
+  .section-{{ section.id }} .pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
   }
 
- .section-{{ section.id }} .pagination-wrapper {
-   display: flex;
-   justify-content: center;
-   margin-top: 2rem;
- }
-
- .section-{{ section.id }} .button--show-all-products {
-   min-width: 12rem;
-   justify-content: center;
-   border-radius: 999px;
-   padding: 0.95rem 1.5rem;
- }
-
- @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
+  .section-{{ section.id }} .button--show-all-products {
+    min-width: 12rem;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.95rem 1.5rem;
   }
+
+  .section-{{ section.id }} #product-grid .grid__item.hidden {
+    display: none;
+  }
+
+  @media screen and (min-width: 750px) {
+     .section-{{ section.id }}-padding {
+       padding-top: {{ section.settings.padding_top }}px;
+       padding-bottom: {{ section.settings.padding_bottom }}px;
+     }
+   }
 {%- endstyle -%}
 
 <collection-component
@@ -54,17 +58,10 @@
   data-collection-id="{{ collection.id }}"
 >
   <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
-    {%- assign show_all_products = false -%}
-    {%- if request.params.view == 'all' -%}
-      {%- assign show_all_products = true -%}
-    {%- endif -%}
+    {%- comment -%}Show 9 products initially; rest are rendered but hidden, revealed on button click{%- endcomment -%}
+    {%- assign initial_products = 9 -%}
 
-    {%- assign products_per_page = section.settings.products_per_page -%}
-    {%- if show_all_products -%}
-      {%- assign products_per_page = collection.products_count -%}
-    {%- endif -%}
-
-    {%- paginate collection.products by products_per_page -%}
+    {%- paginate collection.products by collection.products_count -%}
       {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
       {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
         <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
@@ -193,7 +190,7 @@
                     {%- assign lazy_load = true -%}
                   {%- endif -%}
                   <li
-                    class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                    class="grid__item{% if forloop.index > initial_products %} hidden{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                     {% if settings.animations_reveal_on_scroll %}
                       data-cascade
                       style="--animation-order: {{ forloop.index }};"
@@ -217,42 +214,17 @@
                 {%- endfor -%}
               </ul>
 
-              {%- if paginate.pages > 1 or show_all_products -%}
-                {%- assign show_all_query_string = '' -%}
-                {%- if request.query_string != blank -%}
-                  {%- assign show_all_query_params = request.query_string | split: '&' -%}
-                  {%- for query_param in show_all_query_params -%}
-                    {%- unless query_param == 'view=all' or query_param contains 'page=' or query_param contains 'view=' -%}
-                      {%- if show_all_query_string != blank -%}
-                        {%- assign show_all_query_string = show_all_query_string | append: '&' -%}
-                      {%- endif -%}
-                      {%- assign show_all_query_string = show_all_query_string | append: query_param -%}
-                    {%- endunless -%}
-                  {%- endfor -%}
-                {%- endif -%}
-
-                {%- assign show_all_url = collection.url -%}
-                {%- if show_all_query_string != blank -%}
-                  {%- assign show_all_url = show_all_url | append: '?' | append: show_all_query_string | append: '&view=all' -%}
-                {%- else -%}
-                  {%- assign show_all_url = show_all_url | append: '?view=all' -%}
-                {%- endif -%}
-
-                {%- assign paginated_view_url = collection.url -%}
-                {%- if show_all_query_string != blank -%}
-                  {%- assign paginated_view_url = paginated_view_url | append: '?' | append: show_all_query_string -%}
-                {%- endif -%}
-
-                <div class="pagination-wrapper{% if show_all_products %} pagination-wrapper--active{% endif %}">
-                  {%- if show_all_products -%}
-                    <a href="{{ paginated_view_url }}" class="button button--secondary button--show-all-products">
-                      {{ 'general.pagination.show_paged' | t }}
-                    </a>
-                  {%- else -%}
-                    <a href="{{ show_all_url }}" class="button button--secondary button--show-all-products">
-                      {{ 'general.pagination.show_all' | t }}
-                    </a>
-                  {%- endif -%}
+              {%- if collection.products_count > initial_products -%}
+                <div class="pagination-wrapper">
+                  <button
+                    type="button"
+                    id="ViewAllBtn-{{ section.id }}"
+                    class="button button--secondary button--show-all-products"
+                    data-show-all-text="{{ 'general.pagination.show_all' | t | default: 'Show all products' }}"
+                    data-show-less-text="{{ 'products.facets.show_less' | t | default: 'Show less' }}"
+                  >
+                    {{ 'general.pagination.show_all' | t | default: 'Show all products' }}
+                  </button>
                 </div>
               {%- endif -%}
             </div>
@@ -265,6 +237,54 @@
     {%- endif -%}
   </div>
 </collection-component>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const viewAllBtn = document.getElementById('ViewAllBtn-{{ section.id }}');
+    const productGrid = document.querySelector('#product-grid[data-id="{{ section.id }}"]');
+    const hiddenCards = productGrid ? productGrid.querySelectorAll('.grid__item.hidden') : [];
+
+    if (viewAllBtn && hiddenCards.length > 0) {
+      let isExpanded = false;
+      const showAllText = viewAllBtn.dataset.showAllText;
+      const showLessText = viewAllBtn.dataset.showLessText;
+
+      viewAllBtn.addEventListener('click', function () {
+        isExpanded = !isExpanded;
+
+        hiddenCards.forEach((card) => {
+          if (isExpanded) {
+            card.classList.remove('hidden');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+              card.style.transition = 'all 0.5s ease';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            card.style.transition = 'all 0.3s ease';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+              card.classList.add('hidden');
+              card.style.opacity = '';
+              card.style.transform = '';
+            }, 300);
+          }
+        });
+
+        viewAllBtn.textContent = isExpanded ? showLessText : showAllText;
+
+        if (isExpanded) {
+          viewAllBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    }
+  });
+</script>
 
 {% schema %}
 {

@@ -42,7 +42,10 @@
       "label": "Sayfalara ayırma",
       "page": "Sayfa {{ number }}",
       "next": "Sonraki sayfa",
-      "previous": "Önceki sayfa"
+      "previous": "Önceki sayfa",
+      "show_all": "Tüm bitkileri görüntüle",
+      "show_paged": "Sayfalı görünümü göster",
+      "show_less": "Daha az göster"
     },
     "search": {
       "search": "Ara",

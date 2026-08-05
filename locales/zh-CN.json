@@ -42,7 +42,10 @@
       "label": "分页",
       "page": "第 {{ number }} 页",
       "next": "下一页",
-      "previous": "上一页"
+      "previous": "上一页",
+      "show_all": "查看所有植物",
+      "show_paged": "显示分页视图",
+      "show_less": "显示更少"
     },
     "search": {
       "search": "搜索",

@@ -42,7 +42,10 @@
       "label": "Paginare",
       "page": "Pagina {{ number }}",
       "next": "Pagina următoare",
-      "previous": "Pagina precedentă"
+      "previous": "Pagina precedentă",
+      "show_all": "Vezi toate plantele",
+      "show_paged": "Arată vizualizarea pe pagini",
+      "show_less": "Arată mai puțin"
     },
     "search": {
       "search": "Căutați",

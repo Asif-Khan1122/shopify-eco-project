@@ -42,7 +42,10 @@
       "label": "Phân trang",
       "page": "Trang {{ number }}",
       "next": "Trang sau",
-      "previous": "Trang trước"
+      "previous": "Trang trước",
+      "show_all": "Xem tất cả cây trồng",
+      "show_paged": "Xem chế độ phân trang",
+      "show_less": "Xem ít hơn"
     },
     "search": {
       "search": "Tìm kiếm",

@@ -42,7 +42,10 @@
       "label": "Sideinndeling",
       "page": "Side {{ number }}",
       "next": "Neste side",
-      "previous": "Forrige side"
+      "previous": "Forrige side",
+      "show_all": "Vis alle planter",
+      "show_paged": "Vis sidevisning",
+      "show_less": "Vis mindre"
     },
     "search": {
       "search": "Søk",

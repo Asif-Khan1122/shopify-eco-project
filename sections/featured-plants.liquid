@@ -82,7 +82,8 @@
     font-weight: 600;
   }
 
-  .featured_plant a.featured_plant_btn {
+  .featured_plant a.featured_plant_btn,
+  .featured_plant button.featured_plant_btn {
     padding: 10px 30px;
     border-radius: 70px;
     border: 1.2px solid #222222;
@@ -92,10 +93,19 @@
     font-size: clamp(12px, 3vw, 18px);
     font-weight: 600;
     line-height: normal;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
     transition: all 0.3s ease;
   }
 
-  .featured_plant a.featured_plant_btn:hover {
+  .featured_plant button.featured_plant_btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .featured_plant a.featured_plant_btn:hover,
+  .featured_plant button.featured_plant_btn:hover:not(:disabled) {
     background-color: #7C8C74;
     border: 1.2px solid #7C8C74;
     color: #ffffff;
@@ -160,8 +170,12 @@
       <div class="featured_plant_wrapper" id="plantWrapper">
         {% for block in section.blocks %}
           {% assign block_index = forloop.index0 %}
+          {% assign block_product = block.settings.product %}
+          {% if block_product == blank and section.settings.products_collection != blank %}
+            {% assign block_product = section.settings.products_collection.products[forloop.index0] %}
+          {% endif %}
           <div
-            class="featured_plant_card {% if block_index >= 3 %}hidden{% endif %}"
+            class="featured_plant_card {% if block_index >= 9 %}hidden{% endif %}"
             data-index="{{ block_index }}"
             {{ block.shopify_attributes }}
           >
@@ -185,14 +199,54 @@
                 <h4>{{ block.settings.featured_plant_price }}</h4>
               {% endif %}
               {% if block.settings.cart_btn != blank %}
-                <a href="{{ block.settings.cart_url }}" class="featured_plant_btn">{{ block.settings.cart_btn }}</a>
+                {% if block_product != blank %}
+                  {% assign product_form_id = 'featured-plant-' | append: section.id | append: block.id %}
+                  <product-form data-section-id="{{ section.id }}">
+                    {% form 'product',
+                      block_product,
+                      id: product_form_id,
+                      class: 'form',
+                      novalidate: 'novalidate',
+                      data-type: 'add-to-cart-form'
+                    %}
+                      <input
+                        type="hidden"
+                        name="id"
+                        value="{{ block_product.selected_or_first_available_variant.id }}"
+                        class="product-variant-id"
+                        {% unless block_product.selected_or_first_available_variant.available %}
+                          disabled
+                        {% endunless %}
+                      >
+                      <button
+                        type="submit"
+                        name="add"
+                        class="featured_plant_btn"
+                        {% unless block_product.selected_or_first_available_variant.available %}
+                          disabled
+                        {% endunless %}
+                      >
+                        <span>
+                          {%- if block_product.selected_or_first_available_variant.available -%}
+                            {{ block.settings.cart_btn }}
+                          {%- else -%}
+                            {{ 'products.product.sold_out' | t }}
+                          {%- endif -%}
+                        </span>
+                        {% render 'loading-spinner' %}
+                      </button>
+                    {% endform %}
+                  </product-form>
+                {% else %}
+                  <a href="{{ block.settings.cart_url }}" class="featured_plant_btn">{{ block.settings.cart_btn }}</a>
+                {% endif %}
               {% endif %}
             </div>
           </div>
         {% endfor %}
       </div>
 
-      {% if section.blocks.size > 3 %}
+      {% if section.blocks.size > 9 %}
         <button class="view_all_btn" id="viewAllBtn">
           {{ section.settings.view_all_btn | default: 'View All Plants' }}
         </button>
@@ -218,7 +272,6 @@
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
 
-            // Add animation
             setTimeout(() => {
               card.style.transition = 'all 0.5s ease';
               card.style.opacity = '1';
@@ -245,6 +298,8 @@
   });
 </script>
 
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
 {% schema %}
 {
   "name": "Featured Plants",
@@ -265,6 +320,11 @@
       "type": "url",
       "id": "view_all_url",
       "label": "View All Button Link (Optional)"
+    },
+    {
+      "type": "collection",
+      "id": "products_collection",
+      "label": "Collection (auto-fill Add to Cart)"
     },
     {
       "type": "header",
@@ -306,6 +366,11 @@
       "type": "plant",
       "name": "plant",
       "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
         {
           "type": "image_picker",
           "id": "plant_img",

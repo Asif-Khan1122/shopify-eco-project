@@ -42,7 +42,10 @@
       "label": "Puslapių numeravimas",
       "page": "{{ number }} psl.",
       "next": "Kitas puslapis",
-      "previous": "Ankstesnis puslapis"
+      "previous": "Ankstesnis puslapis",
+      "show_all": "Peržiūrėti visus augalus",
+      "show_paged": "Rodyti puslapių rodinį",
+      "show_less": "Rodyti mažiau"
     },
     "search": {
       "search": "Ieškoti",

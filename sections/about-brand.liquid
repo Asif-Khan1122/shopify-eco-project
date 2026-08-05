@@ -1,8 +1,4 @@
 <style>
-  /* ============================
-     STATIC CSS - structure/layout
-     (kabhi change nahi hoga, sab sections me same)
-  ============================ */
   .section__container {
     position: relative;
     width: 100%;
@@ -33,9 +29,6 @@
 </style>
 
 {% style %}
-  /* ============================
-     DYNAMIC CSS - section.settings se
-  ============================ */
   #section-{{ section.id }} {
     background: {{ section.settings.bg_color }};
     padding-top: {{ section.settings.padding_top_desktop }}px;

@@ -42,7 +42,10 @@
       "label": "Sivunumerointi",
       "page": "Sivu {{ number }}",
       "next": "Seuraava sivu",
-      "previous": "Edellinen sivu"
+      "previous": "Edellinen sivu",
+      "show_all": "Näytä kaikki kasvit",
+      "show_paged": "Näytä sivutettu näkymä",
+      "show_less": "Näytä vähemmän"
     },
     "search": {
       "search": "Hae",

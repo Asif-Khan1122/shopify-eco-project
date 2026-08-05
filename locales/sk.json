@@ -42,7 +42,10 @@
       "label": "Stránkovanie",
       "page": "Stránka {{ number }}",
       "next": "Nasledujúca stránka",
-      "previous": "Predchádzajúca stránka"
+      "previous": "Predchádzajúca stránka",
+      "show_all": "Zobraziť všetky rastliny",
+      "show_paged": "Zobraziť stránkované zobrazenie",
+      "show_less": "Zobraziť menej"
     },
     "search": {
       "search": "Vyhľadať",

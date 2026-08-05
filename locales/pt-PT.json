@@ -42,7 +42,10 @@
       "label": "Paginação",
       "page": "Página {{ number }}",
       "next": "Página seguinte",
-      "previous": "Página anterior"
+      "previous": "Página anterior",
+      "show_all": "Ver todas as plantas",
+      "show_paged": "Ver vista paginada",
+      "show_less": "Ver menos"
     },
     "search": {
       "search": "Pesquisar",

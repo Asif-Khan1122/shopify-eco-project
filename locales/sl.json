@@ -42,7 +42,10 @@
       "label": "Oštevilčevanje strani",
       "page": "Stran {{ number }}",
       "next": "Naslednja stran",
-      "previous": "Prejšnja stran"
+      "previous": "Prejšnja stran",
+      "show_all": "Prikaži vse rastline",
+      "show_paged": "Prikaži prikaz po straneh",
+      "show_less": "Prikaži manj"
     },
     "search": {
       "search": "Iskanje",

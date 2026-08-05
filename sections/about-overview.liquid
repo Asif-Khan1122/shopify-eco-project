@@ -177,7 +177,7 @@
   }
 {% endstyle %}
 
-<section class="image_with_text" aria-labelledby="about-heading">
+<section class="image_with_text" aria-labelledby="about-heading-{{ section.id }}">
   <div class="container">
     <div class="inner">
       <div class="media_image">
@@ -202,7 +202,7 @@
       <div class="media_content">
         <div class="content_header">
           {% if section.settings.content_heading != blank %}
-            <h2 id="about-heading">{{ section.settings.content_heading }}</h2>
+            <h2 id="about-heading-{{ section.id }}">{{ section.settings.content_heading }}</h2>
           {% endif %}
           {% if section.settings.description_1 != blank %}
             <p>
@@ -249,7 +249,7 @@
       "type": "inline_richtext",
       "id": "content_heading",
       "label": "Heading",
-      "default": "Nurtured by Nature, <strong>Rooted in Florida<strong>"
+      "default": "Nurtured by Nature, <strong>Rooted in Florida</strong>"
     },
 
     {

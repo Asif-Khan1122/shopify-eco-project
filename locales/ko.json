@@ -42,7 +42,10 @@
       "label": "페이지 매김",
       "page": "{{ number }}페이지",
       "next": "다음 페이지",
-      "previous": "이전 페이지"
+      "previous": "이전 페이지",
+      "show_all": "모든 식물 보기",
+      "show_paged": "페이지별 보기",
+      "show_less": "간단히 보기"
     },
     "search": {
       "search": "검색",
