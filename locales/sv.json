@@ -42,10 +42,7 @@
       "label": "Paginering",
       "page": "Sida {{ number }}",
       "next": "Nästa sida",
-      "previous": "Föregående sida",
-      "show_all": "Visa alla växter",
-      "show_paged": "Visa sidindelad vy",
-      "show_less": "Visa mindre"
+      "previous": "Föregående sida"
     },
     "search": {
       "search": "Sök",

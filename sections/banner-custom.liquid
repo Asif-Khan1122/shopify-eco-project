@@ -19,9 +19,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    {% if section.settings.before_image != blank %}
-      background-image: url('{{ section.settings.before_image | image_url }}');
-    {% endif %}
+    background-image: url('{{ section.settings.before_image | image_url }}');
     background-size: cover;
     background-repeat: no-repeat;
     bottom: 0;
@@ -349,7 +347,7 @@
     {
       "type": "url",
       "id": "btn_link_2",
-      "label": "Button 2 link"
+      "label": "Button 2 link",
     },
     {
       "type": "image_picker",
@@ -387,7 +385,7 @@
       "id": "background_color",
       "label": "Section BG Color",
       "default": "#f2f2f2"
-    }
+    },
   ],
   "presets": [
     {

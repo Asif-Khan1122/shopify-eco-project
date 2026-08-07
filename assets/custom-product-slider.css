@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Custom Product Slider Styling — Figma Match
+   Targets EXISTING Dawn classes only. No liquid file classes were renamed.
+   Safe to update Dawn theme in future — this file is separate.
+   ========================================================================== */
+
+/* Make the gallery viewer a positioning context for overlay arrows */
+#GalleryViewer-{{ section.id }},
+.product__media-wrapper {
+  position: relative;
+}
+
+/* Move prev/next buttons + counter row to an absolute overlay
+   centered vertically over the image, like Figma */
+.slider-buttons {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  right: 12px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none; /* only the buttons themselves are clickable */
+  z-index: 3;
+  background: transparent;
+  padding: 0;
+}
+
+/* Circle arrow buttons */
+.slider-buttons .slider-button {
+  pointer-events: auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.slider-buttons .slider-button:hover {
+  background: #f5f5f5;
+}
+
+.slider-buttons .slider-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Hide the "1 / 5" counter text if Figma doesn't show it */
+.slider-buttons .slider-counter {
+  display: none;
+}
+
+/* ==========================================================================
+   Optional: Sale badge (Save X%) — top-right corner over image
+   Pairs with the sale-badge.liquid snippet
+   ========================================================================== */
+.custom-sale-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #f5f0e8;
+  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  z-index: 4;
+}

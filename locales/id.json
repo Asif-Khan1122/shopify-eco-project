@@ -42,10 +42,7 @@
       "label": "Pembagian Halaman",
       "page": "Halaman {{ number }}",
       "next": "Halaman berikutnya",
-      "previous": "Halaman sebelumnya",
-      "show_all": "Lihat semua tanaman",
-      "show_paged": "Tampilkan tampilan per halaman",
-      "show_less": "Tampilkan lebih sedikit"
+      "previous": "Halaman sebelumnya"
     },
     "search": {
       "search": "Cari",

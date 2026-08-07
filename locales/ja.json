@@ -42,10 +42,7 @@
       "label": "ページネーション",
       "page": "{{ number }}ページ",
       "next": "次のページ",
-      "previous": "前のページ",
-      "show_all": "すべての植物を表示する",
-      "show_paged": "ページ表示にする",
-      "show_less": "少なく表示する"
+      "previous": "前のページ"
     },
     "search": {
       "search": "検索",

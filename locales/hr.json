@@ -42,10 +42,7 @@
       "label": "Numeriranje stranica",
       "page": "Stranica {{ number }}",
       "next": "Sljedeća stranica",
-      "previous": "Prethodna stranica",
-      "show_all": "Prikaži sve biljke",
-      "show_paged": "Prikaži pregled po stranicama",
-      "show_less": "Prikaži manje"
+      "previous": "Prethodna stranica"
     },
     "search": {
       "search": "Traži",

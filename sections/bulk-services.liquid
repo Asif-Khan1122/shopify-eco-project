@@ -89,14 +89,10 @@
     font-size: clamp(14px, 3vw, 18px);
     font-weight: 600;
   }
-  .bulk_services .primary_btn {
-    background: {{ section.settings.primary_btn_color }};
-  }
-  .bulk_services .secondary_btn {
-    background: {{ section.settings.secondary_btn_color }};
-  }
   .bulk_services .primary_btn,
   .bulk_services .secondary_btn{
+    background: {{ section.settings.secondary_btn_color }};
+    background: {{ section.settings.primary_btn_color }};
     border: 1.5px solid #222;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
@@ -348,26 +344,6 @@
     {
       "type": "header",
       "content": "Spacing and Layout"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Padding Top",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Padding Bottom",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "unit": "px",
-      "default": 40
     },
     {
       "type": "range",

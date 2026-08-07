@@ -45,7 +45,7 @@
       "previous": "Previous page",
       "show_all": "View All Plants",
       "show_paged": "Show paged view",
-      "show_less": "Show less"
+       "show_less": "Show less" 
     },
     "search": {
       "search": "Search",

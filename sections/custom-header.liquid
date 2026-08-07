@@ -65,25 +65,6 @@
     {% assign scrolled_btn_hover = section.settings.product_scrolled_btn_hover | default: '#2C3620' %}
     {% assign page_class = 'product-page' %}
 
-  {% when 'product_detail' %}
-    {% assign btn_bg = section.settings.pd_btn_background_color | default: '#1F2B1A' %}
-    {% assign btn_text = section.settings.pd_btn_text_color | default: '#FFFFFF' %}
-    {% assign btn_hover = section.settings.pd_btn_hover_background | default: '#141C11' %}
-    {% assign link_color = section.settings.pd_link_color | default: '#FFFFFF' %}
-    {% assign link_hover = section.settings.pd_link_hover_color | default: '#CCCCCC' %}
-    {% assign right_bg = section.settings.pd_right_bg | default: 'transparent' %}
-    {% assign logo_desktop = section.settings.pd_logo | default: section.settings.logo %}
-    {% assign logo_mobile = section.settings.pd_mobile_logo | default: section.settings.mobile_logo %}
-    {% assign icon_color = section.settings.pd_icon_color | default: '#FFFFFF' %}
-    {% assign icon_color_scrolled = section.settings.pd_icon_color_scrolled | default: '#000000' %}
-    {% assign scrolled_bg = section.settings.pd_scrolled_background | default: '#FFFFFF' %}
-    {% assign scrolled_link_color = section.settings.pd_scrolled_link_color | default: '#000000' %}
-    {% assign scrolled_link_hover = section.settings.pd_scrolled_link_hover | default: '#333333' %}
-    {% assign scrolled_btn_bg = section.settings.pd_scrolled_btn_bg | default: '#1F2B1A' %}
-    {% assign scrolled_btn_text = section.settings.pd_scrolled_btn_text | default: '#FFFFFF' %}
-    {% assign scrolled_btn_hover = section.settings.pd_scrolled_btn_hover | default: '#141C11' %}
-    {% assign page_class = 'product-detail-page' %}
-
   {% when 'contact' %}
     {% assign btn_bg = section.settings.contact_btn_background_color | default: '#2C2C2C' %}
     {% assign btn_text = section.settings.contact_btn_text_color | default: '#F4EFE3' %}
@@ -713,7 +694,6 @@
     });
   });
 </script>
-
 {% schema %}
 {
   "name": "Custom Header",
@@ -792,7 +772,7 @@
     { "type": "color", "id": "about_btn_hover_background", "label": "Button Hover", "default": "#357ABD" },
     { "type": "color", "id": "about_link_color", "label": "Link Color", "default": "#FFFFFF" },
     { "type": "color", "id": "about_link_hover_color", "label": "Link Hover Color", "default": "#CCCCCC" },
-    { "type": "color", "id": "about_right_bg", "label": "Right Panel Background", "default": "rgba(0,0,0,0)" },
+    { "type": "color", "id": "about_right_bg", "label": "Right Panel Background", "default": "transparent" },
     { "type": "color", "id": "about_icon_color", "label": "Icon Color", "default": "#FFFFFF" },
     { "type": "header", "content": "About Page - Scrolled State" },
     { "type": "color", "id": "about_scrolled_background", "label": "Scrolled Background", "default": "#FFFFFF" },
@@ -812,7 +792,7 @@
     { "type": "color", "id": "product_btn_hover_background", "label": "Button Hover", "default": "#2C3620" },
     { "type": "color", "id": "product_link_color", "label": "Link Color", "default": "#FFFFFF" },
     { "type": "color", "id": "product_link_hover_color", "label": "Link Hover Color", "default": "#CCCCCC" },
-    { "type": "color", "id": "product_right_bg", "label": "Right Panel Background", "default": "rgba(0,0,0,0)" },
+    { "type": "color", "id": "product_right_bg", "label": "Right Panel Background", "default": "transparent" },
     { "type": "color", "id": "product_icon_color", "label": "Icon Color", "default": "#FFFFFF" },
     { "type": "header", "content": "Product Listing Page - Scrolled State" },
     { "type": "color", "id": "product_scrolled_background", "label": "Scrolled Background", "default": "#FFFFFF" },
@@ -822,26 +802,6 @@
     { "type": "color", "id": "product_scrolled_link_color", "label": "Scrolled Link Color", "default": "#000000" },
     { "type": "color", "id": "product_scrolled_link_hover", "label": "Scrolled Link Hover", "default": "#333333" },
     { "type": "color", "id": "product_icon_color_scrolled", "label": "Scrolled Icon Color", "default": "#000000" },
-
-    { "type": "header", "content": "Product Detail Page - Logo" },
-    { "type": "image_picker", "id": "pd_logo", "label": "Product Detail Logo" },
-    { "type": "image_picker", "id": "pd_mobile_logo", "label": "Product Detail Mobile Logo" },
-    { "type": "header", "content": "Product Detail Page - Default State" },
-    { "type": "color", "id": "pd_btn_background_color", "label": "Button Background", "default": "#1F2B1A" },
-    { "type": "color", "id": "pd_btn_text_color", "label": "Button Text", "default": "#FFFFFF" },
-    { "type": "color", "id": "pd_btn_hover_background", "label": "Button Hover", "default": "#141C11" },
-    { "type": "color", "id": "pd_link_color", "label": "Link Color", "default": "#FFFFFF" },
-    { "type": "color", "id": "pd_link_hover_color", "label": "Link Hover Color", "default": "#CCCCCC" },
-    { "type": "color", "id": "pd_right_bg", "label": "Right Panel Background", "default": "rgba(0,0,0,0)" },
-    { "type": "color", "id": "pd_icon_color", "label": "Icon Color", "default": "#FFFFFF" },
-    { "type": "header", "content": "Product Detail Page - Scrolled State" },
-    { "type": "color", "id": "pd_scrolled_background", "label": "Scrolled Background", "default": "#FFFFFF" },
-    { "type": "color", "id": "pd_scrolled_btn_bg", "label": "Scrolled Button Background", "default": "#1F2B1A" },
-    { "type": "color", "id": "pd_scrolled_btn_text", "label": "Scrolled Button Text", "default": "#FFFFFF" },
-    { "type": "color", "id": "pd_scrolled_btn_hover", "label": "Scrolled Button Hover", "default": "#141C11" },
-    { "type": "color", "id": "pd_scrolled_link_color", "label": "Scrolled Link Color", "default": "#000000" },
-    { "type": "color", "id": "pd_scrolled_link_hover", "label": "Scrolled Link Hover", "default": "#333333" },
-    { "type": "color", "id": "pd_icon_color_scrolled", "label": "Scrolled Icon Color", "default": "#000000" },
 
     { "type": "header", "content": "Contact Page - Logo" },
     { "type": "image_picker", "id": "contact_logo", "label": "Contact Page Logo" },

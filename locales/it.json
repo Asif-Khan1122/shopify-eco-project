@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "general": {
     "password_page": {
@@ -43,8 +34,8 @@
       "page": "Pagina {{ number }}",
       "next": "Pagina successiva",
       "previous": "Pagina precedente",
-      "show_all": "Visualizza tutte le piante",
-      "show_paged": "Mostra vista a pagine",
+      "show_all": "Mostra tutto",
+      "show_paged": "Mostra a pagine",
       "show_less": "Mostra meno"
     },
     "search": {

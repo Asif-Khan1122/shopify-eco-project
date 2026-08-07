@@ -42,10 +42,7 @@
       "label": "Paginering",
       "page": "Pagina {{ number }}",
       "next": "Volgende pagina",
-      "previous": "Vorige pagina",
-      "show_all": "Alle planten weergeven",
-      "show_paged": "Paginatieweergave tonen",
-      "show_less": "Minder tonen"
+      "previous": "Vorige pagina"
     },
     "search": {
       "search": "Zoeken",

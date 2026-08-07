@@ -42,10 +42,7 @@
       "label": "Tördelés",
       "page": "{{ number }}. oldal",
       "next": "Következő oldal",
-      "previous": "Előző oldal",
-      "show_all": "Összes növény megjelenítése",
-      "show_paged": "Lapozott nézet megjelenítése",
-      "show_less": "Kevesebb megjelenítése"
+      "previous": "Előző oldal"
     },
     "search": {
       "search": "Keresés",

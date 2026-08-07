@@ -15,7 +15,7 @@ collection-component {
     0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
 }
 
-button#ViewAllBtn-template--22266326548726__product-grid {
+button#ViewAllBtn-template--21964192841974__product-grid {
   background: #7c8c74;
   border-radius: 30px;
   color: #fff;
@@ -587,13 +587,19 @@ hr {
   text-decoration: none;
   color: #222222;
   display: block;
-  font-size: 26px;
+  font-size: clamp(16px, 4vw, 26px);
   font-weight: 700;
   line-height: 1.231;
 }
+
+@media (max-width: 768px){
+  .full-unstyled-link{
+    font-weight: 500;
+  }
+}
 .product-description {
   margin: 6px 0;
-  font-size: 18px;
+  font-size: clamp(10px, 3vw, 18px);
   line-height: 1.5;
   color: #444444;
   overflow: hidden;
@@ -1032,8 +1038,8 @@ h2.title.inline-richtext {
 
 @media screen and (max-width: 989px) {
   .grid--1-col-tablet-down .grid__item {
-    width: 100%;
-    max-width: 100%;
+    width: 48%;
+    max-width: 48%;
   }
 
   .slider--tablet.grid--peek {

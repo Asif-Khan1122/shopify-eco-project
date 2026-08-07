@@ -42,10 +42,7 @@
       "label": "Pagination",
       "page": "Page {{ number }}",
       "next": "Page suivante",
-      "previous": "Page précédente",
-      "show_all": "Voir toutes les plantes",
-      "show_paged": "Afficher la vue paginée",
-      "show_less": "Voir moins"
+      "previous": "Page précédente"
     },
     "search": {
       "search": "Recherche",

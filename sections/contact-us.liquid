@@ -194,7 +194,7 @@
       text-align: center;
     }
 
-    #connect-{{ section.id }} .connect-subtext{
+    #connect-template--22174110580982__contact_us_QLaCG8 .connect-subtext{
       text-align: center;
     }
 
@@ -273,7 +273,7 @@
         <div class="connect-field">
           <input
             type="text"
-            name="contact[name]"
+            name="contact[{{ section.settings.name_label }}]"
             id="ContactFormName-{{ section.id }}"
             placeholder="{{ section.settings.name_label }}"
             value="{{ form.name }}"
@@ -304,7 +304,7 @@
         <div class="connect-field">
           <input
             type="tel"
-            name="contact[phone]"
+            name="contact[{{ section.settings.number_label }}]"
             id="ContactFormNumber-{{ section.id }}"
             placeholder="{{ section.settings.number_label }}"
             autocomplete="tel"
@@ -316,7 +316,7 @@
 
         <div class="connect-field">
           <textarea
-            name="contact[body]"
+            name="contact[{{ section.settings.message_label }}]"
             id="ContactFormMessage-{{ section.id }}"
             placeholder="{{ section.settings.message_label }}"
             rows="{{ section.settings.textarea_rows }}"

@@ -169,7 +169,7 @@
   }
 {% endstyle %}
 
-<section class="image_with_text" aria-labelledby="about-heading-{{ section.id }}">
+<section class="image_with_text" aria-labelledby="about-heading">
   <div class="container">
     <div class="inner">
       <div class="media_image">
@@ -194,7 +194,7 @@
       <div class="media_content">
         <div class="content_header">
           {% if section.settings.content_heading != blank %}
-            <h2 id="about-heading-{{ section.id }}">{{ section.settings.content_heading }}</h2>
+            <h2 id="about-heading">{{ section.settings.content_heading }}</h2>
           {% endif %}
           {% if section.settings.sub_heading != blank %}
             <h3>{{ section.settings.sub_heading }}</h3>
