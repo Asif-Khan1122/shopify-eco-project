@@ -546,7 +546,25 @@
                         </span>
                       </p>
                     </div>
-                  {%- endif -%}
+                  {% else %}
+                    <div class="rating-wrapper">
+                      <p class="rating-title">Ficus microcarpa 'Green Island</p>
+                      <div class="stars">
+                        {% for i in (1..5) %}
+                          <svg
+                            width="24"
+                            height="23"
+                            viewBox="0 0 24 23"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M11.875 18.1331L19.2138 22.5625L17.2663 14.2144L23.75 8.5975L15.2119 7.87313L11.875 0L8.53813 7.87313L0 8.5975L6.48375 14.2144L4.53625 22.5625L11.875 18.1331Z" fill="#7C8C74"/>
+                          </svg>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
+
                 {%- when 'complementary' -%}
                   <product-recommendations
                     class="complementary-products quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
@@ -703,6 +721,7 @@
                   {% render 'icon-with-text', block: block %}
               {%- endcase -%}
             {%- endfor -%}
+
             <a href="{{ product.url }}" class="link product__view-details animate-arrow">
               {{ 'products.product.view_full_details' | t }}
               {{- 'icon-arrow.svg' | inline_asset_content -}}

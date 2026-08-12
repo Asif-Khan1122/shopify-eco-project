@@ -32,7 +32,7 @@ product-info {
   }
 
   .product__info-wrapper {
-    padding: 0 0 0 5rem;
+    padding: 0 0 0 1.25rem;
   }
 
   .product__info-wrapper--extra-padding {
@@ -269,10 +269,6 @@ a.product__text {
 
 .product__text.caption-with-letter-spacing + .product__title {
   margin-top: 0;
-}
-
-.product__accordion .accordion__content {
-  padding: 0 1rem;
 }
 
 .product .price .badge {
@@ -1127,7 +1123,9 @@ a.product__text {
 .js .product__media {
   overflow: hidden !important;
 }
-
+.product__media.media.media--transparent {
+  border-radius: 16px;
+}
 .thumbnail[aria-current]:focus-visible {
   box-shadow:
     0 0 0 0.3rem rgb(var(--color-background)),
@@ -1356,7 +1354,7 @@ a.product__text {
 }
 
 .product-media-container.constrain-height.media-fit-contain {
-  --contained-width: calc(var(--constrained-height) * var(--aspect-ratio));
+  /* --contained-width: calc(var(--constrained-height) * var(--aspect-ratio)); */
   width: min(var(--contained-width), 100%);
 }
 
@@ -1364,9 +1362,9 @@ a.product__text {
   padding-top: var(--ratio-percent);
 }
 
-.product-media-container.constrain-height .media {
+/* .product-media-container.constrain-height .media {
   padding-top: min(var(--constrained-height), var(--ratio-percent));
-}
+} */
 
 @media screen and (max-width: 749px) {
   .product-media-container.media-fit-cover {

@@ -105,6 +105,14 @@
               {{ form | payment_button }}
             </div>
           {%- endif -%}
+          <div class="custom-payment-icons">
+            <img src="{{ 'paypal.svg' | asset_url }}" alt="PayPal" width="50" height="30" loading="lazy">
+            <img src="{{ 'mastercard.svg' | asset_url }}" alt="Mastercard" width="50" height="30" loading="lazy">
+            <img src="{{ 'visa.svg' | asset_url }}" alt="Visa" width="50" height="30" loading="lazy">
+            <img src="{{ 'amazon-pay.svg' | asset_url }}" alt="Amazon Pay" width="50" height="30" loading="lazy">
+            <img src="{{ 'amex.svg' | asset_url }}" alt="American Express" width="50" height="30" loading="lazy">
+            <img src="{{ 'klarna.svg' | asset_url }}" alt="Klarna" width="50" height="30" loading="lazy">
+          </div>
         </div>
       {%- endform -%}
     </product-form>

@@ -5,7 +5,7 @@
    ========================================================================== */
 
 /* Make the gallery viewer a positioning context for overlay arrows */
-#GalleryViewer-{{ section.id }},
+#GalleryViewer,
 .product__media-wrapper {
   position: relative;
 }
