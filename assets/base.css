@@ -592,8 +592,8 @@ hr {
   line-height: 1.231;
 }
 
-@media (max-width: 768px){
-  .full-unstyled-link{
+@media (max-width: 768px) {
+  .full-unstyled-link {
     font-weight: 500;
   }
 }
@@ -828,7 +828,12 @@ summary::-webkit-details-marker {
     0 0 0 1rem rgb(var(--color-background)),
     0 0 0.2rem 1.2rem rgba(var(--color-foreground), 0.3);
 }
-
+details#Details-description-template--22266327007478__main {
+  border: 1px solid #00000080;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #fbfbfb;
+}
 /* component-title */
 .title,
 .title-wrapper-with-link {
@@ -1277,7 +1282,174 @@ button.shopify-payment-button__button--unbranded {
   border-radius: var(--buttons-radius-outset);
   position: relative;
 }
+/* =========================================
+   CUSTOM PRODUCT BUY BUTTONS
+   ========================================= */
 
+.custom-buy-buttons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Add to Cart */
+
+.custom-add-to-cart {
+  position: relative;
+  flex: 1;
+  width: auto !important;
+  padding: 22px 22px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background-color: #9c747c !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 40px !important;
+  box-shadow: none !important;
+}
+
+/* Remove Dawn's pseudo-element effect */
+
+.custom-add-to-cart::before,
+.custom-add-to-cart::after {
+  border-radius: 40px !important;
+  box-shadow: none !important;
+}
+
+/* Text + cart icon */
+
+.custom-add-to-cart__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* Cart icon */
+
+.custom-cart-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-cart-icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+}
+
+/* Heart button */
+
+.custom-wishlist-button {
+  flex: 0 0 54px;
+  width: 54px;
+  height: 54px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  color: #111111;
+  border: 1px solid #111111;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.custom-wishlist-button svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* Mobile */
+
+@media screen and (max-width: 749px) {
+  .custom-buy-buttons {
+    gap: 10px;
+  }
+
+  .custom-add-to-cart {
+    padding: 18px 18px !important;
+    border-radius: 30px !important;
+  }
+
+  .custom-add-to-cart::before,
+  .custom-add-to-cart::after {
+    border-radius: 30px !important;
+  }
+
+  .custom-add-to-cart__content {
+    font-size: 18px;
+    gap: 8px;
+  }
+
+  .custom-cart-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .custom-wishlist-button {
+    flex-basis: 60px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .custom-wishlist-button svg {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+/* Payment logos under Add to Cart */
+
+.custom-payment-icons {
+  width: 100%;
+  margin-top: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.custom-payment-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 1;
+}
+
+.custom-payment-icon svg {
+  width: auto;
+  height: 40px;
+  max-width: 70px;
+
+  display: block;
+}
+
+/* Mobile */
+
+@media screen and (max-width: 749px) {
+  .custom-payment-icons {
+    margin-top: 18px;
+    gap: 8px;
+  }
+
+  .custom-payment-icon svg {
+    height: 28px;
+    max-width: 55px;
+  }
+}
 .button,
 .shopify-challenge__button,
 .customer button,
@@ -1302,6 +1474,8 @@ button.shopify-payment-button__button--unbranded {
   transition: box-shadow var(--duration-short) ease;
   -webkit-appearance: none;
   appearance: none;
+  background-color: #9c747c !important;
+  border-radius: 40px !important;
   background-color: rgba(var(--color-button), var(--alpha-button-background));
 }
 
@@ -1312,6 +1486,7 @@ button.shopify-payment-button__button--unbranded {
   content: "";
   position: absolute;
   top: 0;
+  border-radius: var(--buttons-radius-outset);
   right: 0;
   bottom: 0;
   left: 0;

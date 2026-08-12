@@ -10,7 +10,61 @@
   Usage:
   {% render 'product-media-gallery' %}
 {% endcomment %}
+<style>
+  #GalleryViewer-{{ section.id }} {
+    position: relative;
+  }
 
+  #GalleryViewer-{{ section.id }} #Slider-Gallery-{{ section.id }} {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+  }
+
+  #GalleryViewer-{{ section.id }} .product__media-item {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-align: start;
+    overflow: hidden;
+  }
+
+  #GalleryViewer-{{ section.id }} .slider-buttons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-around;
+    padding: 0 10px;
+    pointer-events: none;
+    z-index: 2;
+    width: 100%;
+    gap: 180px;
+  }
+
+  #GalleryViewer-{{ section.id }} .slider-counter {
+    display: none;
+  }
+  #GalleryViewer-{{ section.id }} .slider-button {
+    pointer-events: auto;
+    background: #FBF8E8;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    border: none;
+  }
+  #GalleryViewer-{{ section.id }} .slider-button:hover {
+    background: #fff;
+  }
+  #GalleryThumbnails-{{ section.id }} {
+    display: none !important;
+  }
+</style>
 {%- liquid
   if section.settings.hide_variants and variant_images.size == product.media.size
     assign single_media_visible = true
@@ -133,6 +187,22 @@
         aria-label="{{ 'general.slider.previous_slide' | t }}"
       >
         <span class="svg-wrapper">
+          <style>
+            #GalleryViewer-{{ section.id }} {
+              position: relative;
+            }
+
+            #GalleryViewer-{{ section.id }} #Slider-Gallery-{{ section.id }} {
+              display: flex !important;
+              flex-wrap: nowrap !important;
+              overflow-x: auto !important;
+              scroll-snap-type: x mandatory;
+            }
+
+            #GalleryThumbnails-{{ section.id }} {
+              display: none !important;
+            }
+          </style>
           {{- 'icon-caret.svg' | inline_asset_content -}}
         </span>
       </button>

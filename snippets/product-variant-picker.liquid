@@ -1,101 +1,235 @@
-{% comment %}
-  Renders product variant-picker
+<div class="price-accordion" data-price-accordion>
+  <details class="price-accordion__details" open>
+    <summary class="price-accordion__summary">
+      <span>Size &amp; Growth Details</span>
+      <span class="price-accordion__icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 10L8 6L12 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </summary>
 
-  Accepts:
-  - product: {Object} product object.
-  - block: {Object} passing the block information.
-  - product_form_id: {String} Id of the product form to which the variant picker is associated.
-  Usage:
-  {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
-{% endcomment %}
-{%- unless product.has_only_default_variant -%}
-  <variant-selects
-    id="variant-selects-{{ section.id }}"
-    data-section="{{ section.id }}"
-    data-product-handle="{{ product.handle }}"
-    data-product-title="{{ product.title | escape }}"
-    data-product-id="{{ product.id }}"
-    data-currency-code="{{ cart.currency.iso_code }}"
-    {% # theme-check-disable %}
-    data-selected-price-amount="{{ product.selected_or_first_available_variant.price | default: 0 | money_amount | escape }}"
-    {% # theme-check-enable %}
-    {{ block.shopify_attributes }}
-  >
-    {%- for option in product.options_with_values -%}
-      {%- liquid
-        assign swatch_count = option.values | map: 'swatch' | compact | size
-        assign picker_type = block.settings.picker_type
+    <div class="price-accordion__content">
+      <h3 class="price-accordion__title">Price Options</h3>
 
-        if swatch_count > 0 and block.settings.swatch_shape != 'none'
-          if block.settings.picker_type == 'dropdown'
-            assign picker_type = 'swatch_dropdown'
-          else
-            assign picker_type = 'swatch'
-          endif
-        endif
-      -%}
-      {%- if picker_type == 'swatch' -%}
-        <fieldset class="js product-form__input product-form__input--swatch">
-          <legend class="form__label">
-            {{ option.name }}:
-            <span data-selected-value>
-              {{- option.selected_value -}}
-            </span>
-          </legend>
-          {% render 'product-variant-options',
-            product: product,
-            option: option,
-            block: block,
-            picker_type: picker_type
-          %}
-        </fieldset>
-      {%- elsif picker_type == 'button' -%}
-        <fieldset class="js product-form__input product-form__input--pill">
-          <legend class="form__label">{{ option.name }}</legend>
-          {% render 'product-variant-options',
-            product: product,
-            option: option,
-            block: block,
-            picker_type: picker_type
-          %}
-        </fieldset>
-      {%- else -%}
-        <div class="product-form__input product-form__input--dropdown">
-          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-            {{ option.name }}
-          </label>
-          <div class="select">
-            {%- if picker_type == 'swatch_dropdown' -%}
-              <span
-                data-selected-value
-                class="dropdown-swatch"
+      <fieldset class="price-options">
+        <legend class="visually-hidden">Price Options</legend>
+
+        {%- for variant in product.variants -%}
+          <label class="price-options__row" for="PriceOption-{{ product.id }}-{{ forloop.index0 }}">
+            <span class="price-options__radio">
+              <input
+                type="radio"
+                id="PriceOption-{{ product.id }}-{{ forloop.index0 }}"
+                name="id"
+                form="{{ product_form_id }}"
+                value="{{ variant.id }}"
+                {% if forloop.first %}
+                  checked
+                {% endif %}
+                {% unless variant.available %}
+                  disabled
+                {% endunless %}
               >
-                {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
+              <span class="price-options__custom-radio"></span>
+              <span class="price-options__label">
+                {{ variant.title -}}
+                {%- if forloop.first %}:{% endif %}
               </span>
-            {%- endif -%}
-            <select
-              id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select"
-              name="options[{{ option.name | escape }}]"
-              form="{{ product_form_id }}"
-            >
-              {% render 'product-variant-options',
-                product: product,
-                option: option,
-                block: block,
-                picker_type: picker_type
-              %}
-            </select>
-            <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
             </span>
-          </div>
-        </div>
-      {%- endif -%}
-    {%- endfor -%}
+            <span class="price-options__price">{{ variant.price | money }}</span>
+          </label>
+        {%- endfor -%}
+      </fieldset>
 
-    <script type="application/json" data-selected-variant>
-      {{ product.selected_or_first_available_variant | json }}
-    </script>
-  </variant-selects>
-{%- endunless -%}
+      <div class="quantity-stepper" data-quantity-stepper>
+        <button type="button" class="quantity-stepper__btn" data-qty-minus aria-label="Decrease quantity">−</button>
+        <input
+          type="number"
+          class="quantity-stepper__input"
+          name="quantity"
+          form="{{ product_form_id }}"
+          value="1"
+          min="1"
+          data-qty-input
+        >
+        <button type="button" class="quantity-stepper__btn" data-qty-plus aria-label="Increase quantity">+</button>
+      </div>
+    </div>
+  </details>
+</div>
+
+<style>
+  .price-accordion {
+    font-family: inherit;
+    color: #1a1a1a;
+  }
+
+  .price-accordion__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 0;
+    font-size: 16px;
+    color: #6b6b6b;
+  }
+
+  .price-accordion__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .price-accordion__icon {
+    display: flex;
+    transition: transform 0.2s ease;
+  }
+
+  .price-accordion__details[open] .price-accordion__icon {
+    transform: rotate(180deg);
+  }
+
+  .price-accordion__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 23px 0;
+  }
+
+  .price-options {
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .price-options__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .price-options__radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .price-options__radio input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .price-options__custom-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid #c9c9c9;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.15s ease;
+  }
+
+  .price-options__custom-radio::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #7a8450;
+    transform: scale(0);
+    transition: transform 0.15s ease;
+  }
+
+  .price-options__radio input[type='radio']:checked + .price-options__custom-radio {
+    border-color: #7a8450;
+  }
+
+  .price-options__radio input[type='radio']:checked + .price-options__custom-radio::after {
+    transform: scale(1);
+  }
+
+  .price-options__radio input[type='radio']:disabled + .price-options__custom-radio {
+    opacity: 0.4;
+  }
+
+  .price-options__label {
+    font-size: 17px;
+  }
+
+  .price-options__price {
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .quantity-stepper {
+    margin-top: 24px;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #d9d9d9;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .quantity-stepper__btn {
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quantity-stepper__input {
+    width: 36px;
+    text-align: center;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    -moz-appearance: textfield;
+  }
+
+  .quantity-stepper__input::-webkit-outer-spin-button,
+  .quantity-stepper__input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+</style>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-quantity-stepper]').forEach(function (stepper) {
+      var input = stepper.querySelector('[data-qty-input]');
+      var minus = stepper.querySelector('[data-qty-minus]');
+      var plus = stepper.querySelector('[data-qty-plus]');
+
+      minus.addEventListener('click', function () {
+        var value = parseInt(input.value, 10) || 1;
+        input.value = Math.max(1, value - 1);
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+
+      plus.addEventListener('click', function () {
+        var value = parseInt(input.value, 10) || 1;
+        input.value = value + 1;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    });
+  })();
+</script>
