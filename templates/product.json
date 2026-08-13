@@ -12,6 +12,10 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "rating_HGCk7V": {
+          "type": "rating",
+          "settings": {}
+        },
         "title": {
           "type": "title",
           "settings": {}
@@ -36,6 +40,7 @@
         }
       },
       "block_order": [
+        "rating_HGCk7V",
         "title",
         "description",
         "variant_picker",
@@ -73,17 +78,17 @@
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "columns_mobile": "2",
+        "products_to_show": 3,
+        "columns_desktop": 3,
+        "columns_mobile": "1",
         "color_scheme": "scheme-1",
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
-        "padding_top": 36,
-        "padding_bottom": 28
+        "padding_top": 56,
+        "padding_bottom": 60
       }
     }
   },
