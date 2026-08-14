@@ -12,12 +12,12 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "rating_HGCk7V": {
-          "type": "rating",
-          "settings": {}
-        },
         "title": {
           "type": "title",
+          "settings": {}
+        },
+        "rating_HGCk7V": {
+          "type": "rating",
           "settings": {}
         },
         "description": {
@@ -40,8 +40,8 @@
         }
       },
       "block_order": [
-        "rating_HGCk7V",
         "title",
+        "rating_HGCk7V",
         "description",
         "variant_picker",
         "buy_buttons"
@@ -84,6 +84,7 @@
         "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
+        "quick_add": "standard",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
