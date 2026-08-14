@@ -5,10 +5,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
-p.rating-title {
+
+.rating-wrapper .stars {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+.rating-wrapper p.rating-title {
   font-weight: 700;
-  font-size: 22px;
+  font-size: clamp(14px, 2.5vw, 22px);
   line-height: 1.364;
   vertical-align: middle;
 }
@@ -57,7 +64,7 @@ p.rating-title {
   -webkit-text-fill-color: transparent;
 }
 .product__scientific-name {
-  font-size: 1.4rem;
+  font-size: clamp(14px, 2vw, 1.4rem);
   font-style: italic;
   color: rgba(var(--color-foreground), 0.75);
   margin: -0.5rem 0 0.8rem 0;
@@ -78,5 +85,14 @@ p.rating-title {
 
   .rating-text {
     display: block;
+  }
+}
+
+@media screen and (max-width: 1147px) {
+  .rating-wrapper {
+    gap: 6px;
+  }
+  .rating-wrapper p.rating-title {
+    font-weight: 500;
   }
 }

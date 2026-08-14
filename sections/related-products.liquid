@@ -46,7 +46,8 @@
               show_vendor: section.settings.show_vendor,
               show_rating: section.settings.show_rating,
               skip_styles: skip_card_product_styles,
-              product_view_context: 'recommendation'
+              product_view_context: 'recommendation',
+              quick_add: section.settings.quick_add
             %}
           </li>
           {%- assign skip_card_product_styles = true -%}
@@ -135,7 +136,7 @@
           "value": "2",
           "label": "t:sections.related-products.settings.columns_mobile.options__2.label"
         }
-      ]    
+      ]
     },
     {
       "type": "color_scheme",
@@ -207,6 +208,26 @@
       ],
       "default": "default",
       "label": "t:sections.all.image_shape.label"
+    },
+    {
+      "type": "select",
+      "id": "quick_add",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "bulk",
+          "label": "Bulk"
+        }
+      ],
+      "default": "standard",
+      "label": "Quick add"
     },
     {
       "type": "checkbox",

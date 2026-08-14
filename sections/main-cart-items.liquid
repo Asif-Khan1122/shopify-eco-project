@@ -113,7 +113,10 @@
 
                       <div class="cart-item__title">
                         <a href="{{ item.url }}" class="cart-item__name h4 break">{{ item.product.title | escape }}</a>
-                        {%- assign cart_disclosure_modal_id = 'CartDisclosureModal-cart-' | append: item.key | replace: ':', '-' -%}
+                        {%- assign cart_disclosure_modal_id = 'CartDisclosureModal-cart-'
+                          | append: item.key
+                          | replace: ':', '-'
+                        -%}
                         {%- render 'cart-disclosure-indicator',
                           product: item.product,
                           modal_id: cart_disclosure_modal_id
@@ -486,21 +489,21 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "default": 120
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 32
     }
   ]
 }

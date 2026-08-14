@@ -137,7 +137,11 @@
                   <div {{ block.shopify_attributes }}>
                     {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
                     {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                      <input
+                        type="hidden"
+                        name="price_option"
+                        value="{{ product.selected_or_first_available_variant.id }}"
+                      >
                       {{ form | payment_terms }}
                     {%- endform -%}
                   </div>
@@ -196,7 +200,7 @@
                 {%- when 'description' -%}
                   {%- if product.description != blank -%}
                     <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
-                      <details id="Details-{{ block.id }}-{{ section.id }}">
+                      <details id="Details-{{ block.id }}-{{ section.id }}" open="open">
                         <summary>
                           <div class="summary__title">
                             <h2 class="h4 accordion__title">Description</h2>
@@ -772,6 +776,22 @@
 
       <script type="application/ld+json">
         {{ product | structured_data }}
+      </script>
+      <script>
+        (function () {
+          document.querySelectorAll('.price-options__radio input[type="radio"]').forEach(function (radio) {
+            radio.addEventListener('change', function () {
+              if (!this.checked) return;
+              var form = document.getElementById(this.getAttribute('form'));
+              if (!form) return;
+              var hiddenIdInput = form.querySelector('input[name="id"]');
+              if (hiddenIdInput) {
+                hiddenIdInput.value = this.value;
+                hiddenIdInput.dispatchEvent(new Event('change', { bubbles: true }));
+              }
+            });
+          });
+        })();
       </script>
     </div>
   </product-component>

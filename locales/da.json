@@ -42,7 +42,10 @@
       "label": "Sideinddeling",
       "page": "Side {{ number }}",
       "next": "Næste side",
-      "previous": "Forrige side"
+      "previous": "Forrige side",
+      "show_all": "Vis alle",
+      "show_paged": "Vis sideopdelt",
+      "show_less": "Vis mindre"
     },
     "search": {
       "search": "Søg",

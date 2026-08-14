@@ -7,7 +7,7 @@ product-info {
 }
 
 .product.grid {
-  gap: 0;
+  gap: 20px;
 }
 
 .product--no-media {
@@ -31,9 +31,9 @@ product-info {
     padding-right: var(--media-shadow-horizontal-offset);
   }
 
-  .product__info-wrapper {
+  /* .product__info-wrapper {
     padding: 0 0 0 1.25rem;
-  }
+  } */
 
   .product__info-wrapper--extra-padding {
     padding: 0 0 0 8rem;
@@ -62,8 +62,8 @@ product-info {
 
 @media screen and (min-width: 990px) {
   .product--large:not(.product--no-media) .product__media-wrapper {
-    max-width: 65%;
-    width: calc(65% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 50%;
+    width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--large:not(.product--no-media) .product__info-wrapper {
@@ -79,14 +79,14 @@ product-info {
 
   .product--medium:not(.product--no-media) .product__media-wrapper,
   .product--small:not(.product--no-media) .product__info-wrapper {
-    max-width: 55%;
-    width: calc(55% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 50%;
+    width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--medium:not(.product--no-media) .product__info-wrapper,
   .product--small:not(.product--no-media) .product__media-wrapper {
-    max-width: 45%;
-    width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 50%;
+    width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 }
 
@@ -1353,14 +1353,14 @@ a.product__text {
   margin-left: auto;
 }
 
-.product-media-container.constrain-height.media-fit-contain {
-  /* --contained-width: calc(var(--constrained-height) * var(--aspect-ratio)); */
+/* .product-media-container.constrain-height.media-fit-contain {
+  --contained-width: calc(var(--constrained-height) * var(--aspect-ratio));
   width: min(var(--contained-width), 100%);
 }
 
 .product-media-container .media {
   padding-top: var(--ratio-percent);
-}
+} */
 
 /* .product-media-container.constrain-height .media {
   padding-top: min(var(--constrained-height), var(--ratio-percent));

@@ -42,7 +42,10 @@
       "label": "Seitennummerierung",
       "page": "Seite {{ number }}",
       "next": "Nächste Seite",
-      "previous": "Vorherige Seite"
+      "previous": "Vorherige Seite",
+      "show_all": "Alle anzeigen",
+      "show_paged": "Seitenweise anzeigen",
+      "show_less": "Weniger anzeigen"
     },
     "search": {
       "search": "Suchen",

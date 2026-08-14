@@ -42,7 +42,10 @@
       "label": "Stránkování",
       "page": "Strana {{ number }}",
       "next": "Další stránka",
-      "previous": "Předchozí stránka"
+      "previous": "Předchozí stránka",
+      "show_all": "Zobrazit vše",
+      "show_paged": "Zobrazit po {{ count }} na stránku",
+      "show_less": "Zobrazit méně"
     },
     "search": {
       "search": "Hledání",

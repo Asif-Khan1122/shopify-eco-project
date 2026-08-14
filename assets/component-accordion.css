@@ -2,7 +2,6 @@
   display: flex;
   position: relative;
   line-height: 1;
-  padding: 1.5rem 0;
 }
 
 .accordion .summary__title {
@@ -27,6 +26,9 @@
 }
 
 .accordion__title {
+  font-size: calc(var(--font-heading-scale) * 2rem);
+  font-weight: 400;
+  line-height: 1.2;
   display: inline-block;
   max-width: calc(100% - 6rem);
   min-height: 1.6rem;
@@ -42,12 +44,16 @@
   width: calc(var(--font-heading-scale) * 2rem);
 }
 
-.accordion details[open] > summary .icon-caret {
+.accordion summary .icon-caret {
   transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+.accordion details[open] > summary .icon-caret {
+  transform: rotate(0deg);
 }
 
 .accordion__content {
-  margin-bottom: 1.5rem;
   word-break: break-word;
   overflow-x: auto;
 }
