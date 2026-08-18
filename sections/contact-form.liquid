@@ -4,21 +4,51 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-left: {{ section.settings.padding_horizontal | times: 0.7 | round: 0 }}px;
+    padding-right: {{ section.settings.padding_horizontal | times: 0.7 | round: 0 }}px;
+    background-color: {{ section.settings.bg_color }};
+    border-radius: 20px;
+    position: relative;
+    margin-top: -100px;
+       margin-bottom: 0;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: calc(100% - 40px);
+      width: 100%;
+      display: block;
+      float: none;
+      clear: both;
   }
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-left: {{ section.settings.padding_horizontal }}px;
+      padding-right: {{ section.settings.padding_horizontal }}px;
+      margin-top: -150px;
     }
+  }
+  @media screen and (max-width: 480px) {
+    .section-{{ section.id }}-padding {
+    padding-left: {{ section.settings.padding_horizontal | times: 0.3 | round: 0 }}px;
+    padding-right: {{ section.settings.padding_horizontal | times: 0.3 | round: 0 }}px;
+    }
+  }
+
+  .contact-highlight-{{ section.id }} {
+    color: {{ section.settings.highlight_color }};
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
+<div class="color-{{ section.settings.color_scheme }} gradient{% if section.settings.image != blank %} contact-card--overlap{% endif %}">
+  <div class="contact page-width page-width--custom section-{{ section.id }}-padding">
     {%- if section.settings.heading != blank -%}
       <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         {{ section.settings.heading }}
+        {%- if section.settings.heading_highlight != blank -%}
+          <span class="contact-highlight-{{ section.id }}">{{ section.settings.heading_highlight }}</span>
+        {%- endif -%}
       </h2>
     {%- else -%}
       <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
@@ -51,19 +81,33 @@
           </li>
         </ul>
       {%- endif -%}
+
       <div class="contact__fields">
         <div class="field">
           <input
             class="field__input"
-            autocomplete="name"
+            autocomplete="given-name"
             type="text"
-            id="ContactForm-name"
-            name="contact[{{ 'templates.contact.form.name' | t }}]"
-            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-            placeholder="{{ 'templates.contact.form.name' | t }}"
+            id="ContactForm-first-name"
+            name="contact[First Name]"
+            placeholder="First Name"
           >
-          <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
+          <label class="field__label" for="ContactForm-first-name">First Name</label>
         </div>
+        <div class="field">
+          <input
+            class="field__input"
+            autocomplete="family-name"
+            type="text"
+            id="ContactForm-last-name"
+            name="contact[Last Name]"
+            placeholder="Last Name"
+          >
+          <label class="field__label" for="ContactForm-last-name">Last Name</label>
+        </div>
+      </div>
+
+      <div class="contact__fields">
         <div class="field field--with-error">
           <input
             autocomplete="email"
@@ -98,37 +142,70 @@
             </small>
           {%- endif -%}
         </div>
+        <div class="field">
+          <input
+            type="tel"
+            id="ContactForm-phone"
+            class="field__input"
+            autocomplete="tel"
+            name="contact[{{ 'templates.contact.form.phone' | t }}]"
+            pattern="[0-9\-]*"
+            value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+            placeholder="{{ 'templates.contact.form.phone' | t }}"
+          >
+          <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
+        </div>
       </div>
-      <div class="field">
-        <input
-          type="tel"
-          id="ContactForm-phone"
-          class="field__input"
-          autocomplete="tel"
-          name="contact[{{ 'templates.contact.form.phone' | t }}]"
-          pattern="[0-9\-]*"
-          value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
-          placeholder="{{ 'templates.contact.form.phone' | t }}"
-        >
-        <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
+
+      <div class="contact__fields">
+        <div class="field">
+          <input
+            class="field__input"
+            type="text"
+            id="ContactForm-address"
+            name="contact[Address]"
+            placeholder="Address"
+          >
+          <label class="field__label" for="ContactForm-address">Address</label>
+        </div>
+        <div class="field">
+          <input
+            class="field__input"
+            type="text"
+            id="ContactForm-service"
+            name="contact[Service Requested]"
+            placeholder="Service Requested"
+          >
+          <label class="field__label" for="ContactForm-service">Service Requested</label>
+        </div>
       </div>
-      <div class="field">
-        <textarea
-          rows="10"
-          id="ContactForm-body"
-          class="text-area field__input"
-          name="contact[{{ 'templates.contact.form.comment' | t }}]"
-          placeholder="{{ 'templates.contact.form.comment' | t }}"
-        >
-          {{- form.body -}}
-        </textarea>
-        <label class="form__label field__label" for="ContactForm-body">
-          {{- 'templates.contact.form.comment' | t -}}
-        </label>
+
+      <div class="contact__fields">
+        <div class="field">
+          <input
+            class="field__input"
+            type="text"
+            id="ContactForm-datetime"
+            name="contact[Preferred Date and Time]"
+            placeholder="Preferred Date & Time"
+          >
+          <label class="field__label" for="ContactForm-datetime">Preferred Date & Time</label>
+        </div>
+        <div class="field">
+          <input
+            class="field__input"
+            type="text"
+            id="ContactForm-body"
+            name="contact[{{ 'templates.contact.form.comment' | t }}]"
+            placeholder="Additional Comments"
+          >
+          <label class="field__label" for="ContactForm-body">Additional Comments</label>
+        </div>
       </div>
+
       <div class="contact__button">
-        <button type="submit" class="button">
-          {{ 'templates.contact.form.send' | t }}
+        <button type="submit" class="button button_primary">
+          {{ section.settings.button_label }}
         </button>
       </div>
     {%- endform -%}
@@ -151,29 +228,26 @@
       "label": "t:sections.contact-form.settings.title.label"
     },
     {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Highlighted heading text",
+      "default": "Help You Grow!"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#A9788C"
+    },
+    {
       "type": "select",
       "id": "heading_size",
       "options": [
-        {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
-        },
-        {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
-        },
-        {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
-        },
-        {
-          "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
-        },
-        {
-          "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
-        }
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__3.label" },
+        { "value": "hxl", "label": "t:sections.all.heading_size.options__4.label" },
+        { "value": "hxxl", "label": "t:sections.all.heading_size.options__5.label" }
       ],
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
@@ -183,6 +257,18 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FBF8E8"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Learn More About Us"
     },
     {
       "type": "header",
@@ -196,7 +282,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "default": 68
     },
     {
       "type": "range",
@@ -206,13 +292,19 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 70
     }
   ],
-  "presets": [
-    {
-      "name": "t:sections.contact-form.presets.name"
-    }
-  ]
+  "presets": [{ "name": "t:sections.contact-form.presets.name" }]
 }
 {% endschema %}
