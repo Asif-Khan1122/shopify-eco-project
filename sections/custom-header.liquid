@@ -18,11 +18,11 @@
   {% assign page_key = 'product_listing' %}
 
 {% elsif template.name == 'page' and page.handle == 'contact' %}
-  {% assign page_key = 'contact' %}
+  {% assign page_key = 'product_listing' %}
 {% elsif template.name == 'page' and page.handle == 'contact-us' %}
-  {% assign page_key = 'contact' %}
+  {% assign page_key = 'product_listing' %}
 {% elsif template.name == 'contact' %}
-  {% assign page_key = 'contact' %}
+  {% assign page_key = 'product_listing' %}
 {% endif %}
 
 {% comment %} COLOR / SETTINGS MAP PER PAGE {% endcomment %}
@@ -65,25 +65,6 @@
     {% assign scrolled_btn_hover = section.settings.product_scrolled_btn_hover | default: '#2C3620' %}
     {% assign page_class = 'product-page' %}
 
-  {% when 'contact' %}
-    {% assign btn_bg = section.settings.contact_btn_background_color | default: '#2C2C2C' %}
-    {% assign btn_text = section.settings.contact_btn_text_color | default: '#F4EFE3' %}
-    {% assign btn_hover = section.settings.contact_btn_hover_background | default: '#1A1A1A' %}
-    {% assign link_color = section.settings.contact_link_color | default: '#2C2C2C' %}
-    {% assign link_hover = section.settings.contact_link_hover_color | default: '#555555' %}
-    {% assign right_bg = section.settings.contact_right_bg | default: '#F4EFE3' %}
-    {% assign logo_desktop = section.settings.contact_logo | default: section.settings.logo %}
-    {% assign logo_mobile = section.settings.contact_mobile_logo | default: section.settings.mobile_logo %}
-    {% assign icon_color = section.settings.contact_icon_color | default: '#2C2C2C' %}
-    {% assign icon_color_scrolled = section.settings.contact_icon_color_scrolled | default: '#000000' %}
-    {% assign scrolled_bg = section.settings.contact_scrolled_background | default: '#FFFFFF' %}
-    {% assign scrolled_link_color = section.settings.contact_scrolled_link_color | default: '#000000' %}
-    {% assign scrolled_link_hover = section.settings.contact_scrolled_link_hover | default: '#333333' %}
-    {% assign scrolled_btn_bg = section.settings.contact_scrolled_btn_bg | default: '#2C2C2C' %}
-    {% assign scrolled_btn_text = section.settings.contact_scrolled_btn_text | default: '#F4EFE3' %}
-    {% assign scrolled_btn_hover = section.settings.contact_scrolled_btn_hover | default: '#1A1A1A' %}
-    {% assign page_class = 'contact-page' %}
-
   {% else %}
     {% comment %} Home / default {% endcomment %}
     {% assign btn_bg = section.settings.btn_background_color | default: '#FBF8E8' %}
@@ -104,7 +85,6 @@
     {% assign scrolled_btn_hover = btn_hover %}
     {% assign page_class = '' %}
 {% endcase %}
-
 {% style %}
   .custom_header img {
     width: 100%;
