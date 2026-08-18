@@ -4,6 +4,35 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    position: relative;
+
+    {% if section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | image_url }}');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    {% endif %}
+    height: 73.53vh;
+  }
+
+  h1.main-page-title.page-title.h0 {
+    font-size: clamp(40px, 4vw, 68px);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    line-height: 1.4584;
+    text-align: center;
+    color: {{ section.settings.color_heading }};
+    margin-top: 50px;
+    margin-bottom: 0px;
+  }
+
+  .section_container{
+    max-width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
   }
 
   @media screen and (min-width: 750px) {
@@ -11,13 +40,17 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+      h1.main-page-title.page-title.h0 {
+      font-weight: 700;
+    }
   }
 {%- endstyle -%}
 
-<div class="page-width page-width--narrow section-{{ section.id }}-padding">
+<div class="page-width section_container  section-{{ section.id }}-padding">
   <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ page.title | escape }}
+    {{ section.settings.heading }}
   </h1>
+
   <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     {{ page.content }}
   </div>
@@ -29,6 +62,27 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Contact Us"
+    },
+    {
+      "type": "header",
+      "content": "Section Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_heading",
+      "label": "Heading Color",
+      "default": "#ffffff"
+    },
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
