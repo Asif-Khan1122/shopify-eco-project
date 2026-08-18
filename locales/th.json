@@ -42,7 +42,10 @@
       "label": "การแบ่งหน้า",
       "page": "หน้า {{ number }}",
       "next": "หน้าถัดไป",
-      "previous": "หน้าก่อนหน้านี้"
+      "previous": "หน้าก่อนหน้านี้",
+      "show_all": "แสดงทั้งหมด",
+      "show_paged": "แสดงหน้า {{ number }}",
+      "show_less": "แสดงน้อยลง"
     },
     "search": {
       "search": "ค้นหา",

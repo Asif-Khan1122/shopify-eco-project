@@ -42,7 +42,10 @@
       "label": "Sivunumerointi",
       "page": "Sivu {{ number }}",
       "next": "Seuraava sivu",
-      "previous": "Edellinen sivu"
+      "previous": "Edellinen sivu",
+      "show_all": "Näytä kaikki",
+      "show_paged": "Näytä {{ count }} tuotetta per sivu",
+      "show_less": "Näytä vähemmän"
     },
     "search": {
       "search": "Hae",

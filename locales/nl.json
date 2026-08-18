@@ -42,7 +42,10 @@
       "label": "Paginering",
       "page": "Pagina {{ number }}",
       "next": "Volgende pagina",
-      "previous": "Vorige pagina"
+      "previous": "Vorige pagina",
+      "show_all": "Alles weergeven",
+      "show_paged": "Pagina {{ number }} weergeven",
+      "show_less": "Minder weergeven"
     },
     "search": {
       "search": "Zoeken",

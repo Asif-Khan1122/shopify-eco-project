@@ -42,7 +42,10 @@
       "label": "Paginación",
       "page": "Página {{ number }}",
       "next": "Página siguiente",
-      "previous": "Pagina anterior"
+      "previous": "Pagina anterior",
+      "show_all": "Mostrar todos",
+      "show_paged": "Mostrar paginado",
+      "show_less": "Mostrar menos"
     },
     "search": {
       "search": "Búsqueda",

@@ -157,6 +157,10 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
     padding-right: 5rem;
   }
 
+  .page-width--custom {
+    max-width: 134rem;
+  }
+
   .page-width--narrow {
     max-width: 72.6rem;
     padding: 0;
@@ -458,7 +462,6 @@ blockquote {
 .caption-large,
 .customer .field input,
 .customer select,
-.field__input,
 .form__label,
 .select__select {
   font-size: 1.3rem;
@@ -860,7 +863,7 @@ details#Details-description-template--22266327007478__main {
 /* component-title */
 .title,
 .title-wrapper-with-link {
-  margin: 3rem 0 2rem;
+  margin: 3rem 0 3rem;
 }
 
 .title-wrapper-with-link .title {
@@ -871,10 +874,12 @@ details#Details-description-template--22266327007478__main {
   font-size: inherit;
 }
 h2.title.inline-richtext {
-  font-size: clamp(36px, 4vw, 56px);
+  font-size: 3.9vw;
   line-height: 1.3;
-  font-weight: 700;
+  font-weight: 600;
   color: #222;
+  letter-spacing: 0;
+  text-align: center;
 }
 .title-wrapper {
   margin-bottom: 2rem;
@@ -909,6 +914,9 @@ h2.title.inline-richtext {
 }
 
 @media screen and (min-width: 750px) {
+  h2.title.inline-richtext {
+    font-weight: 700;
+  }
   .title-wrapper--self-padded-mobile {
     padding-left: 0;
     padding-right: 0;
@@ -918,7 +926,7 @@ h2.title.inline-richtext {
 @media screen and (min-width: 990px) {
   .title,
   .title-wrapper-with-link {
-    margin: 5rem 0 3rem;
+    margin: 5rem 0 6rem;
   }
 
   .title--primary {
@@ -1515,6 +1523,9 @@ button.shopify-payment-button__button--unbranded {
   border-radius: 40px !important;
   background-color: rgba(var(--color-button), var(--alpha-button-background));
 }
+button.button.button_primary {
+  background-color: #9c747c !important;
+}
 
 .button:before,
 .shopify-challenge__button:before,
@@ -1887,7 +1898,6 @@ details[open] > .share-button__fallback {
 }
 
 /* component-form */
-.field__input,
 .select__select,
 .customer .field input,
 .customer select {
@@ -1909,7 +1919,21 @@ details[open] > .share-button__fallback {
   position: relative;
   border: 0;
 }
-
+.field__input {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+  width: 100%;
+  box-sizing: border-box;
+  transition: box-shadow var(--duration-short) ease;
+  border-radius: var(--inputs-radius);
+  position: relative;
+  border: 0;
+}
 .field:before,
 .select:before,
 .customer .field:before,
@@ -1928,8 +1952,22 @@ details[open] > .share-button__fallback {
     rgba(var(--color-shadow), var(--inputs-shadow-opacity));
   z-index: -1;
 }
-
-.field:after,
+.field,
+.field::before,
+.field::after,
+.field__input,
+.select,
+.select::before,
+.select::after,
+.select__select,
+.customer .field,
+.customer .field::before,
+.customer .field::after,
+.customer select {
+  border-radius: 15px !important;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+}
+/* .field:after,
 .select:after,
 .customer .field:after,
 .customer select:after,
@@ -1947,7 +1985,7 @@ details[open] > .share-button__fallback {
     rgba(var(--color-foreground), var(--inputs-border-opacity));
   transition: box-shadow var(--duration-short) ease;
   z-index: 1;
-}
+} */
 
 .select__select {
   font-family: var(--font-body-family);
@@ -2041,20 +2079,20 @@ details[open] > .share-button__fallback {
   flex-wrap: wrap;
 }
 
+/* Base styles - shared by both selectors */
 .field__input,
 .customer .field input {
   flex-grow: 1;
   text-align: left;
-  padding: 1.5rem;
-  margin: var(--inputs-border-width);
+  padding: 1.884rem;
   transition: box-shadow var(--duration-short) ease;
 }
 
 .field__label,
 .customer .field label {
-  font-size: 1.6rem;
-  left: calc(var(--inputs-border-width) + 2rem);
-  top: calc(1rem + var(--inputs-border-width));
+  font-size: 1rem;
+  left: calc(var(--inputs-border-width) + 1.5rem);
+  top: calc(1.6rem + var(--inputs-border-width));
   margin-bottom: 0;
   pointer-events: none;
   position: absolute;
@@ -2063,7 +2101,21 @@ details[open] > .share-button__fallback {
     font-size var(--duration-short) ease;
   color: rgba(var(--color-foreground), 0.75);
   letter-spacing: 0.1rem;
-  line-height: 1.5;
+  line-height: 2;
+}
+
+@media (min-width: 750px) {
+  .field__input,
+  .customer .field input {
+    padding: 2.884rem;
+  }
+
+  .field__label,
+  .customer .field label {
+    font-size: 1.8rem;
+    left: calc(var(--inputs-border-width) + 2rem);
+    top: calc(2rem + var(--inputs-border-width));
+  }
 }
 
 .field__input:focus ~ .field__label,

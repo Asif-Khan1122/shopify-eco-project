@@ -42,7 +42,10 @@
       "label": "Tördelés",
       "page": "{{ number }}. oldal",
       "next": "Következő oldal",
-      "previous": "Előző oldal"
+      "previous": "Előző oldal",
+      "show_all": "Összes megjelenítése",
+      "show_paged": "Lapozás megjelenítése",
+      "show_less": "Kevesebb megjelenítése"
     },
     "search": {
       "search": "Keresés",
